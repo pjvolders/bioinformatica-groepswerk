@@ -4,15 +4,12 @@ tasks:
     command: |
       export CONDA_ALWAYS_YES="true"
 
-      conda create --name env
+      conda env create -f environment.yml
+      echo "conda activate env" >> ~/.bashrc
       source ~/.bashrc
-      clear
-      conda activate env
-      conda config --add channels defaults
-      conda config --add channels bioconda
-      conda config --add channels conda-forge
-      conda config --set channel_priority strict
-      conda install -c bioconda bowtie
 
       unset CONDA_ALWAYS_YES 
+
+      clear
+    
   
