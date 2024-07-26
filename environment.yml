@@ -6,10 +6,30 @@ dependencies:
   - _libgcc_mutex=0.1=conda_forge
   - _openmp_mutex=4.5=2_gnu
   - alsa-lib=1.2.12=h4ab18f5_0
+  - aws-c-auth=0.7.22=h9137712_5
+  - aws-c-cal=0.6.15=h88a6e22_0
+  - aws-c-common=0.9.19=h4ab18f5_0
+  - aws-c-compression=0.2.18=h83b837d_6
+  - aws-c-event-stream=0.4.2=h0cbf018_13
+  - aws-c-http=0.8.2=h360477d_2
+  - aws-c-io=0.14.9=h2d549f9_2
+  - aws-c-mqtt=0.10.4=hf85b563_6
+  - aws-c-s3=0.5.10=h679ed35_3
+  - aws-c-sdkutils=0.1.16=h83b837d_2
+  - aws-checksums=0.1.18=h83b837d_6
+  - awscli=2.17.18=py312h7900ff3_0
+  - awscrt=0.20.10=py312h6bae88a_6
+  - brotli-python=1.1.0=py312h30efb56_1
   - bwa=0.7.18=he4a0461_1
   - bzip2=1.0.8=h4bc722e_7
+  - c-ares=1.32.3=h4bc722e_0
   - ca-certificates=2024.7.4=hbcca054_0
   - cairo=1.18.0=hebfffa5_3
+  - cffi=1.16.0=py312hf06ca03_0
+  - colorama=0.4.6=pyhd8ed1ab_0
+  - cryptography=40.0.1=py312h241aef2_1
+  - distro=1.8.0=pyhd8ed1ab_0
+  - docutils=0.17.1=py312h7900ff3_5
   - expat=2.6.2=h59595ed_0
   - fastqc=0.12.1=hdfd78af_0
   - font-ttf-dejavu-sans-mono=2.37=hab24e00_0
@@ -24,15 +44,19 @@ dependencies:
   - giflib=5.2.2=hd590300_0
   - graphite2=1.3.13=h59595ed_1003
   - harfbuzz=9.0.0=hda332d3_1
+  - htslib=1.20=h5efdd21_2
   - icu=75.1=he02047a_0
+  - jmespath=1.0.1=pyhd8ed1ab_0
   - keyutils=1.6.1=h166bdaf_0
   - krb5=1.21.3=h659f571_0
   - lcms2=2.16=hb7c19ff_0
   - ld_impl_linux-64=2.40=hf3520f5_7
   - lerc=4.0.0=h27087fc_0
   - libcups=2.3.3=h4637d8d_4
+  - libcurl=8.9.0=hdb1bdb2_0
   - libdeflate=1.20=hd590300_0
   - libedit=3.1.20191231=he28a2e2_2
+  - libev=4.33=hd590300_2
   - libexpat=2.6.2=h59595ed_0
   - libffi=3.4.2=h7f98852_5
   - libgcc-ng=14.1.0=h77fa898_0
@@ -40,9 +64,11 @@ dependencies:
   - libgomp=14.1.0=h77fa898_0
   - libiconv=1.17=hd590300_2
   - libjpeg-turbo=3.0.0=hd590300_1
+  - libnghttp2=1.58.0=h47da74e_1
   - libnsl=2.0.1=hd590300_0
   - libpng=1.6.43=h2797004_0
   - libsqlite=3.46.0=hde9e2c9_0
+  - libssh2=1.11.0=h0841786_0
   - libstdcxx-ng=14.1.0=hc0a3c3a_0
   - libtiff=4.6.0=h1dd3fc0_3
   - libuuid=2.38.1=h0b41bf4_0
@@ -57,13 +83,27 @@ dependencies:
   - perl=5.32.1=7_hd590300_perl5
   - pip=24.0=pyhd8ed1ab_0
   - pixman=0.43.2=h59595ed_0
+  - prompt-toolkit=3.0.38=pyha770c72_0
+  - prompt_toolkit=3.0.38=hd8ed1ab_0
   - pthread-stubs=0.4=h36c2ea0_1001
+  - pycparser=2.22=pyhd8ed1ab_0
+  - pyopenssl=23.1.1=pyhd8ed1ab_0
+  - pysocks=1.7.1=pyha2e5f31_6
   - python=3.12.4=h194c7f8_0_cpython
+  - python-dateutil=2.8.2=pyhd8ed1ab_0
+  - python_abi=3.12=4_cp312
   - readline=8.2=h8228510_1
+  - ruamel.yaml=0.17.17=py312h98912ed_2
+  - ruamel.yaml.clib=0.2.7=py312h98912ed_2
+  - s2n=1.4.16=he19d79f_0
+  - samtools=1.20=h50ea8bc_1
   - setuptools=71.0.4=pyhd8ed1ab_0
+  - six=1.16.0=pyh6c4a22f_0
   - snpeff=5.2=hdfd78af_1
   - tk=8.6.13=noxft_h4845f30_101
   - tzdata=2024a=h0c530f3_0
+  - urllib3=1.26.19=pyhd8ed1ab_0
+  - wcwidth=0.2.13=pyhd8ed1ab_0
   - wheel=0.43.0=pyhd8ed1ab_1
   - xorg-fixesproto=5.0=h7f98852_1002
   - xorg-inputproto=2.3.2=h7f98852_1002
