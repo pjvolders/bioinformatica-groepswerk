@@ -1,8 +1,7 @@
 name: env
 channels:
-  - conda-forge
   - bioconda
-  - defaults
+  - conda-forge
 dependencies:
   - _libgcc_mutex=0.1=conda_forge
   - _openmp_mutex=4.5=2_gnu
@@ -12,6 +11,7 @@ dependencies:
   - ca-certificates=2024.7.4=hbcca054_0
   - cairo=1.18.0=hebfffa5_3
   - expat=2.6.2=h59595ed_0
+  - fastqc=0.12.1=hdfd78af_0
   - font-ttf-dejavu-sans-mono=2.37=hab24e00_0
   - font-ttf-inconsolata=3.000=h77eed37_0
   - font-ttf-source-code-pro=2.038=h77eed37_0
