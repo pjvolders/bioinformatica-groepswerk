@@ -1,0 +1,734 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\author{}
+\date{}
+
+\begin{document}
+
+
+\section{Bio-informatica groepswerk}\label{bio-informatica-groepswerk}
+
+\subsection{Inhoudsopgave}\label{inhoudsopgave}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Introductie tot Linux Shell/Bash
+\item
+  Kwaliteitscontrole met FastQC
+\item
+  Lees Mapping met BWA
+\item
+  Variant Calling met BCFtools
+\item
+  Variant Filtering
+\item
+  Variant Annotatie met SnpEff
+\item
+  Simuleren van FASTQ-bestanden met NEAT
+\end{enumerate}
+
+\subsection{1. Introductie tot Linux
+Shell/Bash}\label{introductie-tot-linux-shellbash}
+
+\subsubsection{Wat is een Shell?}\label{wat-is-een-shell}
+
+Een shell is een programma dat een interface biedt voor gebruikers om
+met het besturingssysteem te communiceren. De meest voorkomende shell in
+Linux-systemen heet Bash (Bourne Again SHell). Wanneer je de
+opdrachtregel gebruikt, typ je opdrachten in de shell.
+
+\subsubsection{Basisbegrippen}\label{basisbegrippen}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Opdrachtprompt}: Hier typ je je opdrachten. Het eindigt
+  meestal met een \texttt{\$}-teken.
+\item
+  \textbf{Opdrachten}: Dit zijn instructies die je aan de computer
+  geeft.
+\item
+  \textbf{Argumenten}: Aanvullende informatie die je aan een opdracht
+  geeft.
+\item
+  \textbf{Opties}: Wijzigen het gedrag van opdrachten, meestal beginnend
+  met een streepje (\texttt{-}).
+\end{enumerate}
+
+\subsubsection{Basisopdrachten}\label{basisopdrachten}
+
+\paragraph{\texorpdfstring{1. \texttt{pwd} (Print Working
+Directory)}{1. pwd (Print Working Directory)}}\label{pwd-print-working-directory}
+
+Toont je huidige locatie in het bestandssysteem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ pwd}
+\ExtensionTok{/home/gebruikersnaam}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{\texorpdfstring{2. \texttt{ls}
+(List)}{2. ls (List)}}\label{ls-list}
+
+Geeft een lijst van bestanden en mappen in de huidige directory.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ ls}
+\ExtensionTok{Documenten}\NormalTok{  Downloads  Afbeeldingen  Muziek}
+\end{Highlighting}
+\end{Shaded}
+
+Opties: - \texttt{ls\ -l}: Lang formaat, toont meer details -
+\texttt{ls\ -a}: Toont verborgen bestanden (die beginnen met een punt)
+
+\paragraph{\texorpdfstring{3. \texttt{cd} (Change
+Directory)}{3. cd (Change Directory)}}\label{cd-change-directory}
+
+Verplaatst je naar een andere directory.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ cd Documenten}
+\end{Highlighting}
+\end{Shaded}
+
+Speciale directories: - \texttt{.} : Huidige directory - \texttt{..}:
+Bovenliggende directory - \texttt{\textasciitilde{}} : Thuisdirectory
+
+\paragraph{\texorpdfstring{4. \texttt{mkdir} (Make
+Directory)}{4. mkdir (Make Directory)}}\label{mkdir-make-directory}
+
+Maakt een nieuwe directory aan.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ mkdir NieuweMap}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{\texorpdfstring{5. \texttt{cp}
+(Copy)}{5. cp (Copy)}}\label{cp-copy}
+
+Kopieert bestanden of directories.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ cp bestand.txt Documenten/}
+\end{Highlighting}
+\end{Shaded}
+
+Om een directory en zijn inhoud te kopiëren, gebruik de \texttt{-r}
+(recursief) optie:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ cp }\AttributeTok{{-}r}\NormalTok{ MapA MapB}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{\texorpdfstring{6. \texttt{mv}
+(Move)}{6. mv (Move)}}\label{mv-move}
+
+Verplaatst of hernoemt bestanden en directories.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ mv bestand.txt Documenten/}
+\ExtensionTok{$}\NormalTok{ mv oudenaam.txt nieuwenaam.txt}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{\texorpdfstring{7. \texttt{rm}
+(Remove)}{7. rm (Remove)}}\label{rm-remove}
+
+Verwijdert bestanden of directories. Wees voorzichtig met deze opdracht!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ rm bestand.txt}
+\end{Highlighting}
+\end{Shaded}
+
+Om een directory en zijn inhoud te verwijderen, gebruik de \texttt{-r}
+optie:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ rm }\AttributeTok{{-}r}\NormalTok{ MapNaam}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{\texorpdfstring{8. \texttt{cat}
+(Concatenate)}{8. cat (Concatenate)}}\label{cat-concatenate}
+
+Toont de inhoud van een bestand.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ cat bestand.txt}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{\texorpdfstring{9. \texttt{echo}}{9. echo}}\label{echo}
+
+Print tekst naar het scherm.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ echo }\StringTok{"Hallo, Wereld!"}
+\ExtensionTok{Hallo,}\NormalTok{ Wereld!}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Opdrachtstructuur}\label{opdrachtstructuur}
+
+De meeste opdrachten volgen deze structuur:
+
+\begin{verbatim}
+opdracht [opties] [argumenten]
+\end{verbatim}
+
+Bijvoorbeeld:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ ls }\AttributeTok{{-}l}\NormalTok{ Documenten}
+\end{Highlighting}
+\end{Shaded}
+
+Hier is \texttt{ls} de opdracht, \texttt{-l} een optie, en
+\texttt{Documenten} een argument.
+
+\subsubsection{Tips}\label{tips}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Gebruik de pijltjestoetsen omhoog en omlaag om door je
+  opdrachtgeschiedenis te navigeren.
+\item
+  Gebruik Tab voor automatische aanvulling van bestands- en mapnamen.
+\item
+  Gebruik \texttt{man} gevolgd door een opdrachtnaam om de handleiding
+  te zien (bijv. \texttt{man\ ls}).
+\end{enumerate}
+
+\subsubsection{Oefenopdrachten}\label{oefenopdrachten}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Maak een directory genaamd ``BioinformaticaCursus'' in je
+  thuisdirectory.
+\item
+  Maak binnen ``BioinformaticaCursus'' drie subdirectories: ``Data'',
+  ``Scripts'' en ``Resultaten''.
+\item
+  Maak een leeg bestand genaamd ``notities.txt'' in de
+  ``BioinformaticaCursus'' directory.
+\item
+  Toon de inhoud van ``BioinformaticaCursus'' in lang formaat.
+\item
+  Verplaats ``notities.txt'' naar de ``Resultaten'' directory.
+\item
+  Kopieer ``notities.txt'' van ``Resultaten'' naar ``Data''.
+\item
+  Verwijder het ``notities.txt'' bestand uit de ``Data'' directory.
+\end{enumerate}
+
+\subsection{2. Kwaliteitscontrole met
+FastQC}\label{kwaliteitscontrole-met-fastqc}
+
+\subsubsection{Doel}\label{doel}
+
+Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te
+voeren op ruwe sequentiedata afkomstig van high-throughput sequencing
+pijplijnen. Het helpt bij het identificeren van problemen die kunnen
+voortkomen uit de sequencer zelf of de bibliotheekvoorbereiding.
+
+\subsubsection{Opdrachten}\label{opdrachten}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Voer FastQC uit op beide read{-}bestanden}
+\ExtensionTok{fastqc}\NormalTok{ monster1\_R1.fastq.gz monster1\_R2.fastq.gz}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Het interpreteren van het FastQC
+HTML-rapport}\label{het-interpreteren-van-het-fastqc-html-rapport}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Basisstatistieken}: Geeft een overzicht van het bestand,
+  waaronder totaal aantal sequenties, sequentielengte en GC-gehalte.
+\item
+  \textbf{Per base sequentiekwaliteit}: Toont de kwaliteitsscores voor
+  elke positie in de read.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Groen gebied: Goede kwaliteit
+  \item
+    Oranje gebied: Redelijke kwaliteit
+  \item
+    Rood gebied: Slechte kwaliteit
+  \end{itemize}
+\item
+  \textbf{Per tegelsequentiekwaliteit}: Relevant voor
+  Illumina-sequencers, toont kwaliteit per tegel.
+\item
+  \textbf{Per sequentiekwaliteitsscores}: Geeft de verdeling van
+  kwaliteitsscores over alle sequenties.
+\item
+  \textbf{Per base sequentie-inhoud}: Toont de verhoudingen van basen op
+  elke positie.
+\item
+  \textbf{Per sequentie GC-inhoud}: Vergelijkt de waargenomen
+  GC-inhoudverdeling met een theoretische normale verdeling.
+\item
+  \textbf{Per base N-inhoud}: Toont het percentage van basen op elke
+  positie die niet konden worden bepaald (N).
+\item
+  \textbf{Sequentielengteverspreiding}: Voor de meeste platformen zou
+  dit een scherpe piek moeten zijn.
+\item
+  \textbf{Sequentieduplicatieniveaus}: Hoge duplicatieniveaus kunnen
+  duiden op PCR-bias.
+\item
+  \textbf{Overgerepresenteerde sequenties}: Lijst van sequenties die
+  vaker voorkomen dan verwacht.
+\item
+  \textbf{Adapter-inhoud}: Toont de aanwezigheid van vaak gebruikte
+  adapters in je bibliotheek.
+\end{enumerate}
+
+\subsubsection{Opdrachtvragen:}\label{opdrachtvragen}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Wat is de gemiddelde kwaliteitsscore over alle basen?
+\item
+  Zijn er overgerepresenteerde sequenties? Zo ja, wat zouden deze kunnen
+  zijn?
+\item
+  Hoe verandert de kwaliteitsscore over de lengte van de reads?
+\end{enumerate}
+
+\subsection{3. Read Mapping met BWA}\label{read-mapping-met-bwa}
+
+BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads uit te lijnen
+tegen een referentiegenoom.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Indexeer het referentiegenoom}
+\ExtensionTok{bwa}\NormalTok{ index referentiegenoom.fasta}
+
+\CommentTok{\# Lijn reads uit tegen het referentiegenoom}
+\ExtensionTok{bwa}\NormalTok{ mem referentiegenoom.fasta monster1\_R1.fastq.gz monster1\_R2.fastq.gz }\OperatorTok{\textgreater{}}\NormalTok{ monster1.sam}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{4. Variant Calling met
+BCFtools}\label{variant-calling-met-bcftools}
+
+BCFtools wordt gebruikt om varianten te identificeren uit de uitgelijnde
+reads.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Roep varianten aan}
+\ExtensionTok{bcftools}\NormalTok{ mpileup }\AttributeTok{{-}f}\NormalTok{ referentiegenoom.fasta monster1.sorted.bam }\KeywordTok{|} \ExtensionTok{bcftools}\NormalTok{ call }\AttributeTok{{-}mv} \AttributeTok{{-}Ob} \AttributeTok{{-}o}\NormalTok{ monster1.raw.bcf}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{5. Variant Filtering}\label{variant-filtering}
+
+VCFtools kan worden gebruikt om de varianten te filteren op basis van
+verschillende criteria.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Zet BCF om naar VCF}
+\ExtensionTok{bcftools}\NormalTok{ view monster1.raw.bcf }\OperatorTok{\textgreater{}}\NormalTok{ monster1.raw.vcf}
+
+\CommentTok{\# Filter varianten}
+\ExtensionTok{vcftools} \AttributeTok{{-}{-}vcf}\NormalTok{ monster1.raw.vcf }\DataTypeTok{\textbackslash{}}
+         \AttributeTok{{-}{-}minQ}\NormalTok{ 30 }\DataTypeTok{\textbackslash{}}
+         \AttributeTok{{-}{-}min{-}meanDP}\NormalTok{ 10 }\DataTypeTok{\textbackslash{}}
+         \AttributeTok{{-}{-}max{-}missing}\NormalTok{ 0.8 }\DataTypeTok{\textbackslash{}}
+         \AttributeTok{{-}{-}recode} \AttributeTok{{-}{-}recode{-}INFO{-}all} \DataTypeTok{\textbackslash{}}
+         \AttributeTok{{-}{-}out}\NormalTok{ monster1.gefilterd}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{6. Variant Annotatie met
+SnpEff}\label{variant-annotatie-met-snpeff}
+
+\subsubsection{Stap 1: Installeer
+SnpEff}\label{stap-1-installeer-snpeff}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{wget}\NormalTok{ https://snpeff.blob.core.windows.net/versions/snpEff\_latest\_core.zip}
+\FunctionTok{unzip}\NormalTok{ snpEff\_latest\_core.zip}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Stap 2: Download de Human Genome
+Database}\label{stap-2-download-de-human-genome-database}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{java} \AttributeTok{{-}jar}\NormalTok{ snpEff.jar download }\AttributeTok{{-}v}\NormalTok{ hg38}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Stap 3: Voer SnpEff uit}\label{stap-3-voer-snpeff-uit}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{java} \AttributeTok{{-}Xmx4g} \AttributeTok{{-}jar}\NormalTok{ snpEff.jar hg38 input\_varianten.vcf }\OperatorTok{\textgreater{}}\NormalTok{ geannoteerde\_varianten.vcf}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Stap 4: Interpreteer de
+Resultaten}\label{stap-4-interpreteer-de-resultaten}
+
+Kijk naar het \texttt{ANN} veld in de output VCF voor gedetailleerde
+annotaties.
+
+\subsubsection{Opdrachtvragen}\label{opdrachtvragen-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Hoeveel varianten met HOGE impact heb je gevonden? Wat voor soort
+  varianten zijn dit?
+\item
+  Vind een missense variant. Wat is de aminozuurverandering? In welk gen
+  kwam het voor?
+\item
+  Zijn er varianten in bekende ziekte-geassocieerde genen?
+\item
+  Wat is het meest voorkomende type variant in je dataset?
+\item
+  Kun je varianten vinden die de eiwitfunctie kunnen beïnvloeden? Leg
+  uit waarom je denkt dat ze impactvol kunnen zijn.
+\end{enumerate}
+
+\subsection{7. Simuleren van FASTQ-bestanden met
+NEAT}\label{simuleren-van-fastq-bestanden-met-neat}
+
+\subsubsection{Stap 1: Incorporeer Varianten in
+Referentiegenoom}\label{stap-1-incorporeer-varianten-in-referentiegenoom}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Installeer NEAT (indien nog niet geïnstalleerd)}
+\FunctionTok{git}\NormalTok{ clone https://github.com/ncbi/NEAT.git}
+\BuiltInTok{cd}\NormalTok{ NEAT}
+\FunctionTok{make}
+
+\CommentTok{\# Gebruik NEAT om varianten te incorporeren}
+\ExtensionTok{./neat{-}genreads} \DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}rc}\NormalTok{ referentiegenoom.fa }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}dv}\NormalTok{ varianten.vcf }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}o}\NormalTok{ gemuteerd\_genoom}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Stap 2: Genereer
+FASTQ-bestanden}\label{stap-2-genereer-fastq-bestanden}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Gebruik NEAT om FASTQ{-}bestanden te genereren}
+\ExtensionTok{neat{-}genreads} \DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}rf}\NormalTok{ gemuteerd\_genoom.fa }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}R}\NormalTok{ 150 }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}c}\NormalTok{ 30 }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}o}\NormalTok{ gesimuleerde\_reads}
+\end{Highlighting}
+\end{Shaded}
+
+Dit zal paired-end reads genereren met een lengte van 150 basen en 30x
+dekking.
+
+\subsubsection{Python Script voor Meerdere
+Monsters}\label{python-script-voor-meerdere-monsters}
+
+Hier is een Python-script om FASTQ-bestanden voor meerdere monsters te
+genereren, elk met hun eigen set varianten:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ os}
+\ImportTok{import}\NormalTok{ subprocess}
+\ImportTok{import}\NormalTok{ argparse}
+
+\KeywordTok{def}\NormalTok{ run\_neat(reference, vcf, output\_prefix, read\_length, coverage):}
+\NormalTok{    command }\OperatorTok{=}\NormalTok{ [}
+        \StringTok{"neat{-}genreads"}\NormalTok{,}
+        \StringTok{"{-}rc"}\NormalTok{, reference,}
+        \StringTok{"{-}dv"}\NormalTok{, vcf,}
+        \StringTok{"{-}o"}\NormalTok{, output\_prefix,}
+        \StringTok{"{-}rl"}\NormalTok{, }\BuiltInTok{str}\NormalTok{(read\_length),}
+        \StringTok{"{-}c"}\NormalTok{, }\BuiltInTok{str}\NormalTok{(coverage),}
+        \StringTok{"{-}pe"}\NormalTok{, }\StringTok{"150"}\NormalTok{, }\StringTok{"50"}\NormalTok{,  }\CommentTok{\# Paired{-}end reads, 150bp lengte, 50bp stddev}
+        \StringTok{"{-}bq"}\NormalTok{, }\StringTok{"30"}  \CommentTok{\# Basiskwaliteitsscore}
+\NormalTok{    ]}
+\NormalTok{    subprocess.run(command, check}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+
+\KeywordTok{def}\NormalTok{ main():}
+\NormalTok{    parser }\OperatorTok{=}\NormalTok{ argparse.ArgumentParser(description}\OperatorTok{=}\StringTok{"Genereer FASTQ{-}bestanden voor meerdere monsters met NEAT."}\NormalTok{)}
+\NormalTok{    parser.add\_argument(}\StringTok{"reference"}\NormalTok{, }\BuiltInTok{help}\OperatorTok{=}\StringTok{"Pad naar het referentiegenoombestand"}\NormalTok{)}
+\NormalTok{    parser.add\_argument(}\StringTok{"vcf\_dir"}\NormalTok{, }\BuiltInTok{help}\OperatorTok{=}\StringTok{"Directory met VCF{-}bestanden"}\NormalTok{)}
+\NormalTok{    parser.add\_argument(}\StringTok{"output\_dir"}\NormalTok{, }\BuiltInTok{help}\OperatorTok{=}\StringTok{"Directory voor output FASTQ{-}bestanden"}\NormalTok{)}
+\NormalTok{    parser.add\_argument(}\StringTok{"{-}{-}read\_length"}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{int}\NormalTok{, default}\OperatorTok{=}\DecValTok{150}\NormalTok{, }\BuiltInTok{help}\OperatorTok{=}\StringTok{"Leeslengte"}\NormalTok{)}
+\NormalTok{    parser.add\_argument(}\StringTok{"{-}{-}coverage"}\NormalTok{, }\BuiltInTok{type}\OperatorTok{=}\BuiltInTok{int}\NormalTok{, default}\OperatorTok{=}\DecValTok{30}\NormalTok{, }\BuiltInTok{help}\OperatorTok{=}\StringTok{"Dekkingsdiepte"}\NormalTok{)}
+
+\NormalTok{    args }\OperatorTok{=}\NormalTok{ parser.parse\_args()}
+
+\NormalTok{    os.makedirs(args.output\_dir, exist\_ok}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+
+    \ControlFlowTok{for}\NormalTok{ vcf\_file }\KeywordTok{in}\NormalTok{ os.listdir(args.vcf\_dir):}
+        \ControlFlowTok{if}\NormalTok{ vcf\_file.endswith(}\StringTok{".vcf"}\NormalTok{):}
+\NormalTok{            sample\_name }\OperatorTok{=}\NormalTok{ os.path.splitext(vcf\_file)[}\DecValTok{0}\NormalTok{]}
+\NormalTok{            vcf\_path }\OperatorTok{=}\NormalTok{ os.path.join(args.vcf\_dir, vcf\_file)}
+\NormalTok{            output\_prefix }\OperatorTok{=}\NormalTok{ os.path.join(args.output\_dir, sample\_name)}
+
+            \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"FASTQ genereren voor monster: }\SpecialCharTok{\{}\NormalTok{sample\_name}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\NormalTok{            run\_neat(args.reference, vcf\_path, output\_prefix, args.read\_length, args.coverage)}
+
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"Alle monsters zijn succesvol verwerkt!"}\NormalTok{)}
+
+\ControlFlowTok{if} \VariableTok{\_\_name\_\_} \OperatorTok{==} \StringTok{"\_\_main\_\_"}\NormalTok{:}
+\NormalTok{    main()}
+\end{Highlighting}
+\end{Shaded}
+
+Gebruik dit script als volgt:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{python}\NormalTok{ genereer\_multi\_monster\_fastq.py /pad/naar/referentie.fa /pad/naar/vcf\_directory /pad/naar/output\_directory}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Conclusie}\label{conclusie}
+
+Deze cursus biedt een uitgebreide introductie tot bioinformatica, van
+basiscommando's in Linux tot geavanceerde onderwerpen zoals
+variant-annotatie en het simuleren van sequentiedata. Door deze stappen
+te volgen en de opdrachten uit te voeren, zul je een solide basis leggen
+voor verder werk in bioinformatica.
+
+
+
+
+\end{document}
