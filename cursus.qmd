@@ -157,30 +157,44 @@ Hier is `ls` de opdracht, `-l` een optie, en `Documenten` een argument.
 6. Kopieer "notities.txt" van "Resultaten" naar "Data".
 7. Verwijder het "notities.txt" bestand uit de "Data" directory.
 
-## 2. Kwaliteitscontrole met FastQC
+## 2. 
+
+Open de map van jouw groepjes in de VSCode editor `/staging/leuven/stg_00156/bioinformatica-groepswerk/groep01`.
+
+![Alt text](cursus_images/vscode_home.png)
+
+
+## 3. Kwaliteitscontrole met FastQC
 
 ### Doel
-Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ruwe sequentiedata afkomstig van high-throughput sequencing pijplijnen. Het helpt bij het identificeren van problemen die kunnen voortkomen uit de sequencer zelf of de bibliotheekvoorbereiding.
+Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ruwe sequentiedata afkomstig van high-throughput sequencing pijplijnen. Het helpt bij het identificeren van problemen die kunnen voortkomen uit de sequencer zelf of de bibliotheekvoorbereiding. 
 
 ### Opdrachten
 
+Laad de FastQC module
+
 ```bash
-# Voer FastQC uit op beide read-bestanden
-fastqc monster1_R1.fastq.gz monster1_R2.fastq.gz
+module load FastQC/0.11.8-Java-1.8.0_162
 ```
+
+Voer FastQC uit op beide read-bestanden
+
+```bash
+fastqc naam_van_fastq_bestand.fastq.gz
+```
+
+Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je het rapport (bv `naam_van_fastq_bestand_fastqc.html`) verschijnen in de linkerbalk. Om het rapport te openen moeten we het eerst downloaden (rechstklikken + download).
 
 ### Het interpreteren van het FastQC HTML-rapport
 
-1. **Basisstatistieken**: Geeft een overzicht van het bestand, waaronder totaal aantal sequenties, sequentielengte en GC-gehalte.
+1. **Basic Statistics**: Geeft een overzicht van het bestand, waaronder totaal aantal sequenties, sequentielengte en GC-gehalte.
 
-2. **Per base sequentiekwaliteit**: Toont de kwaliteitsscores voor elke positie in de read. 
+2. **Per base sequence quality**: Toont hoe de kwaliteitsscores (Phred scores) verlopen over de lengte van de reads. De blauwe lijn geeft de gemiddelde kwaliteitscore mee over alle reads. Normaal neemt de kwaliteitscore af met de lengte van de reads. Bij een goede gelukte sequencing blijft het gemiddelde ook naar het einde van de reads toe voldoende hoog. 
    - Groen gebied: Goede kwaliteit
    - Oranje gebied: Redelijke kwaliteit
    - Rood gebied: Slechte kwaliteit
 
-3. **Per tegelsequentiekwaliteit**: Relevant voor Illumina-sequencers, toont kwaliteit per tegel.
-
-4. **Per sequentiekwaliteitsscores**: Geeft de verdeling van kwaliteitsscores over alle sequenties.
+3. **Per sequence quality scores**: Geeft de verdeling van kwaliteitsscores over alle sequenties. We verwachten een normale verdeling met een gemiddelde hoger dan 30.
 
 5. **Per base sequentie-inhoud**: Toont de verhoudingen van basen op elke positie.
 
@@ -197,13 +211,13 @@ fastqc monster1_R1.fastq.gz monster1_R2.fastq.gz
 11. **Adapter-inhoud**: Toont de aanwezigheid van vaak gebruikte adapters in je bibliotheek.
 
 ### Opdrachtvragen:
-1. Wat is de gemiddelde kwaliteitsscore over alle basen?
-2. Zijn er overgerepresenteerde sequenties? Zo ja, wat zouden deze kunnen zijn?
+1. Hoeveel sequenties/reads zijn er in beide FASTQ files aanwezig?
+2. Wat is de gemiddelde kwaliteitsscore over alle basen en reads?
 3. Hoe verandert de kwaliteitsscore over de lengte van de reads?
 
 ## 3. Read Mapping met BWA
 
-BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads uit te lijnen tegen een referentiegenoom.
+BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.
 
 ```bash
 # Indexeer het referentiegenoom
