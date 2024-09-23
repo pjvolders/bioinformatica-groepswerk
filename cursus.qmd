@@ -1,15 +1,14 @@
+---
+title: "My document"
+format:
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+---
 # Bio-informatica groepswerk
 
-## Inhoudsopgave
-1. Introductie tot Linux Shell/Bash
-2. Kwaliteitscontrole met FastQC
-3. Lees Mapping met BWA
-4. Variant Calling met BCFtools
-5. Variant Filtering
-6. Variant Annotatie met SnpEff
-7. Simuleren van FASTQ-bestanden met NEAT
-
-## 1. Introductie tot Linux Shell/Bash
+## Introductie tot Linux Shell/Bash
 
 ### Wat is een Shell?
 
@@ -27,7 +26,7 @@ Een shell is een programma dat een interface biedt voor gebruikers om met het be
 
 ### Basisopdrachten
 
-#### 1. `pwd` (Print Working Directory)
+#### `pwd` (Print Working Directory)
 
 Toont je huidige locatie in het bestandssysteem.
 
@@ -36,7 +35,7 @@ $ pwd
 /home/gebruikersnaam
 ```
 
-#### 2. `ls` (List)
+#### `ls` (List)
 
 Geeft een lijst van bestanden en mappen in de huidige directory.
 
@@ -49,9 +48,9 @@ Opties:
 
 - `ls -l`: Lang formaat, toont meer details
 - `ls -a`: Toont verborgen bestanden (die beginnen met een punt)
+- `ls -lh`: Toont de grootte van de bestanden (in de kolom) in een leesbaar formaat (`K`: kilobyte, `M`: megabyte, `G`: gigabyte). 
 
-
-#### 3. `cd` (Change Directory)
+#### `cd` (Change Directory)
 
 Verplaatst je naar een andere directory.
 
@@ -65,7 +64,7 @@ Speciale directories:
 - `..`: Bovenliggende directory
 - `~` : Thuisdirectory van de gebruiker
 
-#### 4. `mkdir` (Make Directory)
+#### `mkdir` (Make Directory)
 
 Maakt een nieuwe directory aan.
 
@@ -73,7 +72,7 @@ Maakt een nieuwe directory aan.
 $ mkdir NieuweMap
 ```
 
-#### 5. `cp` (Copy)
+#### `cp` (Copy)
 
 Kopieert bestanden of directories.
 
@@ -87,7 +86,7 @@ Om een directory en zijn inhoud te kopiëren, gebruik de `-r` (recursief) optie:
 $ cp -r MapA MapB
 ```
 
-#### 6. `mv` (Move)
+#### `mv` (Move)
 
 Verplaatst of hernoemt bestanden en directories.
 
@@ -96,7 +95,7 @@ $ mv bestand.txt Documenten/
 $ mv oudenaam.txt nieuwenaam.txt
 ```
 
-#### 7. `rm` (Remove)
+#### `rm` (Remove)
 
 Verwijdert bestanden of directories. Wees voorzichtig met deze opdracht!
 
@@ -110,7 +109,7 @@ Om een directory en zijn inhoud te verwijderen, gebruik de `-r` optie:
 $ rm -r MapNaam
 ```
 
-#### 8. `cat` (Concatenate)
+#### `cat` (Concatenate)
 
 Toont de inhoud van een bestand.
 
@@ -118,7 +117,7 @@ Toont de inhoud van een bestand.
 $ cat bestand.txt
 ```
 
-#### 9. `echo`
+#### `echo`
 
 Print tekst naar het scherm.
 
@@ -157,14 +156,14 @@ Hier is `ls` de opdracht, `-l` een optie, en `Documenten` een argument.
 6. Kopieer "notities.txt" van "Resultaten" naar "Data".
 7. Verwijder het "notities.txt" bestand uit de "Data" directory.
 
-## 2. 
+## 
 
 Open de map van jouw groepjes in de VSCode editor `/staging/leuven/stg_00156/bioinformatica-groepswerk/groep01`.
 
 ![Alt text](cursus_images/vscode_home.png)
 
 
-## 3. Kwaliteitscontrole met FastQC
+## Kwaliteitscontrole met FastQC
 
 ### Doel
 Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ruwe sequentiedata afkomstig van high-throughput sequencing pijplijnen. Het helpt bij het identificeren van problemen die kunnen voortkomen uit de sequencer zelf of de bibliotheekvoorbereiding. 
@@ -215,19 +214,42 @@ Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je h
 2. Wat is de gemiddelde kwaliteitsscore over alle basen en reads?
 3. Hoe verandert de kwaliteitsscore over de lengte van de reads?
 
-## 3. Read Mapping met BWA
+## Read Mapping met BWA
 
 BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.
 
+Laad de BWA module
 ```bash
-# Indexeer het referentiegenoom
-bwa index referentiegenoom.fasta
-
-# Lijn reads uit tegen het referentiegenoom
-bwa mem referentiegenoom.fasta monster1_R1.fastq.gz monster1_R2.fastq.gz > monster1.sam
+module load BWA/0.7.17-GCC-10.3.0
 ```
 
-## 4. Variant Calling met BCFtools
+Aligneer de reads
+```bash
+REF=/staging/leuven/stg_00156/references/hg38.fa
+bwa mem -t 2 $REF naam_van_fastq_bestand_r1.fastq.gz naam_van_fastq_bestand_r2.fastq.gz > aligned.sam
+```
+> Pas de namen van de FASTQ bestanden aan naar de namen van jouw bestanden in het bovenstaande commando.
+
+
+
+```bash
+module load SAMtools/1.13-GCC-10.3.0
+
+samtools sort aligned.sam -o aligned.sorted.bam
+samtools index aligned.sorted.bam
+```
+
+
+
+```bash
+samtools flagstat aligned.sorted.bam
+```
+
+### Opdrachtvragen:
+1. Hoeveel reads zijn er gealigneerd tegen het referentiegenoom?
+2. Hoeveel van deze reads vormden een correct paar (beide reads mappen met correct orientatie en afstand op hetzelfde chromosoom)?
+
+## Variant Calling met BCFtools
 
 BCFtools wordt gebruikt om varianten te identificeren uit de uitgelijnde reads.
 
@@ -236,7 +258,7 @@ BCFtools wordt gebruikt om varianten te identificeren uit de uitgelijnde reads.
 bcftools mpileup -f referentiegenoom.fasta monster1.sorted.bam | bcftools call -mv -Ob -o monster1.raw.bcf
 ```
 
-## 5. Variant Filtering
+## Variant Filtering
 
 VCFtools kan worden gebruikt om de varianten te filteren op basis van verschillende criteria.
 
@@ -253,7 +275,7 @@ vcftools --vcf monster1.raw.vcf \
          --out monster1.gefilterd
 ```
 
-## 6. Variant Annotatie met SnpEff
+## Variant Annotatie met SnpEff
 
 ### Stap 1: Installeer SnpEff
 
@@ -286,7 +308,7 @@ Kijk naar het `ANN` veld in de output VCF voor gedetailleerde annotaties.
 4. Wat is het meest voorkomende type variant in je dataset?
 5. Kun je varianten vinden die de eiwitfunctie kunnen beïnvloeden? Leg uit waarom je denkt dat ze impactvol kunnen zijn.
 
-## 7. Simuleren van FASTQ-bestanden met NEAT
+## Simuleren van FASTQ-bestanden met NEAT
 
 ### Stap 1: Incorporeer Varianten in Referentiegenoom
 
