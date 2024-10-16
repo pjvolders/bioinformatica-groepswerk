@@ -1,5 +1,5 @@
 ---
-title: "My document"
+title: "Bio-informatica groepswerk handleiding"
 format:
   pdf:
     toc: true
@@ -7,6 +7,21 @@ format:
     colorlinks: true
 ---
 # Bio-informatica groepswerk
+
+## Introductie
+
+## VSCode openen op de Vlaamse Super Computer
+
+1. Surf met je browser naar [https://ondemand.hpc.kuleuven.be](https://ondemand.hpc.kuleuven.be/)
+1. Kies hier de optie om in te loggen met een VSC account: "Partner organizations: VSC account"
+2. Log in met je UHasselt account
+3. Bij de vraag "Authorize vsc-challenge?" antwoord je "Authorize"
+
+Je bent nu ingelogd op het *KU Leuven OnDemand* platform. Hiermee kan je vanuit je webbrowser een aantal populaire applicaties opstarten op de Vlaamse SuperComputer. 
+Meer achtergrond kan je vinden in de [handleiding](https://docs.vscentrum.be/leuven/services/openondemand.html). 
+
+![Alt text](cursus_images/vscode_home.png)
+
 
 ## Introductie tot Linux Shell/Bash
 
@@ -158,9 +173,9 @@ Hier is `ls` de opdracht, `-l` een optie, en `Documenten` een argument.
 
 ## 
 
-Open de map van jouw groepjes in de VSCode editor `/staging/leuven/stg_00156/bioinformatica-groepswerk/groep01`.
+Open de map van jouw groepje in de VSCode editor:
 
-![Alt text](cursus_images/vscode_home.png)
+`/staging/leuven/stg_00156/bioinformatica-groepswerk/groep01`
 
 
 ## Kwaliteitscontrole met FastQC
