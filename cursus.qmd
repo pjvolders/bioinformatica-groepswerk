@@ -213,17 +213,38 @@ Hier is `ls` de opdracht, `-l` een optie, en `Documenten` een argument.
 
 # 
 
-Open de map van jouw groepje in de VSCode editor:
-
-`/staging/leuven/stg_00156/bioinformatica-groepswerk/groep01`
-
 
 # Kwaliteitscontrole met FastQC
 
 ## Doel
-Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ruwe sequentiedata afkomstig van high-throughput sequencing pijplijnen. Het helpt bij het identificeren van problemen die kunnen voortkomen uit de sequencer zelf of de bibliotheekvoorbereiding. 
+Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ruwe sequentiedata afkomstig van high-throughput sequencing pijplijnen (FASTQ formaat). Het helpt bij het identificeren van problemen die kunnen voortkomen uit de sequencer zelf of de bibliotheekvoorbereiding. 
+
+## Het FASTQ-formaat
+
+### Wat is FASTQ?
+FASTQ is een tekstbestandsformaat voor het opslaan van zowel biologische sequenties (meestal nucleotidesequenties) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.
+
+### Voorbeeld van een FASTQ-entry
+```
+@SEQ_ID
+GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
++
+!''*((((***+))%%%++)(%%%%).1***-+*''))**55CCF>>>>>>CCCCCCC65
+```
+
+### Structuur van een FASTQ-bestand
+Een FASTQ-bestand bestaat uit blokken van vier regels per sequentie:
+
+1. Een regelbeginlijn die start met '@', gevolgd door een sequentie-identifier
+2. De ruwe sequentiegegevens
+3. Een regel die begint met '+', optioneel gevolgd door dezelfde sequentie-identifier
+4. De *Phred* kwaliteitsscores voor de sequentie in gecodeerde vorm, één karakter per nucleotide.
+
+Een kwaliteitsscore kan gezien worden als de kans dat de nucleotide op die positie foutief gecalled werd. Zo komt `(` overeen met een kans van 20% op een foutive call. Hoe zuiverder het signaal is de sequencer, hoe zekerder de call. Het staal, de staal- of bibliotheekvoorbereiding en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de *Phred* kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekend samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.
 
 ## Opdrachten
+
+Voor volgende commando's uit in de VSCode terminal. 
 
 Laad de FastQC module
 
@@ -231,11 +252,12 @@ Laad de FastQC module
 module load FastQC/0.11.8-Java-1.8.0_162
 ```
 
-Voer FastQC uit op beide read-bestanden
+Voer FastQC uit op één FASTQ read-bestand
 
 ```bash
 fastqc naam_van_fastq_bestand.fastq.gz
 ```
+> Pas de namen van het FASTQ bestand aan naar de namen van jouw bestanden in het bovenstaande commando.
 
 Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je het rapport (bv `naam_van_fastq_bestand_fastqc.html`) verschijnen in de linkerbalk. Om het rapport te openen moeten we het eerst downloaden (rechstklikken + download).
 
@@ -271,8 +293,55 @@ Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je h
 
 # Read Mapping met BWA
 
+## Doel
 BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.
 
+## SAM-formaat (Sequence Alignment/Map)
+
+### Wat is SAM?
+SAM is een tekstbestandsformaat voor het opslaan van sequentie-alignments. Het wordt gebruikt om te beschrijven hoe sequenties zijn uitgelijnd ten opzichte van een referentiegenoom.
+
+### Structuur van een SAM-bestand
+Een SAM-bestand bestaat uit:
+- Een optionele headergedeelte
+- Alignment-gedeelte met één regel per alignment
+
+### Voorbeeld van een SAM-entry
+```
+@HD VN:1.6 SO:coordinate
+@SQ SN:ref LN:45
+r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *
+```
+
+### Uitleg
+- Header: @HD en @SQ lijnen geven informatie over het bestand en de referentiesequentie.
+- Alignment: 
+  - r001: Identifier van de sequentie uit het FASTQ bestand
+  - 99: Bitwise flag
+  - ref: Reference sequence name
+  - 7: 1-based leftmost mapping position
+  - 30: Mapping quality
+  - 8M2I4M1D3M: CIGAR string (beschrijft hoe de sequentie is uitgelijnd)
+  - =: Reference name of the mate/next read
+  - 37: Position of the mate/next read
+  - 39: Template length
+  - TTAGATAAAGGATACTG: sequentie
+  - *: Quality scores (hier niet weergegeven)
+
+## BAM-formaat (Binary Alignment/Map)
+
+### Wat is BAM?
+BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als SAM, maar in een gecomprimeerde, binaire vorm.
+
+### Kenmerken van BAM
+- Neemt minder opslagruimte in beslag dan SAM
+- Sneller te verwerken door computers
+- Kan worden geïndexeerd voor snelle toegang tot specifieke regio's
+
+### Voorbeeld
+Omdat BAM een binair formaat is, kunnen we geen leesbaar voorbeeld geven zoals bij SAM. In de praktijk zou je speciale software gebruiken om BAM-bestanden te bekijken of te bewerken.
+
+## Opdrachten
 Laad de BWA module
 ```bash
 module load BWA/0.7.17-GCC-10.3.0
@@ -307,6 +376,34 @@ samtools flagstat aligned.sorted.bam
 # Variant Calling met BCFtools
 
 BCFtools wordt gebruikt om varianten te identificeren uit de uitgelijnde reads.
+
+## 4. VCF-formaat (Variant Call Format)
+
+### Wat is VCF?
+VCF is een tekstbestandsformaat voor het opslaan van genoomvariaties zoals SNPs, inserties, deleties en structurele varianten.
+
+### Structuur van een VCF-bestand
+Een VCF-bestand bestaat uit:
+- Meta-informatieregels (beginnen met ##)
+- Een headerregel (begint met #)
+- Dataregels met informatie over elke variant
+
+### Voorbeeld van een VCF-entry
+```
+##fileformat=VCFv4.3
+#CHROM POS ID REF ALT QUAL FILTER INFO
+20 14370 rs6054257 G A 29 PASS NS=3;DP=14;AF=0.5;DB;H2
+```
+
+### Uitleg
+- CHROM: Chromosoom
+- POS: Positie van de variant
+- ID: Variant identifier (bijv. rs-nummer)
+- REF: Referentie-allel
+- ALT: Alternatief allel
+- QUAL: Kwaliteitsscore
+- FILTER: Filter status (PASS betekent dat de variant alle filters heeft gepasseerd)
+- INFO: Aanvullende informatie over de variant
 
 ```bash
 # Roep varianten aan

@@ -105,15 +105,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#kwaliteitscontrole-met-fastqc" id="toc-kwaliteitscontrole-met-fastqc" class="nav-link" data-scroll-target="#kwaliteitscontrole-met-fastqc">Kwaliteitscontrole met FastQC</a>
   <ul class="collapse">
   <li><a href="#doel" id="toc-doel" class="nav-link" data-scroll-target="#doel">Doel</a></li>
+  <li><a href="#het-fastq-formaat" id="toc-het-fastq-formaat" class="nav-link" data-scroll-target="#het-fastq-formaat">Het FASTQ-formaat</a>
+  <ul class="collapse">
+  <li><a href="#wat-is-fastq" id="toc-wat-is-fastq" class="nav-link" data-scroll-target="#wat-is-fastq">Wat is FASTQ?</a></li>
+  <li><a href="#voorbeeld-van-een-fastq-entry" id="toc-voorbeeld-van-een-fastq-entry" class="nav-link" data-scroll-target="#voorbeeld-van-een-fastq-entry">Voorbeeld van een FASTQ-entry</a></li>
+  <li><a href="#structuur-van-een-fastq-bestand" id="toc-structuur-van-een-fastq-bestand" class="nav-link" data-scroll-target="#structuur-van-een-fastq-bestand">Structuur van een FASTQ-bestand</a></li>
+  </ul></li>
   <li><a href="#opdrachten" id="toc-opdrachten" class="nav-link" data-scroll-target="#opdrachten">Opdrachten</a></li>
   <li><a href="#het-interpreteren-van-het-fastqc-html-rapport" id="toc-het-interpreteren-van-het-fastqc-html-rapport" class="nav-link" data-scroll-target="#het-interpreteren-van-het-fastqc-html-rapport">Het interpreteren van het FastQC HTML-rapport</a></li>
   <li><a href="#opdrachtvragen" id="toc-opdrachtvragen" class="nav-link" data-scroll-target="#opdrachtvragen">Opdrachtvragen:</a></li>
   </ul></li>
   <li><a href="#read-mapping-met-bwa" id="toc-read-mapping-met-bwa" class="nav-link" data-scroll-target="#read-mapping-met-bwa">Read Mapping met BWA</a>
   <ul class="collapse">
+  <li><a href="#doel-1" id="toc-doel-1" class="nav-link" data-scroll-target="#doel-1">Doel</a></li>
+  <li><a href="#sam-formaat-sequence-alignmentmap" id="toc-sam-formaat-sequence-alignmentmap" class="nav-link" data-scroll-target="#sam-formaat-sequence-alignmentmap">SAM-formaat (Sequence Alignment/Map)</a>
+  <ul class="collapse">
+  <li><a href="#wat-is-sam" id="toc-wat-is-sam" class="nav-link" data-scroll-target="#wat-is-sam">Wat is SAM?</a></li>
+  <li><a href="#structuur-van-een-sam-bestand" id="toc-structuur-van-een-sam-bestand" class="nav-link" data-scroll-target="#structuur-van-een-sam-bestand">Structuur van een SAM-bestand</a></li>
+  <li><a href="#voorbeeld-van-een-sam-entry" id="toc-voorbeeld-van-een-sam-entry" class="nav-link" data-scroll-target="#voorbeeld-van-een-sam-entry">Voorbeeld van een SAM-entry</a></li>
+  <li><a href="#uitleg" id="toc-uitleg" class="nav-link" data-scroll-target="#uitleg">Uitleg</a></li>
+  </ul></li>
+  <li><a href="#bam-formaat-binary-alignmentmap" id="toc-bam-formaat-binary-alignmentmap" class="nav-link" data-scroll-target="#bam-formaat-binary-alignmentmap">BAM-formaat (Binary Alignment/Map)</a>
+  <ul class="collapse">
+  <li><a href="#wat-is-bam" id="toc-wat-is-bam" class="nav-link" data-scroll-target="#wat-is-bam">Wat is BAM?</a></li>
+  <li><a href="#kenmerken-van-bam" id="toc-kenmerken-van-bam" class="nav-link" data-scroll-target="#kenmerken-van-bam">Kenmerken van BAM</a></li>
+  <li><a href="#voorbeeld" id="toc-voorbeeld" class="nav-link" data-scroll-target="#voorbeeld">Voorbeeld</a></li>
+  </ul></li>
+  <li><a href="#opdrachten-1" id="toc-opdrachten-1" class="nav-link" data-scroll-target="#opdrachten-1">Opdrachten</a></li>
   <li><a href="#opdrachtvragen-1" id="toc-opdrachtvragen-1" class="nav-link" data-scroll-target="#opdrachtvragen-1">Opdrachtvragen:</a></li>
   </ul></li>
-  <li><a href="#variant-calling-met-bcftools" id="toc-variant-calling-met-bcftools" class="nav-link" data-scroll-target="#variant-calling-met-bcftools">Variant Calling met BCFtools</a></li>
+  <li><a href="#variant-calling-met-bcftools" id="toc-variant-calling-met-bcftools" class="nav-link" data-scroll-target="#variant-calling-met-bcftools">Variant Calling met BCFtools</a>
+  <ul class="collapse">
+  <li><a href="#vcf-formaat-variant-call-format" id="toc-vcf-formaat-variant-call-format" class="nav-link" data-scroll-target="#vcf-formaat-variant-call-format">4. VCF-formaat (Variant Call Format)</a>
+  <ul class="collapse">
+  <li><a href="#wat-is-vcf" id="toc-wat-is-vcf" class="nav-link" data-scroll-target="#wat-is-vcf">Wat is VCF?</a></li>
+  <li><a href="#structuur-van-een-vcf-bestand" id="toc-structuur-van-een-vcf-bestand" class="nav-link" data-scroll-target="#structuur-van-een-vcf-bestand">Structuur van een VCF-bestand</a></li>
+  <li><a href="#voorbeeld-van-een-vcf-entry" id="toc-voorbeeld-van-een-vcf-entry" class="nav-link" data-scroll-target="#voorbeeld-van-een-vcf-entry">Voorbeeld van een VCF-entry</a></li>
+  <li><a href="#uitleg-1" id="toc-uitleg-1" class="nav-link" data-scroll-target="#uitleg-1">Uitleg</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#variant-filtering" id="toc-variant-filtering" class="nav-link" data-scroll-target="#variant-filtering">Variant Filtering</a></li>
   <li><a href="#variant-annotatie-met-snpeff" id="toc-variant-annotatie-met-snpeff" class="nav-link" data-scroll-target="#variant-annotatie-met-snpeff">Variant Annotatie met SnpEff</a>
   <ul class="collapse">
@@ -324,21 +354,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="section" class="level1">
 <h1></h1>
-<p>Open de map van jouw groepje in de VSCode editor:</p>
-<p><code>/staging/leuven/stg_00156/bioinformatica-groepswerk/groep01</code></p>
 </section>
 <section id="kwaliteitscontrole-met-fastqc" class="level1">
 <h1>Kwaliteitscontrole met FastQC</h1>
 <section id="doel" class="level2">
 <h2 class="anchored" data-anchor-id="doel">Doel</h2>
-<p>Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ruwe sequentiedata afkomstig van high-throughput sequencing pijplijnen. Het helpt bij het identificeren van problemen die kunnen voortkomen uit de sequencer zelf of de bibliotheekvoorbereiding.</p>
+<p>Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ruwe sequentiedata afkomstig van high-throughput sequencing pijplijnen (FASTQ formaat). Het helpt bij het identificeren van problemen die kunnen voortkomen uit de sequencer zelf of de bibliotheekvoorbereiding.</p>
+</section>
+<section id="het-fastq-formaat" class="level2">
+<h2 class="anchored" data-anchor-id="het-fastq-formaat">Het FASTQ-formaat</h2>
+<section id="wat-is-fastq" class="level3">
+<h3 class="anchored" data-anchor-id="wat-is-fastq">Wat is FASTQ?</h3>
+<p>FASTQ is een tekstbestandsformaat voor het opslaan van zowel biologische sequenties (meestal nucleotidesequenties) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.</p>
+</section>
+<section id="voorbeeld-van-een-fastq-entry" class="level3">
+<h3 class="anchored" data-anchor-id="voorbeeld-van-een-fastq-entry">Voorbeeld van een FASTQ-entry</h3>
+<pre><code>@SEQ_ID
+GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
++
+!''*((((***+))%%%++)(%%%%).1***-+*''))**55CCF&gt;&gt;&gt;&gt;&gt;&gt;CCCCCCC65</code></pre>
+</section>
+<section id="structuur-van-een-fastq-bestand" class="level3">
+<h3 class="anchored" data-anchor-id="structuur-van-een-fastq-bestand">Structuur van een FASTQ-bestand</h3>
+<p>Een FASTQ-bestand bestaat uit blokken van vier regels per sequentie:</p>
+<ol type="1">
+<li>Een regelbeginlijn die start met ‘@’, gevolgd door een sequentie-identifier</li>
+<li>De ruwe sequentiegegevens</li>
+<li>Een regel die begint met ‘+’, optioneel gevolgd door dezelfde sequentie-identifier</li>
+<li>De <em>Phred</em> kwaliteitsscores voor de sequentie in gecodeerde vorm, één karakter per nucleotide.</li>
+</ol>
+<p>Een kwaliteitsscore kan gezien worden als de kans dat de nucleotide op die positie foutief gecalled werd. Zo komt <code>(</code> overeen met een kans van 20% op een foutive call. Hoe zuiverder het signaal is de sequencer, hoe zekerder de call. Het staal, de staal- of bibliotheekvoorbereiding en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de <em>Phred</em> kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekend samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.</p>
+</section>
 </section>
 <section id="opdrachten" class="level2">
 <h2 class="anchored" data-anchor-id="opdrachten">Opdrachten</h2>
+<p>Voor volgende commando’s uit in de VSCode terminal.</p>
 <p>Laad de FastQC module</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load FastQC/0.11.8-Java-1.8.0_162</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Voer FastQC uit op beide read-bestanden</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> naam_van_fastq_bestand.fastq.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load FastQC/0.11.8-Java-1.8.0_162</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Voer FastQC uit op één FASTQ read-bestand</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> naam_van_fastq_bestand.fastq.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Pas de namen van het FASTQ bestand aan naar de namen van jouw bestanden in het bovenstaande commando.</p>
+</blockquote>
 <p>Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je het rapport (bv <code>naam_van_fastq_bestand_fastqc.html</code>) verschijnen in de linkerbalk. Om het rapport te openen moeten we het eerst downloaden (rechstklikken + download).</p>
 </section>
 <section id="het-interpreteren-van-het-fastqc-html-rapport" class="level2">
@@ -372,20 +429,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="read-mapping-met-bwa" class="level1">
 <h1>Read Mapping met BWA</h1>
+<section id="doel-1" class="level2">
+<h2 class="anchored" data-anchor-id="doel-1">Doel</h2>
 <p>BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.</p>
+</section>
+<section id="sam-formaat-sequence-alignmentmap" class="level2">
+<h2 class="anchored" data-anchor-id="sam-formaat-sequence-alignmentmap">SAM-formaat (Sequence Alignment/Map)</h2>
+<section id="wat-is-sam" class="level3">
+<h3 class="anchored" data-anchor-id="wat-is-sam">Wat is SAM?</h3>
+<p>SAM is een tekstbestandsformaat voor het opslaan van sequentie-alignments. Het wordt gebruikt om te beschrijven hoe sequenties zijn uitgelijnd ten opzichte van een referentiegenoom.</p>
+</section>
+<section id="structuur-van-een-sam-bestand" class="level3">
+<h3 class="anchored" data-anchor-id="structuur-van-een-sam-bestand">Structuur van een SAM-bestand</h3>
+<p>Een SAM-bestand bestaat uit: - Een optionele headergedeelte - Alignment-gedeelte met één regel per alignment</p>
+</section>
+<section id="voorbeeld-van-een-sam-entry" class="level3">
+<h3 class="anchored" data-anchor-id="voorbeeld-van-een-sam-entry">Voorbeeld van een SAM-entry</h3>
+<pre><code>@HD VN:1.6 SO:coordinate
+@SQ SN:ref LN:45
+r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
+</section>
+<section id="uitleg" class="level3">
+<h3 class="anchored" data-anchor-id="uitleg">Uitleg</h3>
+<ul>
+<li>Header: <span class="citation" data-cites="HD">@HD</span> en <span class="citation" data-cites="SQ">@SQ</span> lijnen geven informatie over het bestand en de referentiesequentie.</li>
+<li>Alignment:
+<ul>
+<li>r001: Identifier van de sequentie uit het FASTQ bestand</li>
+<li>99: Bitwise flag</li>
+<li>ref: Reference sequence name</li>
+<li>7: 1-based leftmost mapping position</li>
+<li>30: Mapping quality</li>
+<li>8M2I4M1D3M: CIGAR string (beschrijft hoe de sequentie is uitgelijnd)</li>
+<li>=: Reference name of the mate/next read</li>
+<li>37: Position of the mate/next read</li>
+<li>39: Template length</li>
+<li>TTAGATAAAGGATACTG: sequentie</li>
+<li>*: Quality scores (hier niet weergegeven)</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="bam-formaat-binary-alignmentmap" class="level2">
+<h2 class="anchored" data-anchor-id="bam-formaat-binary-alignmentmap">BAM-formaat (Binary Alignment/Map)</h2>
+<section id="wat-is-bam" class="level3">
+<h3 class="anchored" data-anchor-id="wat-is-bam">Wat is BAM?</h3>
+<p>BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als SAM, maar in een gecomprimeerde, binaire vorm.</p>
+</section>
+<section id="kenmerken-van-bam" class="level3">
+<h3 class="anchored" data-anchor-id="kenmerken-van-bam">Kenmerken van BAM</h3>
+<ul>
+<li>Neemt minder opslagruimte in beslag dan SAM</li>
+<li>Sneller te verwerken door computers</li>
+<li>Kan worden geïndexeerd voor snelle toegang tot specifieke regio’s</li>
+</ul>
+</section>
+<section id="voorbeeld" class="level3">
+<h3 class="anchored" data-anchor-id="voorbeeld">Voorbeeld</h3>
+<p>Omdat BAM een binair formaat is, kunnen we geen leesbaar voorbeeld geven zoals bij SAM. In de praktijk zou je speciale software gebruiken om BAM-bestanden te bekijken of te bewerken.</p>
+</section>
+</section>
+<section id="opdrachten-1" class="level2">
+<h2 class="anchored" data-anchor-id="opdrachten-1">Opdrachten</h2>
 <p>Laad de BWA module</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load BWA/0.7.17-GCC-10.3.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load BWA/0.7.17-GCC-10.3.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Aligneer de reads</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="va">REF</span><span class="op">=</span>/staging/leuven/stg_00156/references/hg38.fa</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="at">-t</span> 2 <span class="va">$REF</span> naam_van_fastq_bestand_r1.fastq.gz naam_van_fastq_bestand_r2.fastq.gz <span class="op">&gt;</span> aligned.sam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="va">REF</span><span class="op">=</span>/staging/leuven/stg_00156/references/hg38.fa</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="at">-t</span> 2 <span class="va">$REF</span> naam_van_fastq_bestand_r1.fastq.gz naam_van_fastq_bestand_r2.fastq.gz <span class="op">&gt;</span> aligned.sam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
 <p>Pas de namen van de FASTQ bestanden aan naar de namen van jouw bestanden in het bovenstaande commando.</p>
 </blockquote>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load SAMtools/1.13-GCC-10.3.0</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort aligned.sam <span class="at">-o</span> aligned.sorted.bam</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index aligned.sorted.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> flagstat aligned.sorted.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load SAMtools/1.13-GCC-10.3.0</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort aligned.sam <span class="at">-o</span> aligned.sorted.bam</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index aligned.sorted.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> flagstat aligned.sorted.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="opdrachtvragen-1" class="level2">
 <h2 class="anchored" data-anchor-id="opdrachtvragen-1">Opdrachtvragen:</h2>
 <ol type="1">
@@ -397,37 +516,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="variant-calling-met-bcftools" class="level1">
 <h1>Variant Calling met BCFtools</h1>
 <p>BCFtools wordt gebruikt om varianten te identificeren uit de uitgelijnde reads.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Roep varianten aan</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> referentiegenoom.fasta monster1.sorted.bam <span class="kw">|</span> <span class="ex">bcftools</span> call <span class="at">-mv</span> <span class="at">-Ob</span> <span class="at">-o</span> monster1.raw.bcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="vcf-formaat-variant-call-format" class="level2">
+<h2 class="anchored" data-anchor-id="vcf-formaat-variant-call-format">4. VCF-formaat (Variant Call Format)</h2>
+<section id="wat-is-vcf" class="level3">
+<h3 class="anchored" data-anchor-id="wat-is-vcf">Wat is VCF?</h3>
+<p>VCF is een tekstbestandsformaat voor het opslaan van genoomvariaties zoals SNPs, inserties, deleties en structurele varianten.</p>
+</section>
+<section id="structuur-van-een-vcf-bestand" class="level3">
+<h3 class="anchored" data-anchor-id="structuur-van-een-vcf-bestand">Structuur van een VCF-bestand</h3>
+<p>Een VCF-bestand bestaat uit: - Meta-informatieregels (beginnen met ##) - Een headerregel (begint met #) - Dataregels met informatie over elke variant</p>
+</section>
+<section id="voorbeeld-van-een-vcf-entry" class="level3">
+<h3 class="anchored" data-anchor-id="voorbeeld-van-een-vcf-entry">Voorbeeld van een VCF-entry</h3>
+<pre><code>##fileformat=VCFv4.3
+#CHROM POS ID REF ALT QUAL FILTER INFO
+20 14370 rs6054257 G A 29 PASS NS=3;DP=14;AF=0.5;DB;H2</code></pre>
+</section>
+<section id="uitleg-1" class="level3">
+<h3 class="anchored" data-anchor-id="uitleg-1">Uitleg</h3>
+<ul>
+<li>CHROM: Chromosoom</li>
+<li>POS: Positie van de variant</li>
+<li>ID: Variant identifier (bijv. rs-nummer)</li>
+<li>REF: Referentie-allel</li>
+<li>ALT: Alternatief allel</li>
+<li>QUAL: Kwaliteitsscore</li>
+<li>FILTER: Filter status (PASS betekent dat de variant alle filters heeft gepasseerd)</li>
+<li>INFO: Aanvullende informatie over de variant</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Roep varianten aan</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> referentiegenoom.fasta monster1.sorted.bam <span class="kw">|</span> <span class="ex">bcftools</span> call <span class="at">-mv</span> <span class="at">-Ob</span> <span class="at">-o</span> monster1.raw.bcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
 </section>
 <section id="variant-filtering" class="level1">
 <h1>Variant Filtering</h1>
 <p>VCFtools kan worden gebruikt om de varianten te filteren op basis van verschillende criteria.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zet BCF om naar VCF</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view monster1.raw.bcf <span class="op">&gt;</span> monster1.raw.vcf</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter varianten</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="ex">vcftools</span> <span class="at">--vcf</span> monster1.raw.vcf <span class="dt">\</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">--minQ</span> 30 <span class="dt">\</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">--min-meanDP</span> 10 <span class="dt">\</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">--max-missing</span> 0.8 <span class="dt">\</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">--recode</span> <span class="at">--recode-INFO-all</span> <span class="dt">\</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">--out</span> monster1.gefilterd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zet BCF om naar VCF</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view monster1.raw.bcf <span class="op">&gt;</span> monster1.raw.vcf</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter varianten</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="ex">vcftools</span> <span class="at">--vcf</span> monster1.raw.vcf <span class="dt">\</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">--minQ</span> 30 <span class="dt">\</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">--min-meanDP</span> 10 <span class="dt">\</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">--max-missing</span> 0.8 <span class="dt">\</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">--recode</span> <span class="at">--recode-INFO-all</span> <span class="dt">\</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">--out</span> monster1.gefilterd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="variant-annotatie-met-snpeff" class="level1">
 <h1>Variant Annotatie met SnpEff</h1>
 <section id="stap-1-installeer-snpeff" class="level2">
 <h2 class="anchored" data-anchor-id="stap-1-installeer-snpeff">Stap 1: Installeer SnpEff</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> snpEff_latest_core.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> snpEff_latest_core.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="stap-2-download-de-human-genome-database" class="level2">
 <h2 class="anchored" data-anchor-id="stap-2-download-de-human-genome-database">Stap 2: Download de Human Genome Database</h2>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> snpEff.jar download <span class="at">-v</span> hg38</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> snpEff.jar download <span class="at">-v</span> hg38</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="stap-3-voer-snpeff-uit" class="level2">
 <h2 class="anchored" data-anchor-id="stap-3-voer-snpeff-uit">Stap 3: Voer SnpEff uit</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-Xmx4g</span> <span class="at">-jar</span> snpEff.jar hg38 input_varianten.vcf <span class="op">&gt;</span> geannoteerde_varianten.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-Xmx4g</span> <span class="at">-jar</span> snpEff.jar hg38 input_varianten.vcf <span class="op">&gt;</span> geannoteerde_varianten.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="stap-4-interpreteer-de-resultaten" class="level2">
 <h2 class="anchored" data-anchor-id="stap-4-interpreteer-de-resultaten">Stap 4: Interpreteer de Resultaten</h2>
