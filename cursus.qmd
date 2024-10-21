@@ -350,7 +350,7 @@ module load BWA/0.7.17-GCC-10.3.0
 Aligneer de reads
 ```bash
 REF=/staging/leuven/stg_00156/references/hg38.fa
-bwa mem -t 2 $REF naam_van_fastq_bestand_r1.fastq.gz naam_van_fastq_bestand_r2.fastq.gz > aligned.sam
+bwa mem -R '@RG\tID:samplename\tSM:samplename' -t 1 $REF naam_van_fastq_bestand_r1.fastq.gz naam_van_fastq_bestand_r2.fastq.gz > aligned.sam
 ```
 > Pas de namen van de FASTQ bestanden aan naar de namen van jouw bestanden in het bovenstaande commando.
 
@@ -408,6 +408,16 @@ Een VCF-bestand bestaat uit:
 ```bash
 # Roep varianten aan
 bcftools mpileup -f referentiegenoom.fasta monster1.sorted.bam | bcftools call -mv -Ob -o monster1.raw.bcf
+
+REF=/staging/leuven/stg_00156/references/hg38.fa
+
+module load GATK/4.1.9.0-foss-2018a-Java-11.0.4
+
+gatk Mutect2 \
+  -R $REF \
+  -I simulated_data_1.sorted.bam \
+  -O simulated_data_1.vcf.gz
+
 ```
 
 # Variant Filtering
@@ -429,25 +439,18 @@ vcftools --vcf monster1.raw.vcf \
 
 # Variant Annotatie met SnpEff
 
-## Stap 1: Installeer SnpEff
-
 ```bash
-wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
-unzip snpEff_latest_core.zip
+module load snpEff/5.2c-GCCcore-10.3.0-Java-11
+
+SNPEFF_REF=/staging/leuven/stg_00156/references/snpEff
+
+snpEff -dataDir $SNPEFF_REF hg38 input_varianten.vcf > geannoteerde_varianten.vcf
 ```
 
-## Stap 2: Download de Human Genome Database
-
 ```bash
-java -jar snpEff.jar download -v hg38
+
+
 ```
-
-## Stap 3: Voer SnpEff uit
-
-```bash
-java -Xmx4g -jar snpEff.jar hg38 input_varianten.vcf > geannoteerde_varianten.vcf
-```
-
 ## Stap 4: Interpreteer de Resultaten
 
 Kijk naar het `ANN` veld in de output VCF voor gedetailleerde annotaties.
