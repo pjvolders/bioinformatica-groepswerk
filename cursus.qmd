@@ -222,7 +222,7 @@ Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ru
 ## Het FASTQ-formaat
 
 ### Wat is FASTQ?
-FASTQ is een tekstbestandsformaat voor het opslaan van zowel biologische sequenties (meestal nucleotidesequenties) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.
+FASTQ is een tekstbestandsformaat voor het opslaan van zowel nucleotidesequenties (reads) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.
 
 ### Voorbeeld van een FASTQ-entry
 ```
@@ -294,7 +294,9 @@ Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je h
 # Read Mapping met BWA
 
 ## Doel
-BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.
+In deze stap worden de sequenties in de FASTQ-bestanden uitgelijnd (gealigneerd) met een referentiegenoom. Het resultaat zal de meest waarschijnlijke oorsprong van de read zijn alsook op welke manier deze verschilt van het referentie genoom.
+Dit proces gebruikt algoritmen om te bepalen waar elke read het best past op het referentiegenoom.
+Het resultaat van deze alignment wordt opgeslagen in SAM- of BAM-formaat.BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.
 
 ## SAM-formaat (Sequence Alignment/Map)
 
