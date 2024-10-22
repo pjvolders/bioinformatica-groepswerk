@@ -47,9 +47,8 @@ Voor het groepswerk gaan we gebruik maken van de Visual Studio Code (VS Code) ap
 1. Klik op het "code-server" icoon. 
 2. Er verschijnt een formulier met een aantal opties. Controleer volgende opties en pas aan indien nodig.
     - **Account:** lp_h_edu_bioinformatics_2024
-    - **Number of hours:** 1
-    - **Number of cores:**: 2
-    - **Required memory per core in megabytes:**: 3400
+    - **Number of hours:** 1 (of meer als je langer wenst te werken aan de opdracht)
+    - **Required memory per core in megabytes:**: 6800
 3. Klik op "Launch"
 4. Een overzicht van jouw recent sessies verschijnt met bovenaan de VS Code sessie met status "Queued"
 
@@ -62,6 +61,8 @@ Nu moet je even wachten tot de VS Code sessie gestart is. Normaal duurt dit maar
 Klik nu op "Connect to Visual Studio Code". De VS Code interface verschijnt.
 
 ![Alt text](cursus_images/vscode_home.png)
+
+> De sessie op de VSC cluster zal blijven openstaan tot de gevraagde tijd voorbij is of de sessie manueel gestopt wordt (rode "cancel" knop). Als je klaar bent met werken en de sessie toch laat openstaan gaat de VSC cluster onnodig gereserveerd worden en zullen andere gebruikers nodeloos moeten wachten. Sluit daarom de sessie af als je eerder klaar bent met werken dan de gevraagde tijd. Je kan steeds een nieuwe sessie starten!
 
 # Introductie tot Linux Shell/Bash
 
@@ -210,8 +211,6 @@ Hier is `ls` de opdracht, `-l` een optie, en `Documenten` een argument.
 5. Verplaats "notities.txt" naar de "Resultaten" directory.
 6. Kopieer "notities.txt" van "Resultaten" naar "Data".
 7. Verwijder het "notities.txt" bestand uit de "Data" directory.
-
-# 
 
 
 # Kwaliteitscontrole met FastQC
@@ -379,7 +378,7 @@ samtools flagstat aligned.sorted.bam
 
 BCFtools wordt gebruikt om varianten te identificeren uit de uitgelijnde reads.
 
-## 4. VCF-formaat (Variant Call Format)
+## VCF-formaat (Variant Call Format)
 
 ### Wat is VCF?
 VCF is een tekstbestandsformaat voor het opslaan van genoomvariaties zoals SNPs, inserties, deleties en structurele varianten.
@@ -400,62 +399,115 @@ Een VCF-bestand bestaat uit:
 ### Uitleg
 - CHROM: Chromosoom
 - POS: Positie van de variant
-- ID: Variant identifier (bijv. rs-nummer)
-- REF: Referentie-allel
-- ALT: Alternatief allel
+- ID: Optionele variant identifier (bijv. rs-nummer van gekende varianten in de dbSNP databank)
+- REF: Referentie-allel zoals het in het referentiegenoom aanwezig is
+- ALT: Alternatief allel dat gevonden werd in het staal
 - QUAL: Kwaliteitsscore
 - FILTER: Filter status (PASS betekent dat de variant alle filters heeft gepasseerd)
-- INFO: Aanvullende informatie over de variant
+- INFO: Aanvullende informatie over de variant zoals de *depth* (`DP`) en de allele frequency (`AF`)
+
+## Opdrachten
+
 
 ```bash
-# Roep varianten aan
-bcftools mpileup -f referentiegenoom.fasta monster1.sorted.bam | bcftools call -mv -Ob -o monster1.raw.bcf
-
-REF=/staging/leuven/stg_00156/references/hg38.fa
-
 module load GATK/4.1.9.0-foss-2018a-Java-11.0.4
 
+REF=/staging/leuven/stg_00156/references/hg38.fa
 gatk Mutect2 \
   -R $REF \
   -I simulated_data_1.sorted.bam \
-  -O simulated_data_1.vcf.gz
+  -O simulated_data_1.vcf
 
-```
-
-# Variant Filtering
-
-VCFtools kan worden gebruikt om de varianten te filteren op basis van verschillende criteria.
-
-```bash
-# Zet BCF om naar VCF
-bcftools view monster1.raw.bcf > monster1.raw.vcf
-
-# Filter varianten
-vcftools --vcf monster1.raw.vcf \
-         --minQ 30 \
-         --min-meanDP 10 \
-         --max-missing 0.8 \
-         --recode --recode-INFO-all \
-         --out monster1.gefilterd
 ```
 
 # Variant Annotatie met SnpEff
+
+In het VCF bestand dat je bekomen bent bij de vorige stap zitten bijzonder veel varianten. De overgrote meerderheid heeft geen belangrijke impact omdat ze bijvoorbeeld in intergenische regio's of intronen liggen of synonieme mutaties zijn (geen verandering in aminozuursequentie). Het identificeren van één of enkele varianten die aan de basis van een ziektebeeld liggen (zoals kanker) is dus een zoektocht naar een speld in een hooiberg! Een belangrijk hulpmiddel in deze analyze is *variant annotatie* waarbij we voor elke variant de impact op het eiwit gaan bepalen. Een veelgebruikte tool hiervoor is snpEff. 
 
 ```bash
 module load snpEff/5.2c-GCCcore-10.3.0-Java-11
 
 SNPEFF_REF=/staging/leuven/stg_00156/references/snpEff
-
 snpEff -dataDir $SNPEFF_REF hg38 input_varianten.vcf > geannoteerde_varianten.vcf
 ```
 
-```bash
-
-
-```
 ## Stap 4: Interpreteer de Resultaten
 
 Kijk naar het `ANN` veld in de output VCF voor gedetailleerde annotaties.
+
+## Het SnpEff HTML-rapport begrijpen
+
+SnpEff genereert naast geannoteerde varianten ook een uitgebreid HTML-rapport met statistieken en visualisaties. Laten we dit stap voor stap doornemen.
+
+### A. Algemene Statistieken Sectie
+
+1. **Aantal varianten**:
+   - Totaal aantal verwerkte varianten
+   - Aantal varianten per type (SNPs, inserties, deleties)
+   - Aantal varianten per chromosoom
+
+2. **Variant Type Statistieken**:
+   - SNP (Single Nucleotide Polymorphisms)
+   - MNP (Multiple Nucleotide Polymorphisms)
+   - INS (Inserties)
+   - DEL (Deleties)
+
+### B. Variant Effects Sectie
+
+1. **Impact Categorieën**:
+   - HIGH: Grote impact op genfunctie (bijvoorbeeld stopcodons)
+   - MODERATE: Mogelijk effect op genfunctie (bijvoorbeeld missense varianten)
+   - LOW: Waarschijnlijk geen effect op genfunctie (bijvoorbeeld synonyme varianten)
+   - MODIFIER: Meestal in niet-coderende regio's
+
+2. **Effect Types**:
+   - Missense
+   - Nonsense
+   - Silent
+   - Splice site variants
+   - etc.
+
+## Praktische Oefeningen
+
+### Oefening 1: Basis Statistieken
+Open het SnpEff HTML-rapport voor je geannoteerde varianten en beantwoord de volgende vragen:
+
+1. Hoeveel varianten zijn er in totaal geanalyseerd?
+2. Wat is de verdeling tussen SNPs, inserties en deleties?
+3. Welk chromosoom heeft de meeste varianten?
+4. Bereken het percentage varianten dat als 'HIGH impact' is geclassificeerd.
+
+### Oefening 2: Variant Effects Analyse
+Bekijk de 'Number of effects by type and region' sectie:
+
+1. Wat zijn de top 3 meest voorkomende effecten?
+2. Hoeveel missense varianten zijn er gevonden?
+3. Wat is de verhouding tussen missense en synonyme varianten?
+4. Hoeveel splice site varianten zijn er?
+
+### Oefening 3: Genoomregio's
+Bestudeer de 'Variations by genomic region' pie chart:
+
+1. Welk percentage van de varianten ligt in:
+   - Exonen?
+   - Intronen?
+   - Intergene regio's?
+2. Is deze verdeling wat je zou verwachten? Waarom wel/niet?
+
+### Oefening 4: Transitie/Transversie Analyse
+Bekijk de 'Base Changes (SNPs)' tabel:
+
+1. Bereken de transitie/transversie (Ti/Tv) ratio.
+2. Is deze ratio normaal voor het menselijk genoom? (Tip: zoek op wat een normale Ti/Tv ratio is)
+3. Welke base verandering komt het meeste voor?
+
+### Oefening 5: Codon Veranderingen
+Analyseer de 'Codon Changes' sectie:
+
+1. Wat zijn de meest voorkomende codon veranderingen?
+2. Hoeveel stop-gained mutaties zijn er?
+3. Zijn er bepaalde aminozuur veranderingen die vaker voorkomen dan andere?
+
 
 ## Opdrachtvragen
 
