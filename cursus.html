@@ -101,7 +101,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips">Tips</a></li>
   <li><a href="#oefenopdrachten" id="toc-oefenopdrachten" class="nav-link" data-scroll-target="#oefenopdrachten">Oefenopdrachten</a></li>
   </ul></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   <li><a href="#kwaliteitscontrole-met-fastqc" id="toc-kwaliteitscontrole-met-fastqc" class="nav-link" data-scroll-target="#kwaliteitscontrole-met-fastqc">Kwaliteitscontrole met FastQC</a>
   <ul class="collapse">
   <li><a href="#doel" id="toc-doel" class="nav-link" data-scroll-target="#doel">Doel</a></li>
@@ -136,21 +135,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#variant-calling-met-bcftools" id="toc-variant-calling-met-bcftools" class="nav-link" data-scroll-target="#variant-calling-met-bcftools">Variant Calling met BCFtools</a>
   <ul class="collapse">
-  <li><a href="#vcf-formaat-variant-call-format" id="toc-vcf-formaat-variant-call-format" class="nav-link" data-scroll-target="#vcf-formaat-variant-call-format">4. VCF-formaat (Variant Call Format)</a>
+  <li><a href="#vcf-formaat-variant-call-format" id="toc-vcf-formaat-variant-call-format" class="nav-link" data-scroll-target="#vcf-formaat-variant-call-format">VCF-formaat (Variant Call Format)</a>
   <ul class="collapse">
   <li><a href="#wat-is-vcf" id="toc-wat-is-vcf" class="nav-link" data-scroll-target="#wat-is-vcf">Wat is VCF?</a></li>
   <li><a href="#structuur-van-een-vcf-bestand" id="toc-structuur-van-een-vcf-bestand" class="nav-link" data-scroll-target="#structuur-van-een-vcf-bestand">Structuur van een VCF-bestand</a></li>
   <li><a href="#voorbeeld-van-een-vcf-entry" id="toc-voorbeeld-van-een-vcf-entry" class="nav-link" data-scroll-target="#voorbeeld-van-een-vcf-entry">Voorbeeld van een VCF-entry</a></li>
   <li><a href="#uitleg-1" id="toc-uitleg-1" class="nav-link" data-scroll-target="#uitleg-1">Uitleg</a></li>
   </ul></li>
+  <li><a href="#opdrachten-2" id="toc-opdrachten-2" class="nav-link" data-scroll-target="#opdrachten-2">Opdrachten</a></li>
   </ul></li>
-  <li><a href="#variant-filtering" id="toc-variant-filtering" class="nav-link" data-scroll-target="#variant-filtering">Variant Filtering</a></li>
   <li><a href="#variant-annotatie-met-snpeff" id="toc-variant-annotatie-met-snpeff" class="nav-link" data-scroll-target="#variant-annotatie-met-snpeff">Variant Annotatie met SnpEff</a>
   <ul class="collapse">
-  <li><a href="#stap-1-installeer-snpeff" id="toc-stap-1-installeer-snpeff" class="nav-link" data-scroll-target="#stap-1-installeer-snpeff">Stap 1: Installeer SnpEff</a></li>
-  <li><a href="#stap-2-download-de-human-genome-database" id="toc-stap-2-download-de-human-genome-database" class="nav-link" data-scroll-target="#stap-2-download-de-human-genome-database">Stap 2: Download de Human Genome Database</a></li>
-  <li><a href="#stap-3-voer-snpeff-uit" id="toc-stap-3-voer-snpeff-uit" class="nav-link" data-scroll-target="#stap-3-voer-snpeff-uit">Stap 3: Voer SnpEff uit</a></li>
   <li><a href="#stap-4-interpreteer-de-resultaten" id="toc-stap-4-interpreteer-de-resultaten" class="nav-link" data-scroll-target="#stap-4-interpreteer-de-resultaten">Stap 4: Interpreteer de Resultaten</a></li>
+  <li><a href="#het-snpeff-html-rapport-begrijpen" id="toc-het-snpeff-html-rapport-begrijpen" class="nav-link" data-scroll-target="#het-snpeff-html-rapport-begrijpen">Het SnpEff HTML-rapport begrijpen</a>
+  <ul class="collapse">
+  <li><a href="#a.-algemene-statistieken-sectie" id="toc-a.-algemene-statistieken-sectie" class="nav-link" data-scroll-target="#a.-algemene-statistieken-sectie">A. Algemene Statistieken Sectie</a></li>
+  <li><a href="#b.-variant-effects-sectie" id="toc-b.-variant-effects-sectie" class="nav-link" data-scroll-target="#b.-variant-effects-sectie">B. Variant Effects Sectie</a></li>
+  </ul></li>
+  <li><a href="#praktische-oefeningen" id="toc-praktische-oefeningen" class="nav-link" data-scroll-target="#praktische-oefeningen">Praktische Oefeningen</a>
+  <ul class="collapse">
+  <li><a href="#oefening-1-basis-statistieken" id="toc-oefening-1-basis-statistieken" class="nav-link" data-scroll-target="#oefening-1-basis-statistieken">Oefening 1: Basis Statistieken</a></li>
+  <li><a href="#oefening-2-variant-effects-analyse" id="toc-oefening-2-variant-effects-analyse" class="nav-link" data-scroll-target="#oefening-2-variant-effects-analyse">Oefening 2: Variant Effects Analyse</a></li>
+  <li><a href="#oefening-3-genoomregios" id="toc-oefening-3-genoomregios" class="nav-link" data-scroll-target="#oefening-3-genoomregios">Oefening 3: Genoomregio’s</a></li>
+  <li><a href="#oefening-4-transitietransversie-analyse" id="toc-oefening-4-transitietransversie-analyse" class="nav-link" data-scroll-target="#oefening-4-transitietransversie-analyse">Oefening 4: Transitie/Transversie Analyse</a></li>
+  <li><a href="#oefening-5-codon-veranderingen" id="toc-oefening-5-codon-veranderingen" class="nav-link" data-scroll-target="#oefening-5-codon-veranderingen">Oefening 5: Codon Veranderingen</a></li>
+  </ul></li>
   <li><a href="#opdrachtvragen-2" id="toc-opdrachtvragen-2" class="nav-link" data-scroll-target="#opdrachtvragen-2">Opdrachtvragen</a></li>
   </ul></li>
   </ul>
@@ -212,9 +221,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Er verschijnt een formulier met een aantal opties. Controleer volgende opties en pas aan indien nodig.
 <ul>
 <li><strong>Account:</strong> lp_h_edu_bioinformatics_2024</li>
-<li><strong>Number of hours:</strong> 1</li>
-<li><strong>Number of cores:</strong>: 2</li>
-<li><strong>Required memory per core in megabytes:</strong>: 3400</li>
+<li><strong>Number of hours:</strong> 1 (of meer als je langer wenst te werken aan de opdracht)</li>
+<li><strong>Required memory per core in megabytes:</strong>: 6800</li>
 </ul></li>
 <li>Klik op “Launch”</li>
 <li>Een overzicht van jouw recent sessies verschijnt met bovenaan de VS Code sessie met status “Queued”</li>
@@ -239,6 +247,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Alt text</figcaption>
 </figure>
 </div>
+<blockquote class="blockquote">
+<p>De sessie op de VSC cluster zal blijven openstaan tot de gevraagde tijd voorbij is of de sessie manueel gestopt wordt (rode “cancel” knop). Als je klaar bent met werken en de sessie toch laat openstaan gaat de VSC cluster onnodig gereserveerd worden en zullen andere gebruikers nodeloos moeten wachten. Sluit daarom de sessie af als je eerder klaar bent met werken dan de gevraagde tijd. Je kan steeds een nieuwe sessie starten!</p>
+</blockquote>
 </section>
 <section id="introductie-tot-linux-shellbash" class="level1">
 <h1>Introductie tot Linux Shell/Bash</h1>
@@ -352,9 +363,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 </section>
-<section id="section" class="level1">
-<h1></h1>
-</section>
 <section id="kwaliteitscontrole-met-fastqc" class="level1">
 <h1>Kwaliteitscontrole met FastQC</h1>
 <section id="doel" class="level2">
@@ -365,7 +373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="het-fastq-formaat">Het FASTQ-formaat</h2>
 <section id="wat-is-fastq" class="level3">
 <h3 class="anchored" data-anchor-id="wat-is-fastq">Wat is FASTQ?</h3>
-<p>FASTQ is een tekstbestandsformaat voor het opslaan van zowel biologische sequenties (meestal nucleotidesequenties) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.</p>
+<p>FASTQ is een tekstbestandsformaat voor het opslaan van zowel nucleotidesequenties (reads) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.</p>
 </section>
 <section id="voorbeeld-van-een-fastq-entry" class="level3">
 <h3 class="anchored" data-anchor-id="voorbeeld-van-een-fastq-entry">Voorbeeld van een FASTQ-entry</h3>
@@ -431,7 +439,7 @@ GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
 <h1>Read Mapping met BWA</h1>
 <section id="doel-1" class="level2">
 <h2 class="anchored" data-anchor-id="doel-1">Doel</h2>
-<p>BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.</p>
+<p>In deze stap worden de sequenties in de FASTQ-bestanden uitgelijnd (gealigneerd) met een referentiegenoom. Het resultaat zal de meest waarschijnlijke oorsprong van de read zijn alsook op welke manier deze verschilt van het referentie genoom. Dit proces gebruikt algoritmen om te bepalen waar elke read het best past op het referentiegenoom. Het resultaat van deze alignment wordt opgeslagen in SAM- of BAM-formaat.BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.</p>
 </section>
 <section id="sam-formaat-sequence-alignmentmap" class="level2">
 <h2 class="anchored" data-anchor-id="sam-formaat-sequence-alignmentmap">SAM-formaat (Sequence Alignment/Map)</h2>
@@ -495,7 +503,7 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load BWA/0.7.17-GCC-10.3.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Aligneer de reads</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="va">REF</span><span class="op">=</span>/staging/leuven/stg_00156/references/hg38.fa</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="at">-t</span> 2 <span class="va">$REF</span> naam_van_fastq_bestand_r1.fastq.gz naam_van_fastq_bestand_r2.fastq.gz <span class="op">&gt;</span> aligned.sam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="at">-R</span> <span class="st">'@RG\tID:samplename\tSM:samplename'</span> <span class="at">-t</span> 1 <span class="va">$REF</span> naam_van_fastq_bestand_r1.fastq.gz naam_van_fastq_bestand_r2.fastq.gz <span class="op">&gt;</span> aligned.sam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
 <p>Pas de namen van de FASTQ bestanden aan naar de namen van jouw bestanden in het bovenstaande commando.</p>
 </blockquote>
@@ -517,7 +525,7 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
 <h1>Variant Calling met BCFtools</h1>
 <p>BCFtools wordt gebruikt om varianten te identificeren uit de uitgelijnde reads.</p>
 <section id="vcf-formaat-variant-call-format" class="level2">
-<h2 class="anchored" data-anchor-id="vcf-formaat-variant-call-format">4. VCF-formaat (Variant Call Format)</h2>
+<h2 class="anchored" data-anchor-id="vcf-formaat-variant-call-format">VCF-formaat (Variant Call Format)</h2>
 <section id="wat-is-vcf" class="level3">
 <h3 class="anchored" data-anchor-id="wat-is-vcf">Wat is VCF?</h3>
 <p>VCF is een tekstbestandsformaat voor het opslaan van genoomvariaties zoals SNPs, inserties, deleties en structurele varianten.</p>
@@ -537,50 +545,132 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
 <ul>
 <li>CHROM: Chromosoom</li>
 <li>POS: Positie van de variant</li>
-<li>ID: Variant identifier (bijv. rs-nummer)</li>
-<li>REF: Referentie-allel</li>
-<li>ALT: Alternatief allel</li>
+<li>ID: Optionele variant identifier (bijv. rs-nummer van gekende varianten in de dbSNP databank)</li>
+<li>REF: Referentie-allel zoals het in het referentiegenoom aanwezig is</li>
+<li>ALT: Alternatief allel dat gevonden werd in het staal</li>
 <li>QUAL: Kwaliteitsscore</li>
 <li>FILTER: Filter status (PASS betekent dat de variant alle filters heeft gepasseerd)</li>
-<li>INFO: Aanvullende informatie over de variant</li>
+<li>INFO: Aanvullende informatie over de variant zoals de <em>depth</em> (<code>DP</code>) en de allele frequency (<code>AF</code>)</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Roep varianten aan</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> mpileup <span class="at">-f</span> referentiegenoom.fasta monster1.sorted.bam <span class="kw">|</span> <span class="ex">bcftools</span> call <span class="at">-mv</span> <span class="at">-Ob</span> <span class="at">-o</span> monster1.raw.bcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
+<section id="opdrachten-2" class="level2">
+<h2 class="anchored" data-anchor-id="opdrachten-2">Opdrachten</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load GATK/4.1.9.0-foss-2018a-Java-11.0.4</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="va">REF</span><span class="op">=</span>/staging/leuven/stg_00156/references/hg38.fa</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> Mutect2 <span class="dt">\</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-R</span> <span class="va">$REF</span> <span class="dt">\</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">-I</span> simulated_data_1.sorted.bam <span class="dt">\</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">-O</span> simulated_data_1.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="variant-filtering" class="level1">
-<h1>Variant Filtering</h1>
-<p>VCFtools kan worden gebruikt om de varianten te filteren op basis van verschillende criteria.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zet BCF om naar VCF</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bcftools</span> view monster1.raw.bcf <span class="op">&gt;</span> monster1.raw.vcf</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter varianten</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="ex">vcftools</span> <span class="at">--vcf</span> monster1.raw.vcf <span class="dt">\</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">--minQ</span> 30 <span class="dt">\</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">--min-meanDP</span> 10 <span class="dt">\</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">--max-missing</span> 0.8 <span class="dt">\</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">--recode</span> <span class="at">--recode-INFO-all</span> <span class="dt">\</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">--out</span> monster1.gefilterd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="variant-annotatie-met-snpeff" class="level1">
 <h1>Variant Annotatie met SnpEff</h1>
-<section id="stap-1-installeer-snpeff" class="level2">
-<h2 class="anchored" data-anchor-id="stap-1-installeer-snpeff">Stap 1: Installeer SnpEff</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> snpEff_latest_core.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="stap-2-download-de-human-genome-database" class="level2">
-<h2 class="anchored" data-anchor-id="stap-2-download-de-human-genome-database">Stap 2: Download de Human Genome Database</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> snpEff.jar download <span class="at">-v</span> hg38</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="stap-3-voer-snpeff-uit" class="level2">
-<h2 class="anchored" data-anchor-id="stap-3-voer-snpeff-uit">Stap 3: Voer SnpEff uit</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-Xmx4g</span> <span class="at">-jar</span> snpEff.jar hg38 input_varianten.vcf <span class="op">&gt;</span> geannoteerde_varianten.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
+<p>In het VCF bestand dat je bekomen bent bij de vorige stap zitten bijzonder veel varianten. De overgrote meerderheid heeft geen belangrijke impact omdat ze bijvoorbeeld in intergenische regio’s of intronen liggen of synonieme mutaties zijn (geen verandering in aminozuursequentie). Het identificeren van één of enkele varianten die aan de basis van een ziektebeeld liggen (zoals kanker) is dus een zoektocht naar een speld in een hooiberg! Een belangrijk hulpmiddel in deze analyze is <em>variant annotatie</em> waarbij we voor elke variant de impact op het eiwit gaan bepalen. Een veelgebruikte tool hiervoor is snpEff.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load snpEff/5.2c-GCCcore-10.3.0-Java-11</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="va">SNPEFF_REF</span><span class="op">=</span>/staging/leuven/stg_00156/references/snpEff</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> <span class="at">-dataDir</span> <span class="va">$SNPEFF_REF</span> hg38 input_varianten.vcf <span class="op">&gt;</span> geannoteerde_varianten.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="stap-4-interpreteer-de-resultaten" class="level2">
 <h2 class="anchored" data-anchor-id="stap-4-interpreteer-de-resultaten">Stap 4: Interpreteer de Resultaten</h2>
 <p>Kijk naar het <code>ANN</code> veld in de output VCF voor gedetailleerde annotaties.</p>
+</section>
+<section id="het-snpeff-html-rapport-begrijpen" class="level2">
+<h2 class="anchored" data-anchor-id="het-snpeff-html-rapport-begrijpen">Het SnpEff HTML-rapport begrijpen</h2>
+<p>SnpEff genereert naast geannoteerde varianten ook een uitgebreid HTML-rapport met statistieken en visualisaties. Laten we dit stap voor stap doornemen.</p>
+<section id="a.-algemene-statistieken-sectie" class="level3">
+<h3 class="anchored" data-anchor-id="a.-algemene-statistieken-sectie">A. Algemene Statistieken Sectie</h3>
+<ol type="1">
+<li><strong>Aantal varianten</strong>:
+<ul>
+<li>Totaal aantal verwerkte varianten</li>
+<li>Aantal varianten per type (SNPs, inserties, deleties)</li>
+<li>Aantal varianten per chromosoom</li>
+</ul></li>
+<li><strong>Variant Type Statistieken</strong>:
+<ul>
+<li>SNP (Single Nucleotide Polymorphisms)</li>
+<li>MNP (Multiple Nucleotide Polymorphisms)</li>
+<li>INS (Inserties)</li>
+<li>DEL (Deleties)</li>
+</ul></li>
+</ol>
+</section>
+<section id="b.-variant-effects-sectie" class="level3">
+<h3 class="anchored" data-anchor-id="b.-variant-effects-sectie">B. Variant Effects Sectie</h3>
+<ol type="1">
+<li><strong>Impact Categorieën</strong>:
+<ul>
+<li>HIGH: Grote impact op genfunctie (bijvoorbeeld stopcodons)</li>
+<li>MODERATE: Mogelijk effect op genfunctie (bijvoorbeeld missense varianten)</li>
+<li>LOW: Waarschijnlijk geen effect op genfunctie (bijvoorbeeld synonyme varianten)</li>
+<li>MODIFIER: Meestal in niet-coderende regio’s</li>
+</ul></li>
+<li><strong>Effect Types</strong>:
+<ul>
+<li>Missense</li>
+<li>Nonsense</li>
+<li>Silent</li>
+<li>Splice site variants</li>
+<li>etc.</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="praktische-oefeningen" class="level2">
+<h2 class="anchored" data-anchor-id="praktische-oefeningen">Praktische Oefeningen</h2>
+<section id="oefening-1-basis-statistieken" class="level3">
+<h3 class="anchored" data-anchor-id="oefening-1-basis-statistieken">Oefening 1: Basis Statistieken</h3>
+<p>Open het SnpEff HTML-rapport voor je geannoteerde varianten en beantwoord de volgende vragen:</p>
+<ol type="1">
+<li>Hoeveel varianten zijn er in totaal geanalyseerd?</li>
+<li>Wat is de verdeling tussen SNPs, inserties en deleties?</li>
+<li>Welk chromosoom heeft de meeste varianten?</li>
+<li>Bereken het percentage varianten dat als ‘HIGH impact’ is geclassificeerd.</li>
+</ol>
+</section>
+<section id="oefening-2-variant-effects-analyse" class="level3">
+<h3 class="anchored" data-anchor-id="oefening-2-variant-effects-analyse">Oefening 2: Variant Effects Analyse</h3>
+<p>Bekijk de ‘Number of effects by type and region’ sectie:</p>
+<ol type="1">
+<li>Wat zijn de top 3 meest voorkomende effecten?</li>
+<li>Hoeveel missense varianten zijn er gevonden?</li>
+<li>Wat is de verhouding tussen missense en synonyme varianten?</li>
+<li>Hoeveel splice site varianten zijn er?</li>
+</ol>
+</section>
+<section id="oefening-3-genoomregios" class="level3">
+<h3 class="anchored" data-anchor-id="oefening-3-genoomregios">Oefening 3: Genoomregio’s</h3>
+<p>Bestudeer de ‘Variations by genomic region’ pie chart:</p>
+<ol type="1">
+<li>Welk percentage van de varianten ligt in:
+<ul>
+<li>Exonen?</li>
+<li>Intronen?</li>
+<li>Intergene regio’s?</li>
+</ul></li>
+<li>Is deze verdeling wat je zou verwachten? Waarom wel/niet?</li>
+</ol>
+</section>
+<section id="oefening-4-transitietransversie-analyse" class="level3">
+<h3 class="anchored" data-anchor-id="oefening-4-transitietransversie-analyse">Oefening 4: Transitie/Transversie Analyse</h3>
+<p>Bekijk de ‘Base Changes (SNPs)’ tabel:</p>
+<ol type="1">
+<li>Bereken de transitie/transversie (Ti/Tv) ratio.</li>
+<li>Is deze ratio normaal voor het menselijk genoom? (Tip: zoek op wat een normale Ti/Tv ratio is)</li>
+<li>Welke base verandering komt het meeste voor?</li>
+</ol>
+</section>
+<section id="oefening-5-codon-veranderingen" class="level3">
+<h3 class="anchored" data-anchor-id="oefening-5-codon-veranderingen">Oefening 5: Codon Veranderingen</h3>
+<p>Analyseer de ‘Codon Changes’ sectie:</p>
+<ol type="1">
+<li>Wat zijn de meest voorkomende codon veranderingen?</li>
+<li>Hoeveel stop-gained mutaties zijn er?</li>
+<li>Zijn er bepaalde aminozuur veranderingen die vaker voorkomen dan andere?</li>
+</ol>
+</section>
 </section>
 <section id="opdrachtvragen-2" class="level2">
 <h2 class="anchored" data-anchor-id="opdrachtvragen-2">Opdrachtvragen</h2>
