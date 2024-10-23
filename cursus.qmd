@@ -449,6 +449,9 @@ snpEff -dataDir $SNPEFF_REF hg38 input_varianten.vcf > geannoteerde_varianten.vc
 
 ```bash
 
+SNPSIFT_JAR=/vsc-hard-mounts/leuven-apps/rocky8/skylake/2021a/software/snpEff/5.2c-GCCcore-10.3.0-Java-11/SnpSift.jar
+
+java -jar $SNPSIFT_JAR filter "( CHROM = 'chr1' )" simulated_data_1.annotated.vcf
 
 ```
 ## Stap 4: Interpreteer de Resultaten
