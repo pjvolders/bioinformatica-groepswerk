@@ -68,6 +68,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="cursus_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="cursus_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -144,6 +173,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#uitleg-1" id="toc-uitleg-1" class="nav-link" data-scroll-target="#uitleg-1">Uitleg</a></li>
   </ul></li>
   <li><a href="#opdrachten-2" id="toc-opdrachten-2" class="nav-link" data-scroll-target="#opdrachten-2">Opdrachten</a></li>
+  <li><a href="#opdrachtvragen-2" id="toc-opdrachtvragen-2" class="nav-link" data-scroll-target="#opdrachtvragen-2">Opdrachtvragen:</a></li>
+  <li><a href="#opdrachtvragen-deel-2" id="toc-opdrachtvragen-deel-2" class="nav-link" data-scroll-target="#opdrachtvragen-deel-2">Opdrachtvragen deel 2:</a></li>
   </ul></li>
   <li><a href="#variant-annotatie-met-snpeff" id="toc-variant-annotatie-met-snpeff" class="nav-link" data-scroll-target="#variant-annotatie-met-snpeff">Variant Annotatie met SnpEff</a>
   <ul class="collapse">
@@ -151,17 +182,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#a.-algemene-statistieken-sectie" id="toc-a.-algemene-statistieken-sectie" class="nav-link" data-scroll-target="#a.-algemene-statistieken-sectie">A. Algemene Statistieken Sectie</a></li>
   </ul></li>
-  <li><a href="#praktische-oefeningen" id="toc-praktische-oefeningen" class="nav-link" data-scroll-target="#praktische-oefeningen">Praktische Oefeningen</a>
+  <li><a href="#opdrachtvragen-3" id="toc-opdrachtvragen-3" class="nav-link" data-scroll-target="#opdrachtvragen-3">Opdrachtvragen</a>
   <ul class="collapse">
-  <li><a href="#oefening-1-basis-statistieken" id="toc-oefening-1-basis-statistieken" class="nav-link" data-scroll-target="#oefening-1-basis-statistieken">Oefening 1: Basis Statistieken</a></li>
-  <li><a href="#oefening-2-variant-effects-analyse" id="toc-oefening-2-variant-effects-analyse" class="nav-link" data-scroll-target="#oefening-2-variant-effects-analyse">Oefening 2: Variant Effects Analyse</a></li>
-  <li><a href="#oefening-3-genoomregios" id="toc-oefening-3-genoomregios" class="nav-link" data-scroll-target="#oefening-3-genoomregios">Oefening 3: Genoomregio’s</a></li>
-  <li><a href="#oefening-4-codon-veranderingen" id="toc-oefening-4-codon-veranderingen" class="nav-link" data-scroll-target="#oefening-4-codon-veranderingen">Oefening 4: Codon Veranderingen</a></li>
+  <li><a href="#deel-1-basis-statistieken" id="toc-deel-1-basis-statistieken" class="nav-link" data-scroll-target="#deel-1-basis-statistieken">Deel 1: Basis Statistieken</a></li>
+  <li><a href="#deel-2-variant-effects-analyse" id="toc-deel-2-variant-effects-analyse" class="nav-link" data-scroll-target="#deel-2-variant-effects-analyse">Deel 2: Variant Effects Analyse</a></li>
+  <li><a href="#deel-3-genoomregios" id="toc-deel-3-genoomregios" class="nav-link" data-scroll-target="#deel-3-genoomregios">Deel 3: Genoomregio’s</a></li>
+  <li><a href="#deel-4-codon-veranderingen" id="toc-deel-4-codon-veranderingen" class="nav-link" data-scroll-target="#deel-4-codon-veranderingen">Deel 4: Codon Veranderingen</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#variant-filtering-met-snpsift" id="toc-variant-filtering-met-snpsift" class="nav-link" data-scroll-target="#variant-filtering-met-snpsift">Variant filtering met SnpSift</a>
   <ul class="collapse">
-  <li><a href="#opdrachtvragen-2" id="toc-opdrachtvragen-2" class="nav-link" data-scroll-target="#opdrachtvragen-2">Opdrachtvragen</a></li>
+  <li><a href="#opdrachtvragen-4" id="toc-opdrachtvragen-4" class="nav-link" data-scroll-target="#opdrachtvragen-4">Opdrachtvragen</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="cursus.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -254,6 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="introductie-tot-linux-shellbash" class="level1">
 <h1>Introductie tot Linux Shell/Bash</h1>
+<p>In dit groepswerk zullen we verschillende Linux</p>
 <section id="wat-is-een-shell" class="level2">
 <h2 class="anchored" data-anchor-id="wat-is-een-shell">Wat is een Shell?</h2>
 <p>Een shell is een programma dat een interface biedt voor gebruikers om met het besturingssysteem te communiceren. De meest voorkomende shell in Linux-systemen heet Bash (Bourne Again SHell). Wanneer je de opdrachtregel gebruikt, typ je opdrachten in de shell.</p>
@@ -282,9 +314,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Documenten</span>  Downloads  Afbeeldingen  Muziek</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Opties:</p>
 <ul>
-<li><code>ls -l</code>: Lang formaat, toont meer details</li>
+<li><code>ls -l</code>: Lang formaat, toont meer details zoals de eigenaar van het bestand en de bestandsgrootte in bytes.</li>
 <li><code>ls -a</code>: Toont verborgen bestanden (die beginnen met een punt)</li>
-<li><code>ls -lh</code>: Toont de grootte van de bestanden (in de kolom) in een leesbaar formaat (<code>K</code>: kilobyte, <code>M</code>: megabyte, <code>G</code>: gigabyte).</li>
+<li><code>ls -lh</code>: Toont de grootte van de bestanden (in de kolom) in een eenvoudig formaat (<code>K</code>: kilobyte, <code>M</code>: megabyte, <code>G</code>: gigabyte).</li>
 </ul>
 </section>
 <section id="cd-change-directory" class="level3">
@@ -353,6 +385,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="oefenopdrachten" class="level2">
 <h2 class="anchored" data-anchor-id="oefenopdrachten">Oefenopdrachten</h2>
+<blockquote class="blockquote">
+<p>Deze opdrachten dienen louter om jezelf vertrouwd te maken met een Linux shell, ze maken geen deel uit van het verslag.</p>
+</blockquote>
 <ol type="1">
 <li>Maak een directory genaamd “BioinformaticaCursus” in je thuisdirectory.</li>
 <li>Maak binnen “BioinformaticaCursus” drie subdirectories: “Data”, “Scripts” en “Resultaten”.</li>
@@ -374,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="het-fastq-formaat">Het FASTQ-formaat</h2>
 <section id="wat-is-fastq" class="level3">
 <h3 class="anchored" data-anchor-id="wat-is-fastq">Wat is FASTQ?</h3>
-<p>FASTQ is een tekstbestandsformaat voor het opslaan van zowel nucleotidesequenties (reads) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.</p>
+<p>FASTQ is een tekstbestandsformaat voor het opslaan van zowel nucleotidensequenties (reads) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.</p>
 </section>
 <section id="voorbeeld-van-een-fastq-entry" class="level3">
 <h3 class="anchored" data-anchor-id="voorbeeld-van-een-fastq-entry">Voorbeeld van een FASTQ-entry</h3>
@@ -392,46 +427,51 @@ GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
 <li>Een regel die begint met ‘+’, optioneel gevolgd door dezelfde sequentie-identifier</li>
 <li>De <em>Phred</em> kwaliteitsscores voor de sequentie in gecodeerde vorm, één karakter per nucleotide.</li>
 </ol>
-<p>Een kwaliteitsscore kan gezien worden als de kans dat de nucleotide op die positie foutief gecalled werd. Zo komt <code>(</code> overeen met een kans van 20% op een foutive call. Hoe zuiverder het signaal is de sequencer, hoe zekerder de call. Het staal, de staal- of bibliotheekvoorbereiding en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de <em>Phred</em> kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekend samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.</p>
+<p>Een kwaliteitsscore is de kans dat de nucleotide op die positie foutief gecalled werd. De relatie tussen de score <span class="math inline">\(Q\)</span> en de kans <span class="math inline">\(P\)</span> wordt gegeven door onderstaande formule:</p>
+<p><span class="math display">\[
+P = 10^{\frac{-Q}{10}}
+\]</span></p>
+<p>Zo staat <code>(</code> voor een <em>Pred</em> score van 7 wat overeen komt met een kans van 20% op een foutieve call. Hoe zuiverder het signaal is de sequencer, hoe zekerder de call. Het staal, de staal- of bibliotheekvoorbereiding en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de <em>Phred</em> kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekend samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.</p>
 </section>
 </section>
 <section id="opdrachten" class="level2">
 <h2 class="anchored" data-anchor-id="opdrachten">Opdrachten</h2>
-<p>Voor volgende commando’s uit in de VS Code terminal.</p>
+<p>Voer volgende commando’s uit in de VS Code terminal.</p>
+<p>Op de VSC infrastructuur is er bijzonder veel software geïnstalleerd en beschikbaar voor gebruik. Vooraleer we een bepaald software programma kunnen gebruiken moeten het wel nog inladen via het <code>module</code> commando. Na het inladen blijft de software de hele sessie beschikbaar.</p>
 <p>Laad de FastQC module</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load FastQC/0.11.8-Java-1.8.0_162</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Voer FastQC uit op één FASTQ read-bestand</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> naam_van_fastq_bestand.fastq.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Pas de namen van het FASTQ bestand aan naar de namen van jouw bestanden in het bovenstaande commando.</p>
+<p>Pas de naam van het FASTQ bestand aan naar de naam van jouw bestand in het bovenstaande commando.</p>
 </blockquote>
-<p>Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je het rapport (bv <code>naam_van_fastq_bestand_fastqc.html</code>) verschijnen in de linkerbalk. Om het rapport te openen moeten we het eerst downloaden (rechstklikken + download).</p>
+<p>Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je het rapport (bv <code>naam_van_fastq_bestand_fastqc.html</code>) verschijnen in de linkerbalk. Om het rapport te openen moeten we het eerst downloaden (rechtsklikken + download).</p>
 </section>
 <section id="het-interpreteren-van-het-fastqc-html-rapport" class="level2">
 <h2 class="anchored" data-anchor-id="het-interpreteren-van-het-fastqc-html-rapport">Het interpreteren van het FastQC HTML-rapport</h2>
 <ol type="1">
 <li><p><strong>Basic Statistics</strong>: Geeft een overzicht van het bestand, waaronder totaal aantal sequenties, sequentielengte en GC-gehalte.</p></li>
-<li><p><strong>Per base sequence quality</strong>: Toont hoe de kwaliteitsscores (Phred scores) verlopen over de lengte van de reads. De blauwe lijn geeft de gemiddelde kwaliteitscore mee over alle reads. Normaal neemt de kwaliteitscore af met de lengte van de reads. Bij een goede gelukte sequencing blijft het gemiddelde ook naar het einde van de reads toe voldoende hoog.</p>
+<li><p><strong>Per base sequence quality</strong>: Toont hoe de kwaliteitsscores (Phred scores) verlopen over de lengte van de reads. De blauwe lijn geeft de gemiddelde kwaliteitsscore mee over alle reads. Normaal neemt de kwaliteitsscore af met de lengte van de reads. Bij een goede gelukte sequencing blijft het gemiddelde ook naar het einde van de reads toe voldoende hoog.</p>
 <ul>
 <li>Groen gebied: Goede kwaliteit</li>
 <li>Oranje gebied: Redelijke kwaliteit</li>
 <li>Rood gebied: Slechte kwaliteit</li>
 </ul></li>
 <li><p><strong>Per sequence quality scores</strong>: Geeft de verdeling van kwaliteitsscores over alle sequenties. We verwachten een normale verdeling met een gemiddelde hoger dan 30.</p></li>
-<li><p><strong>Per base sequentie-inhoud</strong>: Toont de verhoudingen van basen op elke positie.</p></li>
-<li><p><strong>Per sequentie GC-inhoud</strong>: Vergelijkt de waargenomen GC-inhoudverdeling met een theoretische normale verdeling.</p></li>
-<li><p><strong>Per base N-inhoud</strong>: Toont het percentage van basen op elke positie die niet konden worden bepaald (N).</p></li>
-<li><p><strong>Sequentielengteverspreiding</strong>: Voor de meeste platformen zou dit een scherpe piek moeten zijn.</p></li>
-<li><p><strong>Sequentieduplicatieniveaus</strong>: Hoge duplicatieniveaus kunnen duiden op PCR-bias.</p></li>
-<li><p><strong>Overgerepresenteerde sequenties</strong>: Lijst van sequenties die vaker voorkomen dan verwacht.</p></li>
-<li><p><strong>Adapter-inhoud</strong>: Toont de aanwezigheid van vaak gebruikte adapters in je bibliotheek.</p></li>
+<li><p><strong>Per base sequence content</strong>: Toont de verhoudingen van basen op elke positie.</p></li>
+<li><p><strong>Per sequence GC content</strong>: Vergelijkt de waargenomen GC-inhoudverdeling met een theoretische normale verdeling.</p></li>
+<li><p><strong>Per base N content</strong>: Toont het percentage van basen op elke positie die niet konden worden bepaald (N).</p></li>
+<li><p><strong>Sequence Length Distribution</strong>: Voor de meeste platformen zou dit een scherpe piek moeten zijn.</p></li>
+<li><p><strong>Sequence Duplication Levels</strong>: Hoge duplicatieniveaus kunnen duiden op PCR-bias.</p></li>
+<li><p><strong>Overrepresented sequences</strong>: Lijst van sequenties die vaker voorkomen dan verwacht.</p></li>
+<li><p><strong>Adapter Content</strong>: Toont de aanwezigheid van vaak gebruikte adapters in je bibliotheek.</p></li>
 </ol>
 </section>
 <section id="opdrachtvragen" class="level2">
 <h2 class="anchored" data-anchor-id="opdrachtvragen">Opdrachtvragen:</h2>
 <ol type="1">
-<li>Hoeveel sequenties/reads zijn er in beide FASTQ files aanwezig?</li>
-<li>Wat is de gemiddelde kwaliteitsscore over alle basen en reads?</li>
+<li>Hoeveel sequenties/reads zijn er in het FASTQ bestand aanwezig?</li>
+<li>Wat is de gemiddelde kwaliteitsscore over alle basen en reads? Geef ook de interpretatie van deze score.</li>
 <li>Hoe verandert de kwaliteitsscore over de lengte van de reads?</li>
 </ol>
 </section>
@@ -440,7 +480,7 @@ GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
 <h1>Read Mapping met BWA</h1>
 <section id="doel-1" class="level2">
 <h2 class="anchored" data-anchor-id="doel-1">Doel</h2>
-<p>In deze stap worden de sequenties in de FASTQ-bestanden uitgelijnd (gealigneerd) met een referentiegenoom. Het resultaat zal de meest waarschijnlijke oorsprong van de read zijn alsook op welke manier deze verschilt van het referentie genoom. Dit proces gebruikt algoritmen om te bepalen waar elke read het best past op het referentiegenoom. Het resultaat van deze alignment wordt opgeslagen in SAM- of BAM-formaat.BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.</p>
+<p>In deze stap worden de sequenties in de FASTQ-bestanden uitgelijnd (gealigneerd) met een referentiegenoom. Het resultaat zal de meest waarschijnlijke oorsprong van de read zijn alsook op welke manier deze verschilt van het referentie genoom. Dit proces gebruikt algoritmen om te bepalen waar elke read het best past op het referentiegenoom. Het resultaat van deze alignment wordt opgeslagen in SAM- of BAM-formaat. BWA (Burrows-Wheeler Aligner) is een veelgebruikte tool om reads te aligneren tegen een referentiegenoom.</p>
 </section>
 <section id="sam-formaat-sequence-alignmentmap" class="level2">
 <h2 class="anchored" data-anchor-id="sam-formaat-sequence-alignmentmap">SAM-formaat (Sequence Alignment/Map)</h2>
@@ -450,33 +490,39 @@ GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
 </section>
 <section id="structuur-van-een-sam-bestand" class="level3">
 <h3 class="anchored" data-anchor-id="structuur-van-een-sam-bestand">Structuur van een SAM-bestand</h3>
-<p>Een SAM-bestand bestaat uit: - Een optionele headergedeelte - Alignment-gedeelte met één regel per alignment</p>
+<p>Een SAM-bestand bestaat uit: - Een optionele headergedeelte (regels die beginnen met @) - Alignment-gedeelte met één regel per alignment</p>
 </section>
 <section id="voorbeeld-van-een-sam-entry" class="level3">
 <h3 class="anchored" data-anchor-id="voorbeeld-van-een-sam-entry">Voorbeeld van een SAM-entry</h3>
-<pre><code>@HD VN:1.6 SO:coordinate
-@SQ SN:ref LN:45
-r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
+<pre><code>@SQ     SN:chr1 LN:248956422
+...
+@RG     ID:simulated_data_3     SM:simulated_data_3
+@PG     ID:bwa  PN:bwa  VN:0.7.17-r1188 CL:bwa mem -R @RG\tID:simulated_data_3\tSM:simulated_data_3 /staging/leuven/stg_00156/references/hg38.fa simulated_data_3.fastq.gz
+SEQ_ID  0  chr12  120999772  60  101M  *  0  0  GGGGTGGGGT...  TG  FFF:FFFFF...  NM:i:0  MD:Z:101  AS:i:101  XS:i:19  RG:Z:simulated_data_3</code></pre>
 </section>
 <section id="uitleg" class="level3">
 <h3 class="anchored" data-anchor-id="uitleg">Uitleg</h3>
+<p>We overlopen even de belangrijkste velden in het SAM formaat</p>
+<ol type="1">
+<li><code>SEQ_ID</code> - Dit is de identifier van de read/sequentie.</li>
+<li><code>0</code> - Dit is de FLAG waarde. Een 0 betekent:
 <ul>
-<li>Header: <span class="citation" data-cites="HD">@HD</span> en <span class="citation" data-cites="SQ">@SQ</span> lijnen geven informatie over het bestand en de referentiesequentie.</li>
-<li>Alignment:
-<ul>
-<li>r001: Identifier van de sequentie uit het FASTQ bestand</li>
-<li>99: Bitwise flag</li>
-<li>ref: Reference sequence name</li>
-<li>7: 1-based leftmost mapping position</li>
-<li>30: Mapping quality</li>
-<li>8M2I4M1D3M: CIGAR string (beschrijft hoe de sequentie is uitgelijnd)</li>
-<li>=: Reference name of the mate/next read</li>
-<li>37: Position of the mate/next read</li>
-<li>39: Template length</li>
-<li>TTAGATAAAGGATACTG: sequentie</li>
-<li>*: Quality scores (hier niet weergegeven)</li>
+<li>De read is unpaired</li>
+<li>De read is gealigneerd naar de forward strand</li>
+<li>Geen andere speciale eigenschappen</li>
 </ul></li>
-</ul>
+<li><code>chr12</code> - De naam van het referentie chromosoom waar de read naartoe gemapt is.</li>
+<li><code>120999772</code> - De startpositie van de alignment op het referentie chromosoom (1-based).</li>
+<li><code>60</code> - De mapping quality score (MAPQ). Een score van 60 is zeer hoog en geeft aan dat de aligner zeer zeker is van deze mapping positie.</li>
+<li><code>101M</code> - De CIGAR string. <code>101M</code> betekent dat alle 101 bases van de read perfect aligneren met het referentiegenoom (M = match of mismatch).</li>
+<li><code>GGGGTGGGGT...</code> - De read sequentie (hier afgekort met …).</li>
+<li><code>FFF:FFFFF...</code> - De kwaliteitsscores in <em>Phred</em> formaat (hier afgekort).</li>
+</ol>
+<p>De optionele velden aan het eind: - <code>NM:i:0</code> - Aantal mismatches in de alignment (hier 0, perfect match) - <code>MD:Z:101</code> - String die exact beschrijft waar mismatches zitten. 101 betekent 101 matches achter elkaar - <code>AS:i:101</code> - Alignment score (101 is hoog, goede alignment) - <code>XS:i:19</code> - Secundaire alignment score (score van de op-één-na beste alignment positie)</p>
+<p>Dit is duidelijk een zeer goede alignment want: - Hoge MAPQ score (60) - Perfect match (NM:i:0) - Grote alignment score (AS:i:101) - Groot verschil tussen beste en tweede beste alignment (AS:i:101 vs XS:i:19)</p>
+<blockquote class="blockquote">
+<p>In de praktijk gaan we de alignments in een SAM bestand nooit manueel inspecteren maar zullen we samenvattende statistieken berekenen zoals <code>fastqc</code> doet met een FASTQ bestand.</p>
+</blockquote>
 </section>
 </section>
 <section id="opdrachten-1" class="level2">
@@ -487,17 +533,20 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We slaan eerst de bestandslocatie van het referentiegenoom op in een variabele REF</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="va">REF</span><span class="op">=</span>/staging/leuven/stg_00156/references/hg38.fa</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We voeren nu BWA</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="at">-R</span> <span class="st">'@RG\tID:samplename\tSM:samplename'</span> <span class="at">-t</span> 1 <span class="va">$REF</span> naam_van_fastq_bestand_r1.fastq.gz naam_van_fastq_bestand_r2.fastq.gz <span class="op">&gt;</span> aligned.sam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We voeren nu BWA uit en schrijven de output weg naar aligned.sam</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bwa</span> mem <span class="at">-R</span> <span class="st">'@RG\tID:samplename\tSM:samplename'</span> <span class="va">$REF</span> naam_van_fastq_bestand.fastq.gz <span class="op">&gt;</span> mijn_staal.sam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote class="blockquote">
-<p>Pas de namen van de FASTQ bestanden aan naar de namen van jouw bestanden in het bovenstaande commando.</p>
+<p>Pas de naam van het FASTQ bestand aan naar de naam van jouw bestand in het bovenstaande commando. Pas ook de naam van output bestand aan naar bv de naam van je groepje.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>De optie <code>-R '@RG\tID:samplename\tSM:samplename'</code> voegt een staalnaam en ID toe aan het SAM bestand. Dit is noodzakelijk voor sommige software programma’s die we later zullen gebruiken.</p>
 </blockquote>
 </section>
 <section id="bam-formaat-binary-alignmentmap" class="level2">
 <h2 class="anchored" data-anchor-id="bam-formaat-binary-alignmentmap">BAM-formaat (Binary Alignment/Map)</h2>
 <section id="wat-is-bam" class="level3">
 <h3 class="anchored" data-anchor-id="wat-is-bam">Wat is BAM?</h3>
-<p>BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als SAM, maar in een gecomprimeerde, binaire vorm. Bestanden zijn dus een stuk kleiner en dat spaart ruimte bij het archiveren en tijd bij het kopiëren van bestanden. Om BAM files efficient te kunnen verwerken worden de reads vaak gesorteerd volgens positie in het referentiegenoom en wordt er een index aangemaakt.</p>
+<p>BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als SAM, maar in een gecomprimeerde, binaire vorm. Bestanden zijn dus een stuk kleiner en dat spaart ruimte bij het archiveren en tijd bij het kopiëren van bestanden. Om BAM files efficient te kunnen verwerken worden de reads vaak gesorteerd volgens positie in het referentiegenoom en wordt er een index aangemaakt. Dit maakt de vervolgstappen een stuk sneller.</p>
 </section>
 <section id="kenmerken-van-bam" class="level3">
 <h3 class="anchored" data-anchor-id="kenmerken-van-bam">Kenmerken van BAM</h3>
@@ -509,36 +558,48 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
 </section>
 <section id="voorbeeld" class="level3">
 <h3 class="anchored" data-anchor-id="voorbeeld">Voorbeeld</h3>
-<p>Omdat BAM een binair formaat is, kunnen we geen leesbaar voorbeeld geven zoals bij SAM. In de praktijk zou je speciale software gebruiken om BAM-bestanden te bekijken of te bewerken.</p>
+<p>Omdat BAM een binair formaat is, kunnen we geen leesbaar voorbeeld geven zoals bij SAM. In de praktijk kan je speciale software gebruiken om BAM-bestanden te bekijken of te bewerken.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cursus_images/igv_snapshot.png" class="img-fluid figure-img"></p>
+<figcaption>BAM file gevisualiseerd met Integrative Genomics Viewer (IGV).</figcaption>
+</figure>
+</div>
+<p>Bovenstaande figuur is een screenshot gemaakt met Integrative Genomics Viewer (IGV), een populair programma om BAM files en andere genomische databestanden weer te geven t.o.v. een referentiegenoom. De grijze balken zijn de reads gepositioneerd t.o.v. het referentiegenoom. Op de gekleurde posities verschilt de read sequentie van het referentiegenoom.</p>
 </section>
 </section>
 <section id="opdracht-2" class="level2">
 <h2 class="anchored" data-anchor-id="opdracht-2">Opdracht 2</h2>
-<p>Zet het SAM bestand om naar een gesorteerd BAM bestand.</p>
+<p>Zet het SAM bestand om naar een gesorteerd BAM bestand met <code>samtools</code>.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load SAMtools/1.13-GCC-10.3.0</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort aligned.sam <span class="at">-o</span> aligned.sorted.bam</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index aligned.sorted.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> flagstat aligned.sorted.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Sorteer het BAM bestand en sla het gesorteerde bestand op onder een nieuwe naam</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort mijn_staal.sam <span class="at">-o</span> mijn_staal.sorted.bam</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Indexeer het gesorteerde BAM bestand. De index wordt opgeslagen als NAAM_VAN_BAM.bai</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> index mijn_staal.sorted.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Met <code>samtools flagstat</code> kan je een aantal eenvoudige statistieken van het BAM bestand berekenen.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> flagstat mijn_staal.sorted.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="opdrachtvragen-1" class="level2">
 <h2 class="anchored" data-anchor-id="opdrachtvragen-1">Opdrachtvragen:</h2>
 <ol type="1">
+<li>Wat is de bestandsgrootte van het SAM en BAM bestand?</li>
 <li>Hoeveel reads zijn er gealigneerd tegen het referentiegenoom?</li>
-<li>Hoeveel van deze reads vormden een correct paar (beide reads mappen met correct orientatie en afstand op hetzelfde chromosoom)?</li>
-<li>Wat is het percentage van de totaal aantal reads die gealigneerd zijn en een correct paar vormen.</li>
+<li>Wat is het percentage van de totaal aantal reads die gealigneerd zijn?</li>
+<li>Kan je redenen bedenken waarom een read niet met het referentiegenoom aligneerd? (Meerdere mogelijkheden)</li>
 </ol>
 </section>
 </section>
 <section id="variant-calling-met-mutect2" class="level1">
 <h1>Variant Calling met Mutect2</h1>
 <p>Variant calling is het proces waarbij we verschillen (varianten) identificeren tussen een sequentiedataset en een referentiegenoom. Het is een cruciale stap in veel genomische analyses, van het bestuderen van genetische ziekten tot het begrijpen van evolutie. De meeste software tools voor Variant Calling vertrekken van uitgelijnde reads in het BAM formaat. Door op elke positie in het referentiegenoom de uitgelijnde reads te vergelijken zal de software varianten kunnen opsporen. Mutect2 is een veelgebruikte bio-informatica tool om somatische varianten te identificeren uit de uitgelijnde reads.</p>
-<p>Wanneer er een verschil met het referentiegenoom gevonden wordt, wil dit nog niet noodzakelijk zeggen dat het om een werkelijke variant in het staal gaat. Sequencing fouten of problemen met de alignment kunnen ook zulke verschillen veroorzaken. De kwaliteitsscores in de reads vormen hier een belangrijk hulpmiddel voor de software. Twee belangrijke metrieken die gebruikt worden om “echte” varianten van vals positieve te onderscheiden zijn de <em>depth</em>, het aantal reads dat overlapt met de positie van de variant, en de <em>allele frequency</em>, het percentage van de reads waar de variant werd teruggevonden. Afhanelijke van de gebruikte technologie wordt een minimale <em>depth</em> en <em>allele frquency</em> voorop gesteld. Als de variant onder deze waarden valt wordt deze als vals positief beschouwd.</p>
+<p>Wanneer er een verschil met het referentiegenoom gevonden wordt, wil dit nog niet noodzakelijk zeggen dat het om een werkelijke variant in het staal gaat. Sequencing fouten of problemen met de alignment kunnen ook zulke verschillen veroorzaken. De kwaliteitsscores in de reads vormen hier een belangrijk hulpmiddel voor de software. Twee belangrijke statistieken die gebruikt worden om “echte” varianten van vals positieve te onderscheiden zijn de <em>depth</em>, het aantal reads dat overlapt met de positie van de variant, en de <em>allele frequency</em>, het percentage van de reads waar de variant werd teruggevonden. Afhankelijk van de gebruikte technologie wordt een minimale <em>depth</em> en <em>allele frequency</em> voorop gesteld. Als de variant onder deze waarden valt wordt deze als vals positief beschouwd.</p>
 <section id="vcf-formaat-variant-call-format" class="level2">
 <h2 class="anchored" data-anchor-id="vcf-formaat-variant-call-format">VCF-formaat (Variant Call Format)</h2>
 <section id="wat-is-vcf" class="level3">
 <h3 class="anchored" data-anchor-id="wat-is-vcf">Wat is VCF?</h3>
-<p>VCF is een tekstbestandsformaat voor het opslaan van genoomvariaties zoals SNPs, inserties, deleties en structurele varianten. Alle genoomvariates worden weergegeven ten opzichte van het gebruikte referentiegenoom.</p>
+<p>VCF is een tekstbestandsformaat voor het opslaan van genoomvariaties zoals SNPs, inserties, deleties en structurele varianten. Alle genoomvariaties worden weergegeven ten opzichte van het gekozen referentiegenoom.</p>
 </section>
 <section id="structuur-van-een-vcf-bestand" class="level3">
 <h3 class="anchored" data-anchor-id="structuur-van-een-vcf-bestand">Structuur van een VCF-bestand</h3>
@@ -572,18 +633,41 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="va">REF</span><span class="op">=</span>/staging/leuven/stg_00156/references/hg38.fa</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gatk</span> Mutect2 <span class="dt">\</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-R</span> <span class="va">$REF</span> <span class="dt">\</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">-I</span> simulated_data_1.sorted.bam <span class="dt">\</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">-O</span> simulated_data_1.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Open de aangemaakte VCF file in VS Code en beantwoord volgende vragen. Bovenaan in het bestand staan er ongeveer 500 meta-informatieregels (beginnen met <code>##</code>). Deze mag je negeren en verder scrollen naar de regel die begint met <code>#CHROM</code>. Hieronder staan alle varianten, één per regel.</p>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">-I</span> mijn_staal.sorted.bam <span class="dt">\</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">-O</span> mijn_staal.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="opdrachtvragen-2" class="level2">
+<h2 class="anchored" data-anchor-id="opdrachtvragen-2">Opdrachtvragen:</h2>
+<ol type="1">
+<li>Wat is de bestandsgrootte van het VCF bestand?</li>
+<li>Kan je intuïtief uitleggen waarom het VCF bestand veel kleiner is dan een SAM/BAM bestand?</li>
+</ol>
+<p>Open nu de aangemaakte VCF file in VS Code en beantwoord volgende vragen. Bovenaan in het bestand staan er ongeveer 500 meta-informatieregels (beginnen met <code>##</code>). Deze mag je negeren en verder scrollen naar de regel die begint met <code>#CHROM</code>. Hieronder staan alle varianten, één per regel.</p>
+</section>
+<section id="opdrachtvragen-deel-2" class="level2">
+<h2 class="anchored" data-anchor-id="opdrachtvragen-deel-2">Opdrachtvragen deel 2:</h2>
+<ol type="1">
+<li>Hoeveel varianten werden er gevonden in je staal?</li>
+<li>Bestudeer de eerste variant in het VCF bestand.
+<ul>
+<li>Op welk chromosoom en positie is de variant gevonden?</li>
+<li>Wat is de sequentie in het referentie genoom?</li>
+<li>Wat is de sequentie in het staal?</li>
+<li>Wat zijn de <em>depth</em> en <em>allele frequency</em> van de variant?</li>
+</ul></li>
+</ol>
 </section>
 </section>
 <section id="variant-annotatie-met-snpeff" class="level1">
 <h1>Variant Annotatie met SnpEff</h1>
-<p>In het VCF bestand dat je bekomen bent bij de vorige stap zitten bijzonder veel varianten. De overgrote meerderheid heeft geen belangrijke impact omdat ze bijvoorbeeld in intergenische regio’s of intronen liggen of synonieme mutaties zijn (geen verandering in aminozuursequentie). Het identificeren van één of enkele varianten die aan de basis van een ziektebeeld liggen (zoals kanker) is dus een zoektocht naar een speld in een hooiberg! Een belangrijk hulpmiddel in deze analyze is <em>variant annotatie</em> waarbij we voor elke variant de impact op het eiwit gaan bepalen. Een veelgebruikte tool hiervoor is snpEff. SnpEff maakt gebruik van een databank die gen en eiwitposities ten opzicht van het referentiegenoom bevat. Op die manier kan de impact van een variant op de eiwitsequentie bepaald worden.</p>
+<p>In het VCF bestand dat je bekomen bent bij de vorige stap zitten bijzonder veel varianten. De overgrote meerderheid heeft geen belangrijke impact omdat ze bijvoorbeeld in intergenische regio’s of intronen liggen of synonieme mutaties zijn (geen verandering in aminozuursequentie). Het identificeren van één of enkele varianten die aan de basis van een ziektebeeld liggen (zoals kanker) is dus een zoektocht naar een speld in een hooiberg! Een belangrijk hulpmiddel in deze zoektocht is <em>variant annotatie</em> waarbij we voor elke variant de impact op het eiwit gaan bepalen. Een veelgebruikte tool hiervoor is snpEff. SnpEff maakt gebruik van een databank die gen en eiwitposities ten opzicht van het referentiegenoom bevat. Op die manier kan de impact van een variant op de eiwitsequentie bepaald worden.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load snpEff/5.2c-GCCcore-10.3.0-Java-11</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="va">SNPEFF_REF</span><span class="op">=</span>/staging/leuven/stg_00156/references/snpEff</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> <span class="at">-dataDir</span> <span class="va">$SNPEFF_REF</span> hg38 input_varianten.vcf <span class="op">&gt;</span> geannoteerde_varianten.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># de bestandslocatie van de snpeff databank slaan we op in een variabele</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="va">SNPEFF_REF</span><span class="op">=</span>/staging/leuven/stg_00156/references/snpEff</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># we voeren snpeff uit op ons VCF bestand en slaan de output op in een nieuw VCF bestand</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="ex">snpEff</span> <span class="at">-dataDir</span> <span class="va">$SNPEFF_REF</span> hg38 input_varianten.vcf <span class="op">&gt;</span> varianten.annotated.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Open de geannoteerde VCF in VS Code. Kijk naar het <code>ANN=</code> veld in de output VCF voor gedetailleerde annotaties. In dit veld staat de annotatie van deze variant als volgt:</p>
 <section id="het-snpeff-html-rapport-begrijpen" class="level2">
 <h2 class="anchored" data-anchor-id="het-snpeff-html-rapport-begrijpen">Het SnpEff HTML-rapport begrijpen</h2>
@@ -621,10 +705,10 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
 </ol>
 </section>
 </section>
-<section id="praktische-oefeningen" class="level2">
-<h2 class="anchored" data-anchor-id="praktische-oefeningen">Praktische Oefeningen</h2>
-<section id="oefening-1-basis-statistieken" class="level3">
-<h3 class="anchored" data-anchor-id="oefening-1-basis-statistieken">Oefening 1: Basis Statistieken</h3>
+<section id="opdrachtvragen-3" class="level2">
+<h2 class="anchored" data-anchor-id="opdrachtvragen-3">Opdrachtvragen</h2>
+<section id="deel-1-basis-statistieken" class="level3">
+<h3 class="anchored" data-anchor-id="deel-1-basis-statistieken">Deel 1: Basis Statistieken</h3>
 <p>Open het SnpEff HTML-rapport voor je geannoteerde varianten en beantwoord de volgende vragen:</p>
 <ol type="1">
 <li>Hoeveel varianten zijn er in totaal geanalyseerd?</li>
@@ -633,8 +717,8 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
 <li>Bereken het percentage varianten dat als ‘HIGH impact’ is geclassificeerd.</li>
 </ol>
 </section>
-<section id="oefening-2-variant-effects-analyse" class="level3">
-<h3 class="anchored" data-anchor-id="oefening-2-variant-effects-analyse">Oefening 2: Variant Effects Analyse</h3>
+<section id="deel-2-variant-effects-analyse" class="level3">
+<h3 class="anchored" data-anchor-id="deel-2-variant-effects-analyse">Deel 2: Variant Effects Analyse</h3>
 <p>Bekijk de ‘Number of effects by type and region’ sectie:</p>
 <ol type="1">
 <li>Wat zijn de top 3 meest voorkomende effecten?</li>
@@ -642,8 +726,8 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
 <li>Hoeveel splice site varianten zijn er?</li>
 </ol>
 </section>
-<section id="oefening-3-genoomregios" class="level3">
-<h3 class="anchored" data-anchor-id="oefening-3-genoomregios">Oefening 3: Genoomregio’s</h3>
+<section id="deel-3-genoomregios" class="level3">
+<h3 class="anchored" data-anchor-id="deel-3-genoomregios">Deel 3: Genoomregio’s</h3>
 <p>Bestudeer de ‘Region counts’ tabel:</p>
 <ol type="1">
 <li>Welk percentage van de varianten ligt in:
@@ -655,8 +739,8 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
 <li>Is deze verdeling wat je zou verwachten? Waarom wel/niet?</li>
 </ol>
 </section>
-<section id="oefening-4-codon-veranderingen" class="level3">
-<h3 class="anchored" data-anchor-id="oefening-4-codon-veranderingen">Oefening 4: Codon Veranderingen</h3>
+<section id="deel-4-codon-veranderingen" class="level3">
+<h3 class="anchored" data-anchor-id="deel-4-codon-veranderingen">Deel 4: Codon Veranderingen</h3>
 <p>Analyseer de ‘Codon Changes’ sectie:</p>
 <ol type="1">
 <li>Wat zijn de meest voorkomende codon veranderingen?</li>
@@ -672,17 +756,15 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *</code></pre>
 <p>Gebruik volgende commando om alle varianten met een <em>allele frequency</em> groter dan 50% met een hoge impact te filteren en in een nieuw bestand op te slaan.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="va">SNPSIFT_JAR</span><span class="op">=</span>/vsc-hard-mounts/leuven-apps/rocky8/skylake/2021a/software/snpEff/5.2c-GCCcore-10.3.0-Java-11/SnpSift.jar</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> <span class="va">$SNPSIFT_JAR</span> filter <span class="st">"( GEN[*].AF &gt; 0.50 ) &amp; ( ANN[*].IMPACT = 'HIGH' )"</span> <span class="va">$FILE_ID</span>.annotated.vcf <span class="op">&gt;</span> <span class="va">$FILE_ID</span>.annotated.filtered.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Het <code>ANN</code> veld is moeilijk te inter</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> <span class="va">$SNPSIFT_JAR</span> extractFields <span class="at">-s</span> <span class="st">","</span> <span class="at">-e</span> <span class="st">"."</span> <span class="va">$FILE_ID</span>.annotated.filtered.vcf CHROM POS REF ALT <span class="st">"ANN[0].GENE"</span> <span class="st">"ANN[0].EFFECT"</span> <span class="st">"ANN[0].HGVS_C"</span> <span class="st">"ANN[0].HGVS_P"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="opdrachtvragen-2" class="level2">
-<h2 class="anchored" data-anchor-id="opdrachtvragen-2">Opdrachtvragen</h2>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> <span class="va">$SNPSIFT_JAR</span> filter <span class="st">"( GEN[*].AF &gt; 0.50 ) &amp; ( ANN[*].IMPACT = 'HIGH' )"</span> varianten.annotated.vcf <span class="op">&gt;</span> varianten.annotated.filtered.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>VCF bestanden zijn moeilijk te interpreteren na toevoegen van de annotatie door de grote hoeveelheid informatie die erin staat. Met het onderstaande commando kan je alle varianten in het gefilterde VCF bestand in een overzichtelijke tabel weergeven.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-jar</span> <span class="va">$SNPSIFT_JAR</span> extractFields <span class="at">-s</span> <span class="st">","</span> <span class="at">-e</span> <span class="st">"."</span> varianten.annotated.filtered.vcf CHROM POS REF ALT <span class="st">"ANN[0].GENE"</span> <span class="st">"ANN[0].EFFECT"</span> <span class="st">"ANN[0].HGVS_C"</span> <span class="st">"ANN[0].HGVS_P"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="opdrachtvragen-4" class="level2">
+<h2 class="anchored" data-anchor-id="opdrachtvragen-4">Opdrachtvragen</h2>
 <ol type="1">
-<li>Hoeveel varianten met HOGE impact heb je gevonden? Wat voor soort varianten zijn dit?</li>
-<li>Vind een missense variant. Wat is de aminozuurverandering? In welk gen kwam het voor?</li>
-<li>Zijn er varianten in bekende ziekte-geassocieerde genen?</li>
-<li>Wat is het meest voorkomende type variant in je dataset?</li>
-<li>Kun je varianten vinden die de eiwitfunctie kunnen beïnvloeden? Leg uit waarom je denkt dat ze impactvol kunnen zijn.</li>
+<li>Hoeveel varianten hou je over na filtering.</li>
+<li>In welke genen liggen deze varianten?</li>
+<li>Wat is de sequentieverandering die de variant veroorzaakt in de transcriptsequentie en eiwitsequentie?</li>
 </ol>
 </section>
 </section>

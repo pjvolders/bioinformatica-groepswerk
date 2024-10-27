@@ -103,9 +103,9 @@ Documenten  Downloads  Afbeeldingen  Muziek
 
 Opties:
 
-- `ls -l`: Lang formaat, toont meer details
+- `ls -l`: Lang formaat, toont meer details zoals de eigenaar van het bestand en de bestandsgrootte in bytes.
 - `ls -a`: Toont verborgen bestanden (die beginnen met een punt)
-- `ls -lh`: Toont de grootte van de bestanden (in de kolom) in een leesbaar formaat (`K`: kilobyte, `M`: megabyte, `G`: gigabyte). 
+- `ls -lh`: Toont de grootte van de bestanden (in de kolom) in een eenvoudig formaat (`K`: kilobyte, `M`: megabyte, `G`: gigabyte). 
 
 ### `cd` (Change Directory)
 
@@ -205,6 +205,8 @@ Hier is `ls` de opdracht, `-l` een optie, en `Documenten` een argument.
 
 ## Oefenopdrachten
 
+> Deze opdrachten dienen louter om jezelf vertrouwd te maken met een Linux shell, ze maken geen deel uit van het verslag.
+
 1. Maak een directory genaamd "BioinformaticaCursus" in je thuisdirectory.
 2. Maak binnen "BioinformaticaCursus" drie subdirectories: "Data", "Scripts" en "Resultaten".
 3. Maak een leeg bestand genaamd "notities.txt" in de "BioinformaticaCursus" directory.
@@ -222,7 +224,7 @@ Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ru
 ## Het FASTQ-formaat
 
 ### Wat is FASTQ?
-FASTQ is een tekstbestandsformaat voor het opslaan van zowel nucleotidesequenties (reads) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.
+FASTQ is een tekstbestandsformaat voor het opslaan van zowel nucleotidensequenties (reads) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.
 
 ### Voorbeeld van een FASTQ-entry
 ```
@@ -240,11 +242,20 @@ Een FASTQ-bestand bestaat uit blokken van vier regels per sequentie:
 3. Een regel die begint met '+', optioneel gevolgd door dezelfde sequentie-identifier
 4. De *Phred* kwaliteitsscores voor de sequentie in gecodeerde vorm, één karakter per nucleotide.
 
-Een kwaliteitsscore kan gezien worden als de kans dat de nucleotide op die positie foutief gecalled werd. Zo komt `(` overeen met een kans van 20% op een foutive call. Hoe zuiverder het signaal is de sequencer, hoe zekerder de call. Het staal, de staal- of bibliotheekvoorbereiding en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de *Phred* kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekend samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.
+
+Een kwaliteitsscore is de kans dat de nucleotide op die positie foutief gecalled werd. De relatie tussen de score $Q$ en de kans $P$ wordt gegeven door onderstaande formule:
+
+$$
+P = 10^{\frac{-Q}{10}}
+$$
+
+Zo staat `(` voor een *Pred* score van 7 wat overeen komt met een kans van 20% op een foutieve call. Hoe zuiverder het signaal is de sequencer, hoe zekerder de call. Het staal, de staal- of bibliotheekvoorbereiding en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de *Phred* kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekend samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.
 
 ## Opdrachten
 
-Voor volgende commando's uit in de VS Code terminal. 
+Voer volgende commando's uit in de VS Code terminal. 
+
+Op de VSC infrastructuur is er bijzonder veel software geïnstalleerd en beschikbaar voor gebruik. Vooraleer we een bepaald software programma kunnen gebruiken moeten het wel nog inladen via het `module` commando. Na het inladen blijft de software de hele sessie beschikbaar.
 
 Laad de FastQC module
 
@@ -257,46 +268,44 @@ Voer FastQC uit op één FASTQ read-bestand
 ```bash
 fastqc naam_van_fastq_bestand.fastq.gz
 ```
-> Pas de namen van het FASTQ bestand aan naar de namen van jouw bestanden in het bovenstaande commando.
+> Pas de naam van het FASTQ bestand aan naar de naam van jouw bestand in het bovenstaande commando.
 
-Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je het rapport (bv `naam_van_fastq_bestand_fastqc.html`) verschijnen in de linkerbalk. Om het rapport te openen moeten we het eerst downloaden (rechstklikken + download).
+Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je het rapport (bv `naam_van_fastq_bestand_fastqc.html`) verschijnen in de linkerbalk. Om het rapport te openen moeten we het eerst downloaden (rechtsklikken + download).
 
 ## Het interpreteren van het FastQC HTML-rapport
 
 1. **Basic Statistics**: Geeft een overzicht van het bestand, waaronder totaal aantal sequenties, sequentielengte en GC-gehalte.
 
-2. **Per base sequence quality**: Toont hoe de kwaliteitsscores (Phred scores) verlopen over de lengte van de reads. De blauwe lijn geeft de gemiddelde kwaliteitscore mee over alle reads. Normaal neemt de kwaliteitscore af met de lengte van de reads. Bij een goede gelukte sequencing blijft het gemiddelde ook naar het einde van de reads toe voldoende hoog. 
+2. **Per base sequence quality**: Toont hoe de kwaliteitsscores (Phred scores) verlopen over de lengte van de reads. De blauwe lijn geeft de gemiddelde kwaliteitsscore mee over alle reads. Normaal neemt de kwaliteitsscore af met de lengte van de reads. Bij een goede gelukte sequencing blijft het gemiddelde ook naar het einde van de reads toe voldoende hoog. 
    - Groen gebied: Goede kwaliteit
    - Oranje gebied: Redelijke kwaliteit
    - Rood gebied: Slechte kwaliteit
 
 3. **Per sequence quality scores**: Geeft de verdeling van kwaliteitsscores over alle sequenties. We verwachten een normale verdeling met een gemiddelde hoger dan 30.
 
-5. **Per base sequentie-inhoud**: Toont de verhoudingen van basen op elke positie.
+5. **Per base sequence content**: Toont de verhoudingen van basen op elke positie.
 
-6. **Per sequentie GC-inhoud**: Vergelijkt de waargenomen GC-inhoudverdeling met een theoretische normale verdeling.
+6. **Per sequence GC content**: Vergelijkt de waargenomen GC-inhoudverdeling met een theoretische normale verdeling.
 
-7. **Per base N-inhoud**: Toont het percentage van basen op elke positie die niet konden worden bepaald (N).
+7. **Per base N content**: Toont het percentage van basen op elke positie die niet konden worden bepaald (N).
 
-8. **Sequentielengteverspreiding**: Voor de meeste platformen zou dit een scherpe piek moeten zijn.
+8. **Sequence Length Distribution**: Voor de meeste platformen zou dit een scherpe piek moeten zijn.
 
-9. **Sequentieduplicatieniveaus**: Hoge duplicatieniveaus kunnen duiden op PCR-bias.
+9. **Sequence Duplication Levels**: Hoge duplicatieniveaus kunnen duiden op PCR-bias.
 
-10. **Overgerepresenteerde sequenties**: Lijst van sequenties die vaker voorkomen dan verwacht.
+10. **Overrepresented sequences**: Lijst van sequenties die vaker voorkomen dan verwacht.
 
-11. **Adapter-inhoud**: Toont de aanwezigheid van vaak gebruikte adapters in je bibliotheek.
+11. **Adapter Content**: Toont de aanwezigheid van vaak gebruikte adapters in je bibliotheek.
 
 ## Opdrachtvragen:
-1. Hoeveel sequenties/reads zijn er in beide FASTQ files aanwezig?
-2. Wat is de gemiddelde kwaliteitsscore over alle basen en reads?
+1. Hoeveel sequenties/reads zijn er in het FASTQ bestand aanwezig?
+2. Wat is de gemiddelde kwaliteitsscore over alle basen en reads? Geef ook de interpretatie van deze score.
 3. Hoe verandert de kwaliteitsscore over de lengte van de reads?
 
 # Read Mapping met BWA
 
 ## Doel
-In deze stap worden de sequenties in de FASTQ-bestanden uitgelijnd (gealigneerd) met een referentiegenoom. Het resultaat zal de meest waarschijnlijke oorsprong van de read zijn alsook op welke manier deze verschilt van het referentie genoom.
-Dit proces gebruikt algoritmen om te bepalen waar elke read het best past op het referentiegenoom.
-Het resultaat van deze alignment wordt opgeslagen in SAM- of BAM-formaat.BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.
+In deze stap worden de sequenties in de FASTQ-bestanden uitgelijnd (gealigneerd) met een referentiegenoom. Het resultaat zal de meest waarschijnlijke oorsprong van de read zijn alsook op welke manier deze verschilt van het referentie genoom. Dit proces gebruikt algoritmen om te bepalen waar elke read het best past op het referentiegenoom. Het resultaat van deze alignment wordt opgeslagen in SAM- of BAM-formaat. BWA (Burrows-Wheeler Aligner) is een veelgebruikte tool om reads te aligneren tegen een referentiegenoom.
 
 ## SAM-formaat (Sequence Alignment/Map)
 
@@ -305,51 +314,73 @@ SAM is een tekstbestandsformaat voor het opslaan van sequentie-alignments. Het w
 
 ### Structuur van een SAM-bestand
 Een SAM-bestand bestaat uit:
-- Een optionele headergedeelte
+- Een optionele headergedeelte (regels die beginnen met \@)
 - Alignment-gedeelte met één regel per alignment
 
 ### Voorbeeld van een SAM-entry
 ```
-@HD VN:1.6 SO:coordinate
-@SQ SN:ref LN:45
-r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *
+@SQ     SN:chr1 LN:248956422
+...
+@RG     ID:simulated_data_3     SM:simulated_data_3
+@PG     ID:bwa  PN:bwa  VN:0.7.17-r1188 CL:bwa mem -R @RG\tID:simulated_data_3\tSM:simulated_data_3 /staging/leuven/stg_00156/references/hg38.fa simulated_data_3.fastq.gz
+SEQ_ID  0  chr12  120999772  60  101M  *  0  0  GGGGTGGGGT...  TG  FFF:FFFFF...  NM:i:0  MD:Z:101  AS:i:101  XS:i:19  RG:Z:simulated_data_3
 ```
 
 ### Uitleg
-- Header: @HD en @SQ lijnen geven informatie over het bestand en de referentiesequentie.
-- Alignment: 
-  - r001: Identifier van de sequentie uit het FASTQ bestand
-  - 99: Bitwise flag
-  - ref: Reference sequence name
-  - 7: 1-based leftmost mapping position
-  - 30: Mapping quality
-  - 8M2I4M1D3M: CIGAR string (beschrijft hoe de sequentie is uitgelijnd)
-  - =: Reference name of the mate/next read
-  - 37: Position of the mate/next read
-  - 39: Template length
-  - TTAGATAAAGGATACTG: sequentie
-  - *: Quality scores (hier niet weergegeven)
+We overlopen even de belangrijkste velden in het SAM formaat
+
+1. `SEQ_ID` - Dit is de identifier van de read/sequentie.
+2. `0` - Dit is de FLAG waarde. Een 0 betekent:
+   - De read is unpaired
+   - De read is gealigneerd naar de forward strand
+   - Geen andere speciale eigenschappen
+3. `chr12` - De naam van het referentie chromosoom waar de read naartoe gemapt is.
+4. `120999772` - De startpositie van de alignment op het referentie chromosoom (1-based).
+5. `60` - De mapping quality score (MAPQ). Een score van 60 is zeer hoog en geeft aan dat de aligner zeer zeker is van deze mapping positie.
+6. `101M` - De CIGAR string. `101M` betekent dat alle 101 bases van de read perfect aligneren met het referentiegenoom (M = match of mismatch).
+10. `GGGGTGGGGT...` - De read sequentie (hier afgekort met ...).
+12. `FFF:FFFFF...` - De kwaliteitsscores in *Phred* formaat (hier afgekort).
+
+De optionele velden aan het eind:
+- `NM:i:0` - Aantal mismatches in de alignment (hier 0, perfect match)
+- `MD:Z:101` - String die exact beschrijft waar mismatches zitten. 101 betekent 101 matches achter elkaar
+- `AS:i:101` - Alignment score (101 is hoog, goede alignment)
+- `XS:i:19` - Secundaire alignment score (score van de op-één-na beste alignment positie)
+
+Dit is duidelijk een zeer goede alignment want:
+- Hoge MAPQ score (60)
+- Perfect match (NM:i:0)
+- Grote alignment score (AS:i:101)
+- Groot verschil tussen beste en tweede beste alignment (AS:i:101 vs XS:i:19)
+
+> In de praktijk gaan we de alignments in een SAM bestand nooit manueel inspecteren maar zullen we samenvattende statistieken berekenen zoals `fastqc` doet met een FASTQ bestand.
 
 ## Opdrachten
+
 Laad de BWA module
+
 ```bash
 module load BWA/0.7.17-GCC-10.3.0
 ```
 
 Aligneer de reads met volgende commando's. 
+
 ```bash
 # We slaan eerst de bestandslocatie van het referentiegenoom op in een variabele REF
 REF=/staging/leuven/stg_00156/references/hg38.fa
 
-# We voeren nu BWA
-bwa mem -R '@RG\tID:samplename\tSM:samplename' -t 1 $REF naam_van_fastq_bestand_r1.fastq.gz naam_van_fastq_bestand_r2.fastq.gz > aligned.sam
+# We voeren nu BWA uit en schrijven de output weg naar aligned.sam
+bwa mem -R '@RG\tID:samplename\tSM:samplename' $REF naam_van_fastq_bestand.fastq.gz > mijn_staal.sam
 ```
-> Pas de namen van de FASTQ bestanden aan naar de namen van jouw bestanden in het bovenstaande commando.
+
+> Pas de naam van het FASTQ bestand aan naar de naam van jouw bestand in het bovenstaande commando. Pas ook de naam van output bestand aan naar bv de naam van je groepje.
+
+> De optie `-R '@RG\tID:samplename\tSM:samplename'` voegt een staalnaam en ID toe aan het SAM bestand. Dit is noodzakelijk voor sommige software programma's die we later zullen gebruiken.
 
 ## BAM-formaat (Binary Alignment/Map)
 
 ### Wat is BAM?
-BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als SAM, maar in een gecomprimeerde, binaire vorm. Bestanden zijn dus een stuk kleiner en dat spaart ruimte bij het archiveren en tijd bij het kopiëren van bestanden. Om BAM files efficient te kunnen verwerken worden de reads vaak gesorteerd volgens positie in het referentiegenoom en wordt er een index aangemaakt.
+BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als SAM, maar in een gecomprimeerde, binaire vorm. Bestanden zijn dus een stuk kleiner en dat spaart ruimte bij het archiveren en tijd bij het kopiëren van bestanden. Om BAM files efficient te kunnen verwerken worden de reads vaak gesorteerd volgens positie in het referentiegenoom en wordt er een index aangemaakt. Dit maakt de vervolgstappen een stuk sneller.
 
 ### Kenmerken van BAM
 - Neemt minder opslagruimte in beslag dan SAM
@@ -357,39 +388,48 @@ BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als 
 - Kan worden geïndexeerd voor snelle toegang tot specifieke regio's
 
 ### Voorbeeld
-Omdat BAM een binair formaat is, kunnen we geen leesbaar voorbeeld geven zoals bij SAM. In de praktijk zou je speciale software gebruiken om BAM-bestanden te bekijken of te bewerken.
+Omdat BAM een binair formaat is, kunnen we geen leesbaar voorbeeld geven zoals bij SAM. In de praktijk kan je speciale software gebruiken om BAM-bestanden te bekijken of te bewerken.
+
+![BAM file gevisualiseerd met Integrative Genomics Viewer (IGV).](cursus_images/igv_snapshot.png)
+
+Bovenstaande figuur is een screenshot gemaakt met Integrative Genomics Viewer (IGV), een populair programma om BAM files en andere genomische databestanden weer te geven t.o.v. een referentiegenoom. De grijze balken zijn de reads gepositioneerd t.o.v. het referentiegenoom. Op de gekleurde posities verschilt de read sequentie van het referentiegenoom.
 
 ## Opdracht 2
 
-Zet het SAM bestand om naar een gesorteerd BAM bestand. 
+Zet het SAM bestand om naar een gesorteerd BAM bestand met `samtools`.
 
 ```bash
 module load SAMtools/1.13-GCC-10.3.0
 
-samtools sort aligned.sam -o aligned.sorted.bam
-samtools index aligned.sorted.bam
+# Sorteer het BAM bestand en sla het gesorteerde bestand op onder een nieuwe naam
+samtools sort mijn_staal.sam -o mijn_staal.sorted.bam
+
+# Indexeer het gesorteerde BAM bestand. De index wordt opgeslagen als NAAM_VAN_BAM.bai
+samtools index mijn_staal.sorted.bam
 ```
 
+Met `samtools flagstat` kan je een aantal eenvoudige statistieken van het BAM bestand berekenen.
 
 ```bash
-samtools flagstat aligned.sorted.bam
+samtools flagstat mijn_staal.sorted.bam
 ```
 
 ## Opdrachtvragen:
-1. Hoeveel reads zijn er gealigneerd tegen het referentiegenoom?
-2. Hoeveel van deze reads vormden een correct paar (beide reads mappen met correct orientatie en afstand op hetzelfde chromosoom)?
-3. Wat is het percentage van de totaal aantal reads die gealigneerd zijn en een correct paar vormen.
+1. Wat is de bestandsgrootte van het SAM en BAM bestand?
+2. Hoeveel reads zijn er gealigneerd tegen het referentiegenoom?
+3. Wat is het percentage van de totaal aantal reads die gealigneerd zijn?
+4. Kan je redenen bedenken waarom een read niet met het referentiegenoom aligneerd? (Meerdere mogelijkheden)
 
 # Variant Calling met Mutect2
 
 Variant calling is het proces waarbij we verschillen (varianten) identificeren tussen een sequentiedataset en een referentiegenoom. Het is een cruciale stap in veel genomische analyses, van het bestuderen van genetische ziekten tot het begrijpen van evolutie. De meeste software tools voor Variant Calling vertrekken van uitgelijnde reads in het BAM formaat. Door op elke positie in het referentiegenoom de uitgelijnde reads te vergelijken zal de software varianten kunnen opsporen. Mutect2 is een veelgebruikte bio-informatica tool om somatische varianten te identificeren uit de uitgelijnde reads.
 
-Wanneer er een verschil met het referentiegenoom gevonden wordt, wil dit nog niet noodzakelijk zeggen dat het om een werkelijke variant in het staal gaat. Sequencing fouten of problemen met de alignment kunnen ook zulke verschillen veroorzaken. De kwaliteitsscores in de reads vormen hier een belangrijk hulpmiddel voor de software. Twee belangrijke metrieken die gebruikt worden om "echte" varianten van vals positieve te onderscheiden zijn de *depth*, het aantal reads dat overlapt met de positie van de variant, en de *allele frequency*, het percentage van de reads waar de variant werd teruggevonden. Afhanelijke van de gebruikte technologie wordt een minimale *depth* en *allele frquency* voorop gesteld. Als de variant onder deze waarden valt wordt deze als vals positief beschouwd.
+Wanneer er een verschil met het referentiegenoom gevonden wordt, wil dit nog niet noodzakelijk zeggen dat het om een werkelijke variant in het staal gaat. Sequencing fouten of problemen met de alignment kunnen ook zulke verschillen veroorzaken. De kwaliteitsscores in de reads vormen hier een belangrijk hulpmiddel voor de software. Twee belangrijke statistieken die gebruikt worden om "echte" varianten van vals positieve te onderscheiden zijn de *depth*, het aantal reads dat overlapt met de positie van de variant, en de *allele frequency*, het percentage van de reads waar de variant werd teruggevonden. Afhankelijk van de gebruikte technologie wordt een minimale *depth* en *allele frequency* voorop gesteld. Als de variant onder deze waarden valt wordt deze als vals positief beschouwd.
 
 ## VCF-formaat (Variant Call Format)
 
 ### Wat is VCF?
-VCF is een tekstbestandsformaat voor het opslaan van genoomvariaties zoals SNPs, inserties, deleties en structurele varianten. Alle genoomvariates worden weergegeven ten opzichte van het gebruikte referentiegenoom.
+VCF is een tekstbestandsformaat voor het opslaan van genoomvariaties zoals SNPs, inserties, deleties en structurele varianten. Alle genoomvariaties worden weergegeven ten opzichte van het gekozen referentiegenoom.
 
 ### Structuur van een VCF-bestand
 Een VCF-bestand bestaat uit:
@@ -424,25 +464,41 @@ module load GATK/4.1.9.0-foss-2018a-Java-11.0.4
 REF=/staging/leuven/stg_00156/references/hg38.fa
 gatk Mutect2 \
   -R $REF \
-  -I simulated_data_1.sorted.bam \
-  -O simulated_data_1.vcf
+  -I mijn_staal.sorted.bam \
+  -O mijn_staal.vcf
 ```
 
-Open de aangemaakte VCF file in VS Code en beantwoord volgende vragen. Bovenaan in het bestand staan er ongeveer 500 meta-informatieregels (beginnen met `##`). Deze mag je negeren en verder scrollen naar de regel die begint met `#CHROM`. Hieronder staan alle varianten, één per regel.
+## Opdrachtvragen:
+
+1. Wat is de bestandsgrootte van het VCF bestand?
+2. Kan je intuïtief uitleggen waarom het VCF bestand veel kleiner is dan een SAM/BAM bestand?
+
+Open nu de aangemaakte VCF file in VS Code en beantwoord volgende vragen. Bovenaan in het bestand staan er ongeveer 500 meta-informatieregels (beginnen met `##`). Deze mag je negeren en verder scrollen naar de regel die begint met `#CHROM`. Hieronder staan alle varianten, één per regel.
+
+## Opdrachtvragen deel 2:
+
+1. Hoeveel varianten werden er gevonden in je staal?
+2. Bestudeer de eerste variant in het VCF bestand.
+   - Op welk chromosoom en positie is de variant gevonden?
+   - Wat is de sequentie in het referentie genoom? 
+   - Wat is de sequentie in het staal?
+   - Wat zijn de *depth* en *allele frequency* van de variant?
 
 # Variant Annotatie met SnpEff
 
-In het VCF bestand dat je bekomen bent bij de vorige stap zitten bijzonder veel varianten. De overgrote meerderheid heeft geen belangrijke impact omdat ze bijvoorbeeld in intergenische regio's of intronen liggen of synonieme mutaties zijn (geen verandering in aminozuursequentie). Het identificeren van één of enkele varianten die aan de basis van een ziektebeeld liggen (zoals kanker) is dus een zoektocht naar een speld in een hooiberg! Een belangrijk hulpmiddel in deze analyze is *variant annotatie* waarbij we voor elke variant de impact op het eiwit gaan bepalen. Een veelgebruikte tool hiervoor is snpEff. SnpEff maakt gebruik van een databank die gen en eiwitposities ten opzicht van het referentiegenoom bevat. Op die manier kan de impact van een variant op de eiwitsequentie bepaald worden.
+In het VCF bestand dat je bekomen bent bij de vorige stap zitten bijzonder veel varianten. De overgrote meerderheid heeft geen belangrijke impact omdat ze bijvoorbeeld in intergenische regio's of intronen liggen of synonieme mutaties zijn (geen verandering in aminozuursequentie). Het identificeren van één of enkele varianten die aan de basis van een ziektebeeld liggen (zoals kanker) is dus een zoektocht naar een speld in een hooiberg! Een belangrijk hulpmiddel in deze zoektocht is *variant annotatie* waarbij we voor elke variant de impact op het eiwit gaan bepalen. Een veelgebruikte tool hiervoor is snpEff. SnpEff maakt gebruik van een databank die gen en eiwitposities ten opzicht van het referentiegenoom bevat. Op die manier kan de impact van een variant op de eiwitsequentie bepaald worden.
 
 ```bash
 module load snpEff/5.2c-GCCcore-10.3.0-Java-11
 
+# de bestandslocatie van de snpeff databank slaan we op in een variabele
 SNPEFF_REF=/staging/leuven/stg_00156/references/snpEff
-snpEff -dataDir $SNPEFF_REF hg38 input_varianten.vcf > geannoteerde_varianten.vcf
+
+# we voeren snpeff uit op ons VCF bestand en slaan de output op in een nieuw VCF bestand
+snpEff -dataDir $SNPEFF_REF hg38 input_varianten.vcf > varianten.annotated.vcf
 ```
 
 Open de geannoteerde VCF in VS Code. Kijk naar het `ANN=` veld in de output VCF voor gedetailleerde annotaties. In dit veld staat de annotatie van deze variant als volgt:
-
 
 ## Het SnpEff HTML-rapport begrijpen
 
@@ -473,9 +529,9 @@ SnpEff genereert naast geannoteerde varianten ook een uitgebreid HTML-rapport me
    - Splice site variants
    - etc.
 
-## Praktische Oefeningen
+## Opdrachtvragen
 
-### Oefening 1: Basis Statistieken
+### Deel 1: Basis Statistieken
 Open het SnpEff HTML-rapport voor je geannoteerde varianten en beantwoord de volgende vragen:
 
 1. Hoeveel varianten zijn er in totaal geanalyseerd?
@@ -483,14 +539,14 @@ Open het SnpEff HTML-rapport voor je geannoteerde varianten en beantwoord de vol
 3. Welk chromosoom heeft de meeste varianten?
 4. Bereken het percentage varianten dat als 'HIGH impact' is geclassificeerd.
 
-### Oefening 2: Variant Effects Analyse
+### Deel 2: Variant Effects Analyse
 Bekijk de 'Number of effects by type and region' sectie:
 
 1. Wat zijn de top 3 meest voorkomende effecten?
 2. Hoeveel missense varianten zijn er gevonden?
 4. Hoeveel splice site varianten zijn er?
 
-### Oefening 3: Genoomregio's
+### Deel 3: Genoomregio's
 Bestudeer de 'Region counts' tabel:
 
 1. Welk percentage van de varianten ligt in:
@@ -499,7 +555,7 @@ Bestudeer de 'Region counts' tabel:
    - Intergene regio's?
 2. Is deze verdeling wat je zou verwachten? Waarom wel/niet?
 
-### Oefening 4: Codon Veranderingen
+### Deel 4: Codon Veranderingen
 Analyseer de 'Codon Changes' sectie:
 
 1. Wat zijn de meest voorkomende codon veranderingen?
@@ -516,20 +572,18 @@ Gebruik volgende commando om alle varianten met een *allele frequency* groter da
 ```bash
 SNPSIFT_JAR=/vsc-hard-mounts/leuven-apps/rocky8/skylake/2021a/software/snpEff/5.2c-GCCcore-10.3.0-Java-11/SnpSift.jar
 
-java -jar $SNPSIFT_JAR filter "( GEN[*].AF > 0.50 ) & ( ANN[*].IMPACT = 'HIGH' )" $FILE_ID.annotated.vcf > $FILE_ID.annotated.filtered.vcf
+java -jar $SNPSIFT_JAR filter "( GEN[*].AF > 0.50 ) & ( ANN[*].IMPACT = 'HIGH' )" varianten.annotated.vcf > varianten.annotated.filtered.vcf
 ```
 
-Het `ANN` veld is moeilijk te inter
+VCF bestanden zijn moeilijk te interpreteren na toevoegen van de annotatie door de grote hoeveelheid informatie die erin staat. Met het onderstaande commando kan je alle varianten in het gefilterde VCF bestand in een overzichtelijke tabel weergeven.
 
 ```bash
-java -jar $SNPSIFT_JAR extractFields -s "," -e "." $FILE_ID.annotated.filtered.vcf CHROM POS REF ALT "ANN[0].GENE" "ANN[0].EFFECT" "ANN[0].HGVS_C" "ANN[0].HGVS_P"
+java -jar $SNPSIFT_JAR extractFields -s "," -e "." varianten.annotated.filtered.vcf CHROM POS REF ALT "ANN[0].GENE" "ANN[0].EFFECT" "ANN[0].HGVS_C" "ANN[0].HGVS_P"
 ```
 
 ## Opdrachtvragen
 
-1. Hoeveel varianten met HOGE impact heb je gevonden? Wat voor soort varianten zijn dit?
-2. Vind een missense variant. Wat is de aminozuurverandering? In welk gen kwam het voor?
-3. Zijn er varianten in bekende ziekte-geassocieerde genen?
-4. Wat is het meest voorkomende type variant in je dataset?
-5. Kun je varianten vinden die de eiwitfunctie kunnen beïnvloeden? Leg uit waarom je denkt dat ze impactvol kunnen zijn.
+1. Hoeveel varianten hou je over na filtering.
+2. In welke genen liggen deze varianten?
+3. Wat is de sequentieverandering die de variant veroorzaakt in de transcriptsequentie en eiwitsequentie?
 
