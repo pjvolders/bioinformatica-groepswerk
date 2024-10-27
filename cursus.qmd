@@ -11,15 +11,14 @@ format:
 
 # Introductie
 
-Somatische varianten zijn genetische veranderingen die niet overgeërfd zijn, maar tijdens iemands leven in specifieke cellen ontstaan. Deze varianten zijn vooral belangrijk in de context van kanker, waar ze een cruciale rol spelen bij het ontstaan en de progressie van de ziekte.
-Het doel van somatische variant calling is om deze niet-geërfde mutaties te identificeren in DNA sequencing data van tumoren en andere stalen. 
+Somatische varianten zijn genetische veranderingen die niet overgeërfd zijn, maar tijdens iemands leven in specifieke cellen ontstaan. Deze varianten zijn vooral belangrijk in de context van kanker, waar ze een cruciale rol spelen bij het ontstaan en de progressie van de ziekte. Het doel van somatische variant calling is om deze niet-geërfde mutaties te identificeren in DNA sequencing data van tumoren en andere stalen. 
 
 Dit proces omvat:
 
 1. Sequencing van tumorweefsel of bloedcellen van een patiënt.
 2. Alignment van de sequentiedata aan een referentiegenoom.
 3. Identificatie van posities waar de tumorsequentie verschilt van het referentiegenoom. Dit noemen we varianten.
-4. Filteren van deze varianten om 
+4. Filteren van de gevonden varianten om prognostisch, diagnostisch of therapeutisch relevante varianten te vinden.
 
 Het belang van somatische variant calling ligt in verschillende gebieden:
 
@@ -30,9 +29,9 @@ Het belang van somatische variant calling ligt in verschillende gebieden:
 
 In dit groepswerk doorlopen we de stappen die nodig zijn om somatische variant calling uit te voeren. We leren de basisprincipes van sequentieanalyse en specifieke uitdagingen van het identificeren van somatische mutaties. Hierbij reflecteren we bij elke stap over de verkregen resultaten.
 
-# VSCode op de Vlaamse Supercomputer Centrum infrastructuur
+# VS Code op de Vlaamse Supercomputer Centrum infrastructuur
 
-We kunnen de VSC (Vlaamse Supercomputer Centrum) infrastructuur op verschillende manieren gebruiken. De meest gebruiksvriendelijke manier is het *KU Leuven OnDemand* platform. Om in te loggen op dit platform doorloop je volgende stappen:
+Om de bio-informatica stappen uit te voeren in dit groepswerk gaan we gebruik maken van de VSC (Vlaamse Supercomputer Centrum) infrastructuur. We kunnen de VSC infrastructuur op verschillende manieren benaderen. De meest gebruiksvriendelijke manier is het *KU Leuven OnDemand* platform. Om in te loggen op dit platform doorloop je volgende stappen:
 
 1. Surf met je browser naar [https://ondemand.hpc.kuleuven.be](https://ondemand.hpc.kuleuven.be/)
 2. Kies hier de optie om in te loggen met een VSC account: "Partner organizations: VSC account"
@@ -47,11 +46,10 @@ Voor het groepswerk gaan we gebruik maken van de Visual Studio Code (VS Code) ap
 1. Klik op het "code-server" icoon. 
 2. Er verschijnt een formulier met een aantal opties. Controleer volgende opties en pas aan indien nodig.
     - **Account:** lp_h_edu_bioinformatics_2024
-    - **Number of hours:** 1
-    - **Number of cores:**: 2
-    - **Required memory per core in megabytes:**: 3400
+    - **Number of hours:** 1 (of meer als je langer wenst te werken aan de opdracht)
+    - **Required memory per core in megabytes:**: 6800
 3. Klik op "Launch"
-4. Een overzicht van jouw recent sessies verschijnt met bovenaan de VS Code sessie met status "Queued"
+4. Een overzicht van jouw recente sessies verschijnt met bovenaan de VS Code sessie met status "Queued"
 
 ![Queued](cursus_images/ondemand_queue.png)
 
@@ -63,7 +61,11 @@ Klik nu op "Connect to Visual Studio Code". De VS Code interface verschijnt.
 
 ![Alt text](cursus_images/vscode_home.png)
 
+> De sessie op de VSC cluster zal blijven openstaan tot de gevraagde tijd voorbij is of de sessie manueel gestopt wordt (rode "cancel" knop). Als je klaar bent met werken en de sessie toch laat openstaan gaat de VSC cluster onnodig gereserveerd worden en zullen andere gebruikers nodeloos moeten wachten. Sluit daarom de sessie af als je eerder klaar bent met werken dan de gevraagde tijd. Je kan steeds een nieuwe sessie starten!
+
 # Introductie tot Linux Shell/Bash
+
+In dit groepswerk zullen we verschillende Linux 
 
 ## Wat is een Shell?
 
@@ -211,8 +213,6 @@ Hier is `ls` de opdracht, `-l` een optie, en `Documenten` een argument.
 6. Kopieer "notities.txt" van "Resultaten" naar "Data".
 7. Verwijder het "notities.txt" bestand uit de "Data" directory.
 
-# 
-
 
 # Kwaliteitscontrole met FastQC
 
@@ -222,7 +222,7 @@ Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ru
 ## Het FASTQ-formaat
 
 ### Wat is FASTQ?
-FASTQ is een tekstbestandsformaat voor het opslaan van zowel biologische sequenties (meestal nucleotidesequenties) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.
+FASTQ is een tekstbestandsformaat voor het opslaan van zowel nucleotidesequenties (reads) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.
 
 ### Voorbeeld van een FASTQ-entry
 ```
@@ -244,7 +244,7 @@ Een kwaliteitsscore kan gezien worden als de kans dat de nucleotide op die posit
 
 ## Opdrachten
 
-Voor volgende commando's uit in de VSCode terminal. 
+Voor volgende commando's uit in de VS Code terminal. 
 
 Laad de FastQC module
 
@@ -294,7 +294,9 @@ Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je h
 # Read Mapping met BWA
 
 ## Doel
-BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.
+In deze stap worden de sequenties in de FASTQ-bestanden uitgelijnd (gealigneerd) met een referentiegenoom. Het resultaat zal de meest waarschijnlijke oorsprong van de read zijn alsook op welke manier deze verschilt van het referentie genoom.
+Dit proces gebruikt algoritmen om te bepalen waar elke read het best past op het referentiegenoom.
+Het resultaat van deze alignment wordt opgeslagen in SAM- of BAM-formaat.BWA (Burrows-Wheeler Aligner) wordt gebruikt om de reads te aligneren tegen een referentiegenoom.
 
 ## SAM-formaat (Sequence Alignment/Map)
 
@@ -328,10 +330,26 @@ r001   99 ref  7 30 8M2I4M1D3M = 37  39 TTAGATAAAGGATACTG *
   - TTAGATAAAGGATACTG: sequentie
   - *: Quality scores (hier niet weergegeven)
 
+## Opdrachten
+Laad de BWA module
+```bash
+module load BWA/0.7.17-GCC-10.3.0
+```
+
+Aligneer de reads met volgende commando's. 
+```bash
+# We slaan eerst de bestandslocatie van het referentiegenoom op in een variabele REF
+REF=/staging/leuven/stg_00156/references/hg38.fa
+
+# We voeren nu BWA
+bwa mem -R '@RG\tID:samplename\tSM:samplename' -t 1 $REF naam_van_fastq_bestand_r1.fastq.gz naam_van_fastq_bestand_r2.fastq.gz > aligned.sam
+```
+> Pas de namen van de FASTQ bestanden aan naar de namen van jouw bestanden in het bovenstaande commando.
+
 ## BAM-formaat (Binary Alignment/Map)
 
 ### Wat is BAM?
-BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als SAM, maar in een gecomprimeerde, binaire vorm.
+BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als SAM, maar in een gecomprimeerde, binaire vorm. Bestanden zijn dus een stuk kleiner en dat spaart ruimte bij het archiveren en tijd bij het kopiëren van bestanden. Om BAM files efficient te kunnen verwerken worden de reads vaak gesorteerd volgens positie in het referentiegenoom en wordt er een index aangemaakt.
 
 ### Kenmerken van BAM
 - Neemt minder opslagruimte in beslag dan SAM
@@ -341,20 +359,9 @@ BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als 
 ### Voorbeeld
 Omdat BAM een binair formaat is, kunnen we geen leesbaar voorbeeld geven zoals bij SAM. In de praktijk zou je speciale software gebruiken om BAM-bestanden te bekijken of te bewerken.
 
-## Opdrachten
-Laad de BWA module
-```bash
-module load BWA/0.7.17-GCC-10.3.0
-```
+## Opdracht 2
 
-Aligneer de reads
-```bash
-REF=/staging/leuven/stg_00156/references/hg38.fa
-bwa mem -R '@RG\tID:samplename\tSM:samplename' -t 1 $REF naam_van_fastq_bestand_r1.fastq.gz naam_van_fastq_bestand_r2.fastq.gz > aligned.sam
-```
-> Pas de namen van de FASTQ bestanden aan naar de namen van jouw bestanden in het bovenstaande commando.
-
-
+Zet het SAM bestand om naar een gesorteerd BAM bestand. 
 
 ```bash
 module load SAMtools/1.13-GCC-10.3.0
@@ -364,7 +371,6 @@ samtools index aligned.sorted.bam
 ```
 
 
-
 ```bash
 samtools flagstat aligned.sorted.bam
 ```
@@ -372,15 +378,18 @@ samtools flagstat aligned.sorted.bam
 ## Opdrachtvragen:
 1. Hoeveel reads zijn er gealigneerd tegen het referentiegenoom?
 2. Hoeveel van deze reads vormden een correct paar (beide reads mappen met correct orientatie en afstand op hetzelfde chromosoom)?
+3. Wat is het percentage van de totaal aantal reads die gealigneerd zijn en een correct paar vormen.
 
-# Variant Calling met BCFtools
+# Variant Calling met Mutect2
 
-BCFtools wordt gebruikt om varianten te identificeren uit de uitgelijnde reads.
+Variant calling is het proces waarbij we verschillen (varianten) identificeren tussen een sequentiedataset en een referentiegenoom. Het is een cruciale stap in veel genomische analyses, van het bestuderen van genetische ziekten tot het begrijpen van evolutie. De meeste software tools voor Variant Calling vertrekken van uitgelijnde reads in het BAM formaat. Door op elke positie in het referentiegenoom de uitgelijnde reads te vergelijken zal de software varianten kunnen opsporen. Mutect2 is een veelgebruikte bio-informatica tool om somatische varianten te identificeren uit de uitgelijnde reads.
 
-## 4. VCF-formaat (Variant Call Format)
+Wanneer er een verschil met het referentiegenoom gevonden wordt, wil dit nog niet noodzakelijk zeggen dat het om een werkelijke variant in het staal gaat. Sequencing fouten of problemen met de alignment kunnen ook zulke verschillen veroorzaken. De kwaliteitsscores in de reads vormen hier een belangrijk hulpmiddel voor de software. Twee belangrijke metrieken die gebruikt worden om "echte" varianten van vals positieve te onderscheiden zijn de *depth*, het aantal reads dat overlapt met de positie van de variant, en de *allele frequency*, het percentage van de reads waar de variant werd teruggevonden. Afhanelijke van de gebruikte technologie wordt een minimale *depth* en *allele frquency* voorop gesteld. Als de variant onder deze waarden valt wordt deze als vals positief beschouwd.
+
+## VCF-formaat (Variant Call Format)
 
 ### Wat is VCF?
-VCF is een tekstbestandsformaat voor het opslaan van genoomvariaties zoals SNPs, inserties, deleties en structurele varianten.
+VCF is een tekstbestandsformaat voor het opslaan van genoomvariaties zoals SNPs, inserties, deleties en structurele varianten. Alle genoomvariates worden weergegeven ten opzichte van het gebruikte referentiegenoom.
 
 ### Structuur van een VCF-bestand
 Een VCF-bestand bestaat uit:
@@ -398,65 +407,123 @@ Een VCF-bestand bestaat uit:
 ### Uitleg
 - CHROM: Chromosoom
 - POS: Positie van de variant
-- ID: Variant identifier (bijv. rs-nummer)
-- REF: Referentie-allel
-- ALT: Alternatief allel
+- ID: Optionele variant identifier (bijv. rs-nummer van gekende varianten in de dbSNP databank)
+- REF: Referentie-allel zoals het in het referentiegenoom aanwezig is
+- ALT: Alternatief allel dat gevonden werd in het staal
 - QUAL: Kwaliteitsscore
 - FILTER: Filter status (PASS betekent dat de variant alle filters heeft gepasseerd)
-- INFO: Aanvullende informatie over de variant
+- INFO: Aanvullende informatie over de variant zoals de *depth* (`DP`) en de *allele frequency* (`AF`)
+
+## Opdrachten
+
+Voer variant calling uit met Mutect2 op de gesorteerde BAM file.
 
 ```bash
-# Roep varianten aan
-bcftools mpileup -f referentiegenoom.fasta monster1.sorted.bam | bcftools call -mv -Ob -o monster1.raw.bcf
-
-REF=/staging/leuven/stg_00156/references/hg38.fa
-
 module load GATK/4.1.9.0-foss-2018a-Java-11.0.4
 
+REF=/staging/leuven/stg_00156/references/hg38.fa
 gatk Mutect2 \
   -R $REF \
   -I simulated_data_1.sorted.bam \
-  -O simulated_data_1.vcf.gz
-
+  -O simulated_data_1.vcf
 ```
 
-# Variant Filtering
-
-VCFtools kan worden gebruikt om de varianten te filteren op basis van verschillende criteria.
-
-```bash
-# Zet BCF om naar VCF
-bcftools view monster1.raw.bcf > monster1.raw.vcf
-
-# Filter varianten
-vcftools --vcf monster1.raw.vcf \
-         --minQ 30 \
-         --min-meanDP 10 \
-         --max-missing 0.8 \
-         --recode --recode-INFO-all \
-         --out monster1.gefilterd
-```
+Open de aangemaakte VCF file in VS Code en beantwoord volgende vragen. Bovenaan in het bestand staan er ongeveer 500 meta-informatieregels (beginnen met `##`). Deze mag je negeren en verder scrollen naar de regel die begint met `#CHROM`. Hieronder staan alle varianten, één per regel.
 
 # Variant Annotatie met SnpEff
+
+In het VCF bestand dat je bekomen bent bij de vorige stap zitten bijzonder veel varianten. De overgrote meerderheid heeft geen belangrijke impact omdat ze bijvoorbeeld in intergenische regio's of intronen liggen of synonieme mutaties zijn (geen verandering in aminozuursequentie). Het identificeren van één of enkele varianten die aan de basis van een ziektebeeld liggen (zoals kanker) is dus een zoektocht naar een speld in een hooiberg! Een belangrijk hulpmiddel in deze analyze is *variant annotatie* waarbij we voor elke variant de impact op het eiwit gaan bepalen. Een veelgebruikte tool hiervoor is snpEff. SnpEff maakt gebruik van een databank die gen en eiwitposities ten opzicht van het referentiegenoom bevat. Op die manier kan de impact van een variant op de eiwitsequentie bepaald worden.
 
 ```bash
 module load snpEff/5.2c-GCCcore-10.3.0-Java-11
 
 SNPEFF_REF=/staging/leuven/stg_00156/references/snpEff
-
 snpEff -dataDir $SNPEFF_REF hg38 input_varianten.vcf > geannoteerde_varianten.vcf
 ```
 
-```bash
+Open de geannoteerde VCF in VS Code. Kijk naar het `ANN=` veld in de output VCF voor gedetailleerde annotaties. In dit veld staat de annotatie van deze variant als volgt:
 
+
+## Het SnpEff HTML-rapport begrijpen
+
+SnpEff genereert naast geannoteerde varianten ook een uitgebreid HTML-rapport met statistieken en visualisaties (`snpEff_summary.html`). Download het bestand en open het in je browser. Laten we nu dit stap voor stap doornemen.
+
+### A. Algemene Statistieken Sectie
+
+1. **Variants rate details**:
+   - Aantal varianten per chromosoom
+   - Totaal aantal verwerkte varianten
+
+2. **Number variants by type**:
+   - SNP (Single Nucleotide Polymorphisms)
+   - MNP (Multiple Nucleotide Polymorphisms)
+   - INS (Inserties)
+   - DEL (Deleties)
+
+3. **Number of effects by impact**:
+   - HIGH: Grote impact op genfunctie (bijvoorbeeld stopcodons)
+   - MODERATE: Mogelijk effect op genfunctie (bijvoorbeeld missense varianten)
+   - LOW: Waarschijnlijk geen effect op genfunctie (bijvoorbeeld synonyme varianten)
+   - MODIFIER: Meestal in niet-coderende regio's
+
+4. **Number of effects by functional class**:
+   - Missense
+   - Nonsense
+   - Silent
+   - Splice site variants
+   - etc.
+
+## Praktische Oefeningen
+
+### Oefening 1: Basis Statistieken
+Open het SnpEff HTML-rapport voor je geannoteerde varianten en beantwoord de volgende vragen:
+
+1. Hoeveel varianten zijn er in totaal geanalyseerd?
+2. Wat is de verdeling tussen SNPs, inserties en deleties?
+3. Welk chromosoom heeft de meeste varianten?
+4. Bereken het percentage varianten dat als 'HIGH impact' is geclassificeerd.
+
+### Oefening 2: Variant Effects Analyse
+Bekijk de 'Number of effects by type and region' sectie:
+
+1. Wat zijn de top 3 meest voorkomende effecten?
+2. Hoeveel missense varianten zijn er gevonden?
+4. Hoeveel splice site varianten zijn er?
+
+### Oefening 3: Genoomregio's
+Bestudeer de 'Region counts' tabel:
+
+1. Welk percentage van de varianten ligt in:
+   - Exonen?
+   - Intronen?
+   - Intergene regio's?
+2. Is deze verdeling wat je zou verwachten? Waarom wel/niet?
+
+### Oefening 4: Codon Veranderingen
+Analyseer de 'Codon Changes' sectie:
+
+1. Wat zijn de meest voorkomende codon veranderingen?
+2. Hoeveel stop-gained mutaties zijn er?
+3. Zijn er bepaalde aminozuur veranderingen die vaker voorkomen dan andere?
+
+
+# Variant filtering met SnpSift
+
+Nadat we een geannoteerde VCF file hebben bekomen kunnen op basis van deze annotatie varianten filteren. Gezien de grote hoeveelheid varianten die typisch gevonden worden in een sequencing experiment is dit een cruciale stap.
+
+Gebruik volgende commando om alle varianten met een *allele frequency* groter dan 50% met een hoge impact te filteren en in een nieuw bestand op te slaan.
+
+```bash
 SNPSIFT_JAR=/vsc-hard-mounts/leuven-apps/rocky8/skylake/2021a/software/snpEff/5.2c-GCCcore-10.3.0-Java-11/SnpSift.jar
 
-java -jar $SNPSIFT_JAR filter "( CHROM = 'chr1' )" simulated_data_1.annotated.vcf
-
+java -jar $SNPSIFT_JAR filter "( GEN[*].AF > 0.50 ) & ( ANN[*].IMPACT = 'HIGH' )" $FILE_ID.annotated.vcf > $FILE_ID.annotated.filtered.vcf
 ```
-## Stap 4: Interpreteer de Resultaten
 
-Kijk naar het `ANN` veld in de output VCF voor gedetailleerde annotaties.
+Het `ANN` veld is moeilijk te inter
+
+```bash
+java -jar $SNPSIFT_JAR extractFields -s "," -e "." $FILE_ID.annotated.filtered.vcf CHROM POS REF ALT "ANN[0].GENE" "ANN[0].EFFECT" "ANN[0].HGVS_C" "ANN[0].HGVS_P"
+```
 
 ## Opdrachtvragen
 
