@@ -1,5 +1,5 @@
 ---
-title: "Bio-informatica groepswerk handleiding"
+title: "Bio-informatica groepswerk handleiding deel 1"
 format:
   pdf:
     toc: true
