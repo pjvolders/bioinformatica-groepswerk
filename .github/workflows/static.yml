@@ -40,19 +40,14 @@ jobs:
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
         with:
-          to: pdf
-          path: ./handleiding/handleiding.qmd
-      - name: Render Quarto Project
-        uses: quarto-dev/quarto-actions/render@v2
-        with:
-          to: html
-          path: ./handleiding/handleiding.qmd
+          to: all
+          path: ./handleiding
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: handleiding/
+          path: handleiding/_output/
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
