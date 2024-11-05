@@ -51,15 +51,15 @@ Voor het groepswerk gaan we gebruik maken van de Visual Studio Code (VS Code) ap
 3. Klik op "Launch"
 4. Een overzicht van jouw recente sessies verschijnt met bovenaan de VS Code sessie met status "Queued"
 
-![Queued](cursus_images/ondemand_queue.png)
+![Queued](images/ondemand_queue.png)
 
 Nu moet je even wachten tot de VS Code sessie gestart is. Normaal duurt dit maar enkele seconden. Het zou mogelijk zijn dat je ook wat langer moet wachten als de VSC infrastructuur druk bezet is. Wanneer de sessie gestart is verschijnt "Running" en wordt het kader groen:
 
-![Ready](cursus_images/ondemand_ready.png)
+![Ready](images/ondemand_ready.png)
 
 Klik nu op "Connect to Visual Studio Code". De VS Code interface verschijnt.
 
-![Alt text](cursus_images/vscode_home.png)
+![Alt text](images/vscode_home.png)
 
 > De sessie op de VSC cluster zal blijven openstaan tot de gevraagde tijd voorbij is of de sessie manueel gestopt wordt (rode "cancel" knop). Als je klaar bent met werken en de sessie toch laat openstaan gaat de VSC cluster onnodig gereserveerd worden en zullen andere gebruikers nodeloos moeten wachten. Sluit daarom de sessie af als je eerder klaar bent met werken dan de gevraagde tijd. Je kan steeds een nieuwe sessie starten!
 
@@ -390,7 +390,7 @@ BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als 
 ### Voorbeeld
 Omdat BAM een binair formaat is, kunnen we geen leesbaar voorbeeld geven zoals bij SAM. In de praktijk kan je speciale software gebruiken om BAM-bestanden te bekijken of te bewerken.
 
-![BAM file gevisualiseerd met Integrative Genomics Viewer (IGV).](cursus_images/igv_snapshot.png)
+![BAM file gevisualiseerd met Integrative Genomics Viewer (IGV).](images/igv_snapshot.png)
 
 Bovenstaande figuur is een screenshot gemaakt met Integrative Genomics Viewer (IGV), een populair programma om BAM files en andere genomische databestanden weer te geven t.o.v. een referentiegenoom. De grijze balken zijn de reads gepositioneerd t.o.v. het referentiegenoom. Op de gekleurde posities verschilt de read sequentie van het referentiegenoom.
 
