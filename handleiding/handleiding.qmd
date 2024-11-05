@@ -51,15 +51,15 @@ Voor het groepswerk gaan we gebruik maken van de Visual Studio Code (VS Code) ap
 3. Klik op "Launch"
 4. Een overzicht van jouw recente sessies verschijnt met bovenaan de VS Code sessie met status "Queued"
 
-![Queued](images/ondemand_queue.png)
+![De aangevraagde sessie staat in de wachtrij (queued)](images/ondemand_queue.png)
 
 Nu moet je even wachten tot de VS Code sessie gestart is. Normaal duurt dit maar enkele seconden. Het zou mogelijk zijn dat je ook wat langer moet wachten als de VSC infrastructuur druk bezet is. Wanneer de sessie gestart is verschijnt "Running" en wordt het kader groen:
 
-![Ready](images/ondemand_ready.png)
+![De aangevraagde sessie is begonnen (ready). Klik op "Connect to Visual Studio Code" om te starten.](images/ondemand_ready.png)
 
 Klik nu op "Connect to Visual Studio Code". De VS Code interface verschijnt.
 
-![Alt text](images/vscode_home.png)
+![De VS Code interface](images/vscode_home.png)
 
 > De sessie op de VSC cluster zal blijven openstaan tot de gevraagde tijd voorbij is of de sessie manueel gestopt wordt (rode "cancel" knop). Als je klaar bent met werken en de sessie toch laat openstaan gaat de VSC cluster onnodig gereserveerd worden en zullen andere gebruikers nodeloos moeten wachten. Sluit daarom de sessie af als je eerder klaar bent met werken dan de gevraagde tijd. Je kan steeds een nieuwe sessie starten!
 
