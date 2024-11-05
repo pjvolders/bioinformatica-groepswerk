@@ -41,12 +41,14 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
         with:
           to: pdf
-          path: handleiding/handleiding.qmd
+          path: handleiding.qmd
+        working-directory: ./handleiding
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
         with:
           to: html
-          path: handleiding/handleiding.qmd
+          path: handleiding.qmd
+        working-directory: ./handleiding
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
