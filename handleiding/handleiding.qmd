@@ -65,7 +65,7 @@ Klik nu op "Connect to Visual Studio Code". De VS Code interface verschijnt.
 
 # Introductie tot Linux Shell/Bash
 
-In dit groepswerk zullen we verschillende Linux 
+In dit groepswerk zullen we verschillende Linux commando's moeten gebruiken. Om je vertrouwd te maken met een Linux shell omgeving zullen we in dit deeltje een aantal basis Linux commando's leren.
 
 ## Wat is een Shell?
 
@@ -249,7 +249,7 @@ $$
 P = 10^{\frac{-Q}{10}}
 $$
 
-Zo staat `(` voor een *Pred* score van 7 wat overeen komt met een kans van 20% op een foutieve call. Hoe zuiverder het signaal is de sequencer, hoe zekerder de call. Het staal, de staal- of bibliotheekvoorbereiding en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de *Phred* kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekend samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.
+Zo staat `(` voor een *Pred* score van 7 wat overeen komt met een kans van 20% op een foutieve call. Hoe zuiverder het signaal is de sequencer, hoe zekerder de call. Het staal, de staal- of bibliotheekvoorbereiding en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de *Phred* kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekent samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.
 
 ## Opdrachten
 
