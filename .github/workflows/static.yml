@@ -28,9 +28,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./handleiding
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,12 +41,12 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
         with:
           to: pdf
-          path: handleiding.qmd
+          path: ./handleiding/handleiding.qmd
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
         with:
           to: html
-          path: handleiding.qmd
+          path: ./handleiding/handleiding.qmd
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
