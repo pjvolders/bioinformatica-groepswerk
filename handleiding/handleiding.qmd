@@ -61,6 +61,8 @@ Klik nu op "Connect to Visual Studio Code". De VS Code interface verschijnt.
 
 ![De VS Code interface](images/vscode_home.png)
 
+Nu rest ons enkel nog het juiste mapje te openen. Klik hiervoor op "Open Folder" en open het mapje van jouw groepje.
+
 > De sessie op de VSC cluster zal blijven openstaan tot de gevraagde tijd voorbij is of de sessie manueel gestopt wordt (rode "cancel" knop). Als je klaar bent met werken en de sessie toch laat openstaan gaat de VSC cluster onnodig gereserveerd worden en zullen andere gebruikers nodeloos moeten wachten. Sluit daarom de sessie af als je eerder klaar bent met werken dan de gevraagde tijd. Je kan steeds een nieuwe sessie starten!
 
 # Introductie tot Linux Shell/Bash
@@ -69,7 +71,9 @@ In dit groepswerk zullen we verschillende Linux commando's moeten gebruiken. Om 
 
 ## Wat is een Shell?
 
-Een shell is een programma dat een interface biedt voor gebruikers om met het besturingssysteem te communiceren. De meest voorkomende shell in Linux-systemen heet Bash (Bourne Again SHell). Wanneer je de opdrachtregel gebruikt, typ je opdrachten in de shell.
+Een shell is een programma dat een interface biedt voor gebruikers om met het besturingssysteem te communiceren. Dit gebeurt door het typen van opdrachten. De meest voorkomende shell in Linux-systemen heet Bash (Bourne Again SHell).
+
+Je kan in VS Code eenvoudig een shell oproepen. Duw hiervoor op "Control + J" of klik op het tweede icoontje rechts bovenaan om het onderste paneel te openen. Hier kan je een tabblad "Terminal" vinden waar je Bash opdrachten kan uitvoeren.
 
 ## Basisbegrippen
 
@@ -219,7 +223,7 @@ Hier is `ls` de opdracht, `-l` een optie, en `Documenten` een argument.
 # Kwaliteitscontrole met FastQC
 
 ## Doel
-Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ruwe sequentiedata afkomstig van high-throughput sequencing pijplijnen (FASTQ formaat). Het helpt bij het identificeren van problemen die kunnen voortkomen uit de sequencer zelf of de bibliotheekvoorbereiding. 
+Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ruwe sequentiedata afkomstig van high-throughput sequencing pijplijnen (FASTQ formaat). Het helpt bij het identificeren van problemen die kunnen voortkomen uit de sequencer zelf of de *library preparation*. 
 
 ## Het FASTQ-formaat
 
@@ -249,7 +253,7 @@ $$
 P = 10^{\frac{-Q}{10}}
 $$
 
-Zo staat `(` voor een *Pred* score van 7 wat overeen komt met een kans van 20% op een foutieve call. Hoe zuiverder het signaal is de sequencer, hoe zekerder de call. Het staal, de staal- of bibliotheekvoorbereiding en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de *Phred* kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekent samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.
+Zo staat `(` voor een *Pred* score van 7 wat overeen komt met een kans van 20% op een foutieve call. Hoe zuiverder het signaal is de sequencer, hoe zekerder de call. Het staal, de staalvoorbereiding of *library preparation* en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de *Phred* kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekent samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.
 
 ## Opdrachten
 
@@ -295,7 +299,7 @@ Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je h
 
 10. **Overrepresented sequences**: Lijst van sequenties die vaker voorkomen dan verwacht.
 
-11. **Adapter Content**: Toont de aanwezigheid van vaak gebruikte adapters in je bibliotheek.
+11. **Adapter Content**: Toont de aanwezigheid van vaak gebruikte adapters in je *library*.
 
 ## Opdrachtvragen:
 1. Hoeveel sequenties/reads zijn er in het FASTQ bestand aanwezig?
@@ -418,7 +422,7 @@ samtools flagstat mijn_staal.sorted.bam
 1. Wat is de bestandsgrootte van het SAM en BAM bestand?
 2. Hoeveel reads zijn er gealigneerd tegen het referentiegenoom?
 3. Wat is het percentage van de totaal aantal reads die gealigneerd zijn?
-4. Kan je redenen bedenken waarom een read niet met het referentiegenoom aligneerd? (Meerdere mogelijkheden)
+4. Kan je redenen bedenken waarom een read niet met het referentiegenoom aligneert? (Meerdere mogelijkheden)
 
 # Variant Calling met Mutect2
 
