@@ -43,7 +43,7 @@ Meer achtergrond kan je vinden in de [handleiding](https://docs.vscentrum.be/leu
 
 Voor het groepswerk gaan we gebruik maken van de Visual Studio Code (VS Code) applicatie. Dit is een populaire applicatie om code te schrijven die een ingebouwde bestands browser en *terminal* vensters heeft. Om VS Code te starten via het OnDemand platform doorloop je de volgende stappen.
 
-1. Klik op het "code-server" icoon. 
+1. Klik op het "Visual Studio Code" icoon. 
 2. Er verschijnt een formulier met een aantal opties. Controleer volgende opties en pas aan indien nodig.
     - **Account:** lp_h_edu_bioinformatics_2024
     - **Number of hours:** 1 (of meer als je langer wenst te werken aan de opdracht)
@@ -59,7 +59,9 @@ Nu moet je even wachten tot de VS Code sessie gestart is. Normaal duurt dit maar
 
 Klik nu op "Connect to Visual Studio Code". De VS Code interface verschijnt.
 
-![De VS Code interface](images/vscode_home.png)
+![De eerste keer dat je VS Code opent krijg je een scherm te zien om kennis te maken met de interface en deze aan te passen naar je voorkeuren. Hier mag je op "Mark Done" klikken.](images/vscode_intro.png)
+
+![De VS Code interface](images/vscode_home_annotated.png)
 
 Nu rest ons enkel nog het juiste mapje te openen. Klik hiervoor op "Open Folder" en open het mapje van jouw groepje.
 
@@ -394,9 +396,7 @@ BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als 
 ### Voorbeeld
 Omdat BAM een binair formaat is, kunnen we geen leesbaar voorbeeld geven zoals bij SAM. In de praktijk kan je speciale software gebruiken om BAM-bestanden te bekijken of te bewerken.
 
-![BAM file gevisualiseerd met Integrative Genomics Viewer (IGV).](images/igv_snapshot.png)
-
-Bovenstaande figuur is een screenshot gemaakt met Integrative Genomics Viewer (IGV), een populair programma om BAM files en andere genomische databestanden weer te geven t.o.v. een referentiegenoom. De grijze balken zijn de reads gepositioneerd t.o.v. het referentiegenoom. Op de gekleurde posities verschilt de read sequentie van het referentiegenoom.
+![BAM file gevisualiseerd met Integrative Genomics Viewer (IGV), een populair programma om BAM files en andere genomische databestanden weer te geven t.o.v. een referentiegenoom. De grijze balken zijn de reads gepositioneerd t.o.v. het referentiegenoom. Op de gekleurde posities verschilt de read sequentie van het referentiegenoom.](images/igv_snapshot.png)
 
 ## Opdracht 2
 
