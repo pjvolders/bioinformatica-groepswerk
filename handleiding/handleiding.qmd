@@ -79,7 +79,7 @@ Je kan in VS Code eenvoudig een shell oproepen. Duw hiervoor op "Control + J" of
 
 ## Basisbegrippen
 
-1. **Opdrachtprompt**: Hier typ je je opdrachten. Het eindigt meestal met een `$`-teken.
+1. **Opdrachtprompt**: Hier typ je je opdrachten. Het begint meestal met een `$`-teken.
 
 2. **Opdrachten**: Dit zijn instructies die je aan de computer geeft.
 
@@ -91,12 +91,14 @@ Je kan in VS Code eenvoudig een shell oproepen. Duw hiervoor op "Control + J" of
 
 ### `pwd` (Print Working Directory)
 
-Toont je huidige locatie in het bestandssysteem.
+Toont je huidige locatie (map of directory) in het bestandssysteem. 
 
 ```bash
 $ pwd
 /home/gebruikersnaam
 ```
+
+**Belangrijk!** Alle opdrachten in Bash zijn relatief ten opzichte van je huidige locatie. Zo zal `bestand.txt` in je opracht verwijzen naar een bestand in je huidige directory maar `mijn_directory/bestand.txt` naar een bestand in een mapje `mijn_directory` dat in mijn huidige directory staat. Als je de melding krijgt dat een bestand niet bestaat, controleer dan even wat je huidige locatie is met `pwd`. 
 
 ### `ls` (List)
 
@@ -111,7 +113,7 @@ Opties:
 
 - `ls -l`: Lang formaat, toont meer details zoals de eigenaar van het bestand en de bestandsgrootte in bytes.
 - `ls -a`: Toont verborgen bestanden (die beginnen met een punt)
-- `ls -lh`: Toont de grootte van de bestanden (in de kolom) in een eenvoudig formaat (`K`: kilobyte, `M`: megabyte, `G`: gigabyte). 
+- `ls -lh`: Lang formaat, maar toont de grootte van de bestanden nu in een eenvoudiger formaat (`K`: kilobyte, `M`: megabyte, `G`: gigabyte). 
 
 ### `cd` (Change Directory)
 
@@ -142,6 +144,8 @@ Kopieert bestanden of directories.
 ```bash
 $ cp bestand.txt Documenten/
 ```
+
+> Nu heb ik twee bestanden: `bestand.txt` en `Documenten/bestand.txt`
 
 Om een directory en zijn inhoud te kopiëren, gebruik de `-r` (recursief) optie:
 
@@ -180,13 +184,12 @@ Toont de inhoud van een bestand.
 $ cat bestand.txt
 ```
 
-### `echo`
+### `touch`
 
-Print tekst naar het scherm.
+Maak een leeg bestand aan.
 
 ```bash
-$ echo "Hallo, Wereld!"
-Hallo, Wereld!
+$ touch mijn_bestand.txt
 ```
 
 ## Opdrachtstructuur
@@ -208,6 +211,7 @@ Hier is `ls` de opdracht, `-l` een optie, en `Documenten` een argument.
 1. Gebruik de pijltjestoetsen omhoog en omlaag om door je opdrachtgeschiedenis te navigeren.
 2. Gebruik Tab voor automatische aanvulling van bestands- en mapnamen.
 3. Gebruik `man` gevolgd door een opdrachtnaam om de handleiding te zien (bijv. `man ls`).
+4. In de sidebar/zijbalk van VS Code kan de bestanden en mappen zien je aanmaakt. Zo kan je zien of je opdracht gelukt is.
 
 ## Oefenopdrachten
 
@@ -225,7 +229,7 @@ Hier is `ls` de opdracht, `-l` een optie, en `Documenten` een argument.
 # Kwaliteitscontrole met FastQC
 
 ## Doel
-Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ruwe sequentiedata afkomstig van high-throughput sequencing pijplijnen (FASTQ formaat). Het helpt bij het identificeren van problemen die kunnen voortkomen uit de sequencer zelf of de *library preparation*. 
+Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ruwe sequentiedata afkomstig van high-throughput sequencing pijplijnen (FASTQ formaat). Het helpt bij het identificeren van problemen die kunnen voortkomen uit de sequencer zelf of de staalvoorbereiding of *library preparation*. 
 
 ## Het FASTQ-formaat
 
@@ -241,13 +245,12 @@ GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
 ```
 
 ### Structuur van een FASTQ-bestand
-Een FASTQ-bestand bestaat uit blokken van vier regels per sequentie:
+Een typisch sequencing experiment zal uit miljoenen reads bestaan. Deze staan allemaal onder elkaar in een FASTQ bestand. Een FASTQ-bestand bestaat uit blokken van vier regels per sequentie:
 
 1. Een regelbeginlijn die start met '@', gevolgd door een sequentie-identifier
 2. De ruwe sequentiegegevens
 3. Een regel die begint met '+', optioneel gevolgd door dezelfde sequentie-identifier
 4. De *Phred* kwaliteitsscores voor de sequentie in gecodeerde vorm, één karakter per nucleotide.
-
 
 Een kwaliteitsscore is de kans dat de nucleotide op die positie foutief gecalled werd. De relatie tussen de score $Q$ en de kans $P$ wordt gegeven door onderstaande formule:
 
@@ -255,7 +258,7 @@ $$
 P = 10^{\frac{-Q}{10}}
 $$
 
-Zo staat `(` voor een *Pred* score van 7 wat overeen komt met een kans van 20% op een foutieve call. Hoe zuiverder het signaal is de sequencer, hoe zekerder de call. Het staal, de staalvoorbereiding of *library preparation* en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de *Phred* kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekent samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.
+Zo staat `(` voor een *Pred* score van 7 wat overeen komt met een kans van 20% op een foutieve call. Hoe zuiverder het signaal in de sequencer, hoe zekerder de call. Het staal, de staalvoorbereiding of *library preparation* en de sequencing(reagentia) kunnen aanleiding geven tot minder kwalitatieve data. Die slechte kwaliteit zal in de verdere bio-informatica analyse resulteren in een slecht of onbetrouwbaar resultaat. Daarom is de eerste stap in een bio-informatica analyse van sequencing data een kwaliteitscontrole op basis van de *Phred* kwaliteitsscores is de FASTQ bestanden. Het FastQC programma berekent samenvattende statistieken over alle entries in een FASTQ bestand en geeft deze weer in een rapport.
 
 ## Opdrachten
 
@@ -311,7 +314,7 @@ Het FastQC rapport wordt gegenereerd, dit duurt enkele seconden. Hierna zie je h
 # Read Mapping met BWA
 
 ## Doel
-In deze stap worden de sequenties in de FASTQ-bestanden uitgelijnd (gealigneerd) met een referentiegenoom. Het resultaat zal de meest waarschijnlijke oorsprong van de read zijn alsook op welke manier deze verschilt van het referentie genoom. Dit proces gebruikt algoritmen om te bepalen waar elke read het best past op het referentiegenoom. Het resultaat van deze alignment wordt opgeslagen in SAM- of BAM-formaat. BWA (Burrows-Wheeler Aligner) is een veelgebruikte tool om reads te aligneren tegen een referentiegenoom.
+In deze stap worden de sequenties in de FASTQ-bestanden uitgelijnd (gealigneerd) met een referentiegenoom. Het resultaat zal de meest waarschijnlijke oorsprong van de read zijn alsook op welke manier deze verschilt van het referentie genoom. Dit proces gebruikt snelle algoritmen om te bepalen waar elke read het best past op het referentiegenoom. Het resultaat van deze alignment wordt opgeslagen in SAM- of BAM-formaat. BWA (Burrows-Wheeler Aligner) is een veelgebruikte tool om reads te aligneren tegen een referentiegenoom.
 
 ## SAM-formaat (Sequence Alignment/Map)
 
@@ -353,7 +356,7 @@ De optionele velden aan het eind:
 - `AS:i:101` - Alignment score (101 is hoog, goede alignment)
 - `XS:i:19` - Secundaire alignment score (score van de op-één-na beste alignment positie)
 
-Dit is duidelijk een zeer goede alignment want:
+Samengevat: BWA heeft als meest waarschijnlijke oorsprong van de read positie 120999772 op chromosoom 12 gevonden. Dit is duidelijk een zeer goede alignment want:
 - Hoge MAPQ score (60)
 - Perfect match (NM:i:0)
 - Grote alignment score (AS:i:101)
@@ -386,7 +389,7 @@ bwa mem -R '@RG\tID:samplename\tSM:samplename' $REF naam_van_fastq_bestand.fastq
 ## BAM-formaat (Binary Alignment/Map)
 
 ### Wat is BAM?
-BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als SAM, maar in een gecomprimeerde, binaire vorm. Bestanden zijn dus een stuk kleiner en dat spaart ruimte bij het archiveren en tijd bij het kopiëren van bestanden. Om BAM files efficient te kunnen verwerken worden de reads vaak gesorteerd volgens positie in het referentiegenoom en wordt er een index aangemaakt. Dit maakt de vervolgstappen een stuk sneller.
+BAM is de binaire versie van het SAM-formaat. Het bevat dezelfde informatie als SAM, maar in een gecomprimeerde, binaire vorm (vergelijk het met een `zip` bestand). Bestanden zijn dus een stuk kleiner en dat spaart ruimte bij het archiveren en tijd bij het kopiëren van bestanden. Om BAM files efficient te kunnen verwerken worden de reads vaak gesorteerd volgens positie in het referentiegenoom en wordt er een index aangemaakt. Dit maakt de vervolgstappen een stuk sneller.
 
 ### Kenmerken van BAM
 - Neemt minder opslagruimte in beslag dan SAM
