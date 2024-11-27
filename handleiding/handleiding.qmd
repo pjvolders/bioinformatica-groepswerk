@@ -98,7 +98,7 @@ $ pwd
 /home/gebruikersnaam
 ```
 
-**Belangrijk!** Alle opdrachten in Bash zijn relatief ten opzichte van je huidige locatie. Zo zal `bestand.txt` in je opracht verwijzen naar een bestand in je huidige directory maar `mijn_directory/bestand.txt` naar een bestand in een mapje `mijn_directory` dat in mijn huidige directory staat. Als je de melding krijgt dat een bestand niet bestaat, controleer dan even wat je huidige locatie is met `pwd`. 
+**Belangrijk!** Alle opdrachten in Bash zijn relatief ten opzichte van je huidige locatie. Zo zal `bestand.txt` in een opracht verwijzen naar een bestand in je huidige directory maar `mijn_directory/bestand.txt` naar een bestand in een mapje `mijn_directory` dat in mijn huidige directory staat. Als je de melding krijgt dat een bestand niet bestaat, controleer dan even wat je huidige locatie is met `pwd`. 
 
 ### `ls` (List)
 
@@ -234,7 +234,7 @@ Het hoofddoel van FastQC is om een snelle kwaliteitscontrole uit te voeren op ru
 ## Het FASTQ-formaat
 
 ### Wat is FASTQ?
-FASTQ is een tekstbestandsformaat voor het opslaan van zowel nucleotidensequenties (reads) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten.
+FASTQ is een tekstbestandsformaat voor het opslaan van zowel nucleotidensequenties (reads) als hun corresponderende kwaliteitsscores. Het wordt veel gebruikt voor het opslaan van gegevens die afkomstig zijn van sequencing-apparaten. Een typisch sequencing experiment zal uit miljoenen reads bestaan. Deze staan allemaal onder elkaar in een FASTQ bestand.
 
 ### Voorbeeld van een FASTQ-entry
 ```
@@ -245,7 +245,7 @@ GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
 ```
 
 ### Structuur van een FASTQ-bestand
-Een typisch sequencing experiment zal uit miljoenen reads bestaan. Deze staan allemaal onder elkaar in een FASTQ bestand. Een FASTQ-bestand bestaat uit blokken van vier regels per sequentie:
+Een FASTQ-bestand bestaat uit blokken van vier regels per sequentie:
 
 1. Een regelbeginlijn die start met '@', gevolgd door een sequentie-identifier
 2. De ruwe sequentiegegevens
