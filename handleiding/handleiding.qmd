@@ -579,7 +579,7 @@ Gebruik volgende commando om alle varianten met een *allele frequency* groter da
 ```bash
 SNPSIFT_JAR=/vsc-hard-mounts/leuven-apps/rocky8/skylake/2021a/software/snpEff/5.2c-GCCcore-10.3.0-Java-11/SnpSift.jar
 
-java -jar $SNPSIFT_JAR filter "( GEN[*].AF > 0.50 ) & ( ANN[*].IMPACT = 'HIGH' )" varianten.annotated.vcf > varianten.annotated.filtered.vcf
+java -jar $SNPSIFT_JAR filter "( GEN[*].AF > 0.50 )" varianten.annotated.vcf > varianten.annotated.filtered.vcf
 ```
 
 VCF bestanden zijn moeilijk te interpreteren na toevoegen van de annotatie door de grote hoeveelheid informatie die erin staat. Met het onderstaande commando kan je alle varianten in het gefilterde VCF bestand in een overzichtelijke tabel weergeven.
