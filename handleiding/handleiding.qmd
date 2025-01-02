@@ -577,6 +577,9 @@ Nadat we een geannoteerde VCF file hebben bekomen kunnen op basis van deze annot
 Gebruik volgende commando om alle varianten met een *allele frequency* groter dan 50% met een hoge impact te filteren en in een nieuw bestand op te slaan.
 
 ```bash
+# SnpEff en SnpSift zitten in dezelfde module. Als je de SnpEff module hebt ingeladen is het onderstaande commando niet nodig.
+module load snpEff/5.2c-GCCcore-10.3.0-Java-11
+
 SNPSIFT_JAR=/vsc-hard-mounts/leuven-apps/rocky8/skylake/2021a/software/snpEff/5.2c-GCCcore-10.3.0-Java-11/SnpSift.jar
 
 java -jar $SNPSIFT_JAR filter "( GEN[*].AF > 0.50 ) & ( ANN[*].IMPACT = 'HIGH' )" varianten.annotated.vcf > varianten.annotated.filtered.vcf
