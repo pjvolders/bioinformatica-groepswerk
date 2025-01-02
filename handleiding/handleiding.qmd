@@ -588,7 +588,7 @@ java -jar $SNPSIFT_JAR filter "( GEN[*].AF > 0.50 ) & ( ANN[*].IMPACT = 'HIGH' )
 VCF bestanden zijn moeilijk te interpreteren na toevoegen van de annotatie door de grote hoeveelheid informatie die erin staat. Met het onderstaande commando kan je alle varianten in het gefilterde VCF bestand in een overzichtelijke tabel weergeven.
 
 ```bash
-java -jar $SNPSIFT_JAR extractFields -s "," -e "." varianten.annotated.filtered.vcf CHROM POS REF ALT "ANN[0].GENE" "ANN[0].EFFECT" "ANN[0].HGVS_C" "ANN[0].HGVS_P"
+java -jar $SNPSIFT_JAR extractFields -s "," -e "." varianten.annotated.filtered.vcf CHROM POS REF ALT "GEN[0].AF" "ANN[0].GENE" "ANN[0].EFFECT" "ANN[0].FEATUREID" "ANN[0].HGVS_C" "ANN[0].HGVS_P"
 ```
 
 ## Opdrachtvragen
