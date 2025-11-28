@@ -467,7 +467,7 @@ Voer variant calling uit met Mutect2 op de gesorteerde BAM file.
 
 ```bash
 module load Java/17.0.15
-GATK=/user/leuven/361/vsc36159/staging/gatk-4.6.2.0/gatk
+GATK=/staging/leuven/stg_00156/gatk-4.6.2.0/gatk
 REF=/staging/leuven/stg_00156/references/hg38.fa
 
 $GATK Mutect2 \
