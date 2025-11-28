@@ -269,7 +269,7 @@ Op de VSC infrastructuur is er bijzonder veel software geïnstalleerd en beschik
 Laad de FastQC module
 
 ```bash
-module load FastQC/0.11.8-Java-1.8.0_162
+module load FastQC/0.12.1-Java-11
 ```
 
 Voer FastQC uit op één FASTQ read-bestand
@@ -466,10 +466,11 @@ Een VCF-bestand bestaat uit:
 Voer variant calling uit met Mutect2 op de gesorteerde BAM file.
 
 ```bash
-module load GATK/4.1.9.0-foss-2018a-Java-11.0.4
-
+module load Java/17.0.15
+GATK=/user/leuven/361/vsc36159/staging/gatk-4.6.2.0/gatk
 REF=/staging/leuven/stg_00156/references/hg38.fa
-gatk Mutect2 \
+
+$GATK Mutect2 \
   -R $REF \
   -I mijn_staal.sorted.bam \
   -O mijn_staal.vcf
