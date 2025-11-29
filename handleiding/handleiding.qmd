@@ -1,5 +1,6 @@
 ---
 title: "Bio-informatica groepswerk handleiding deel 1"
+author: "Pieter-Jan Volders"
 format:
   pdf:
     toc: true
@@ -7,6 +8,8 @@ format:
     colorlinks: true
   html:
     toc: true
+date: last-modified
+date-format: "DD/MM/YYYY"
 ---
 
 # Introductie
