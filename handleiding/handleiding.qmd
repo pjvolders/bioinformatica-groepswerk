@@ -506,7 +506,7 @@ module load snpEff/5.2c-GCCcore-10.3.0-Java-11
 SNPEFF_REF=/staging/leuven/stg_00156/references/snpEff
 
 # we voeren snpeff uit op ons VCF bestand en slaan de output op in een nieuw VCF bestand
-snpEff -dataDir $SNPEFF_REF hg38 input_varianten.vcf > varianten.annotated.vcf
+snpEff -dataDir $SNPEFF_REF -onlyTr $SNPEFF_REF/transcript_ids_mane_select.txt hg38 input_varianten.vcf > varianten.annotated.vcf
 ```
 
 Open de geannoteerde VCF in VS Code. Kijk naar het `ANN=` veld in de output VCF voor gedetailleerde annotaties. In dit veld staat de annotatie van deze variant als volgt:
